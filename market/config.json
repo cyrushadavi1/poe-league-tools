@@ -1,0 +1,10 @@
+{
+  "_note": "league 'Mirage' is the live-verified event league (poe.ninja index-state, 2026-07-07) used for the pre-launch rehearsal. Switch it to the 3.29 league name at launch (Jul 24 2026).",
+  "league": "Mirage",
+  "bankroll_c": 2000,
+  "haircut": 0.04,
+  "min_margin_pct": 5,
+  "min_vol": 20,
+  "poll_currency_s": 300,
+  "poll_items_s": 1800
+}

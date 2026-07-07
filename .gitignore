@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+builds/
+party.json
+plan.md
+build_notes.json
+fake_client.txt
+runs/
+llm_usage.jsonl
+data/wiki_cache/
+data/3.29/
+verify_act*.json
+exposure_*.md
+market/market.db

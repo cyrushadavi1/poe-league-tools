@@ -1,0 +1,17 @@
+Item Class: Amulets
+Rarity: Rare
+Grim Charm
+Jade Amulet
+--------
+Requirements:
+Level: 28
+--------
+Item Level: 35
+--------
++22 to Dexterity (implicit)
+--------
++28 to maximum Life
++11% to all Elemental Resistances
++17% to Chaos Resistance
++14% to Fire and Lightning Resistances
+--------

@@ -1,0 +1,84 @@
+{
+  "act": 1,
+  "steps": [
+    {"zone": "The Twilight Strand", "kind": "kill", "arealvl": 1,
+     "do": ["Run the beach, kill Hillock at the end", "Enter Lioneye's Watch"],
+     "layout": "Linear — hug the shoreline.",
+     "tip": "Grab any 3-link that drops. Don't full-clear."},
+
+    {"zone": "Lioneye's Watch", "kind": "town",
+     "do": ["Turn in Enemy at the Gate → take your starter skill gem (Tarkleigh)",
+            "Exit to The Coast"]},
+
+    {"zone": "The Coast", "kind": "travel", "arealvl": 2,
+     "do": ["Tag the waypoint on the main path",
+            "Take the seaward side exit to The Tidal Island"],
+     "layout": "WP is roughly halfway along the path."},
+
+    {"zone": "The Tidal Island", "kind": "kill", "arealvl": 3,
+     "do": ["Kill Hailrake — dodge the ice spears, he hits hard early",
+            "Loot the Medicine Chest",
+            "LOGOUT to town (Esc → Exit to Login)"],
+     "tip": "Logout warp = instant free travel to town. Core speed tech, fully allowed."},
+
+    {"zone": "Lioneye's Watch", "kind": "town",
+     "do": ["Turn in Mercy Mission → take the QUICKSILVER FLASK (Nessa) + gem reward (Tarkleigh)",
+            "Put Quicksilver on your bar — use it on cooldown for the rest of the game",
+            "Waypoint → The Coast"]},
+
+    {"zone": "The Coast", "kind": "travel", "arealvl": 2,
+     "do": ["Exit north-east to The Mud Flats"]},
+
+    {"zone": "The Mud Flats", "kind": "travel", "arealvl": 4,
+     "do": ["Grab the 3 glyphs from the rhoa nests (marked on screen)",
+            "Open the passage and enter The Submerged Passage"],
+     "layout": "Nests fan out left / middle / right — check the minimap arms.",
+     "tip": "Skip the Fetid Pool."},
+
+    {"zone": "The Submerged Passage", "kind": "travel", "arealvl": 5,
+     "do": ["Rush toward the far bridge — the waypoint is near it",
+            "IF you spot The Flooded Depths on the way: dip in, kill the Dweller of the Deep (+1 passive on turn-in), come back",
+            "Exit to The Ledge"]},
+
+    {"zone": "The Ledge", "kind": "travel", "arealvl": 6,
+     "do": ["Tag the waypoint mid-zone", "Push through to The Climb"],
+     "layout": "One long shelf — follow the wall in one direction."},
+
+    {"zone": "The Climb", "kind": "travel", "arealvl": 7,
+     "do": ["Head up and through to The Lower Prison"],
+     "tip": "Watch the ranged fire packs — they burst low-life characters."},
+
+    {"zone": "The Lower Prison", "kind": "trial", "arealvl": 8,
+     "do": ["Tag the waypoint",
+            "DO the Trial of Ascendancy (spike corridor) — first of six for Normal Lab",
+            "Continue to The Upper Prison"]},
+
+    {"zone": "The Upper Prison", "kind": "kill", "arealvl": 9,
+     "do": ["Push to Brutus and kill him — keep moving to dodge the hook slam",
+            "Continue through the gate toward Prisoner's Gate"],
+     "tip": "~Level 8–9 here is on pace."},
+
+    {"zone": "Prisoner's Gate", "kind": "travel", "arealvl": 10,
+     "do": ["Tag the waypoint", "Exit down the slope to The Ship Graveyard"]},
+
+    {"zone": "The Ship Graveyard", "kind": "kill", "arealvl": 11,
+     "do": ["Tag the waypoint",
+            "Find The Ship Graveyard Cave → grab the Allflame inside",
+            "Kill Fairgraves outside the cave",
+            "LOGOUT to town"],
+     "layout": "The cave sits along the outer coastline — sweep the map edge."},
+
+    {"zone": "Lioneye's Watch", "kind": "town",
+     "do": ["Turn in: The Caged Brute (gem rewards — movement skills unlock here for most builds), The Marooned Mariner (+1 passive, Bestel), and the Dweller if you did it (+1 passive, Tarkleigh)",
+            "Buy + socket gems per your build sheet",
+            "Waypoint → The Ship Graveyard, run to The Cavern of Wrath at the far end"]},
+
+    {"zone": "The Cavern of Wrath", "kind": "travel", "arealvl": 12,
+     "do": ["Tag the waypoint at the entrance", "Descend to The Cavern of Anger"]},
+
+    {"zone": "The Cavern of Anger", "kind": "kill", "arealvl": 13,
+     "do": ["Kill Merveil — two phases, heavy COLD damage",
+            "Exit through the passage behind her arena → Act 2"],
+     "tip": "A Sapphire Ring trivializes her. Target: level 12–13 leaving Act 1."}
+  ]
+}

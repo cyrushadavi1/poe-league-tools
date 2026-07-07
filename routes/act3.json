@@ -1,0 +1,108 @@
+{
+  "act": 3,
+  "steps": [
+    {"zone": "The City of Sarn", "kind": "travel", "arealvl": 23,
+     "do": ["Kill the Blackguards holding Clarissa on the road (starts Lost in Love)",
+            "Tag the waypoint",
+            "Head north-west into The Sarn Encampment"],
+     "layout": "One road — water on the left, ruins on the right. Town is north-west of the WP."},
+
+    {"zone": "The Sarn Encampment", "kind": "town",
+     "do": ["Stash/vendor if needed", "Exit to The Slums"]},
+
+    {"zone": "The Slums", "kind": "travel", "arealvl": 24,
+     "do": ["Cross to the far square and enter The Crematorium",
+            "Ignore the sewer grate for now — you'll come back with the keys"],
+     "layout": "Stairs onto the roofs/rafters lead to the Crematorium square. The sewer grate spawns at ground level, nearer the town side."},
+
+    {"zone": "The Crematorium", "kind": "trial", "arealvl": 25,
+     "do": ["Tag the waypoint",
+            "DO the Trial of Ascendancy (furnace traps) — 4 of 6 for Normal Lab",
+            "Push to Piety's show — she flees; grab TOLMAN'S BRACELET from Tolman",
+            "LOGOUT to town"]},
+
+    {"zone": "The Sarn Encampment", "kind": "town",
+     "do": ["Turn in Lost in Love → Clarissa gives the SEWER KEYS; grab the gem reward from Maramoa",
+            "Exit to The Slums, open the sewer grate (marked), drop into The Sewers"]},
+
+    {"zone": "The Sewers", "kind": "travel", "arealvl": 26,
+     "do": ["Grab the 3 platinum busts from the quest-marked stashes (Victario's Secrets)",
+            "Tag the waypoint — you'll WP back here later for the Undying Blockage",
+            "Exit to The Marketplace"],
+     "layout": "Busts sit in side rooms: one near your entrance, one by the WP, one at the far end away from the Marketplace exit."},
+
+    {"zone": "The Marketplace", "kind": "travel", "arealvl": 26,
+     "do": ["Tag the waypoint",
+            "Find The Catacombs entrance and go down"],
+     "layout": "Two halves joined by a statue-lined road; the Catacombs door sits near the area boundary."},
+
+    {"zone": "The Catacombs", "kind": "trial", "arealvl": 27,
+     "do": ["DO the Trial of Ascendancy (blade sentries) — 5 of 6",
+            "LOGOUT to town"],
+     "tip": "Heavy COLD damage zone — a Sapphire Flask helps."},
+
+    {"zone": "The Sarn Encampment", "kind": "town",
+     "do": ["Turn in Victario's Secrets → +1 PASSIVE (Hargan)",
+            "Waypoint → The Marketplace, exit to The Battlefront"]},
+
+    {"zone": "The Battlefront", "kind": "travel", "arealvl": 27,
+     "do": ["Tag the waypoint (centre, ringed by barricades)",
+            "Open the Blackguard chest for the RIBBON SPOOL — Captain Aurelianus guards it; kite him, no need to kill",
+            "Take the Docks exit"],
+     "layout": "Exits: Docks on one side, Solaris Temple at the top. The Spool chest is toward the bottom, before the sealed Ebony Barracks barrier."},
+
+    {"zone": "The Docks", "kind": "travel", "arealvl": 29,
+     "do": ["Rush the THAUMETIC SULPHITE chest (quest-marked, end of a branch)",
+            "LOGOUT to town, waypoint → The Battlefront, head up to the Solaris exit"],
+     "tip": "Zone runs 2 levels above the curve — grab the Sulphite and get out."},
+
+    {"zone": "The Solaris Temple Level 1", "kind": "travel", "arealvl": 27,
+     "do": ["Push through the maze of rooms to the stairs up"]},
+
+    {"zone": "The Solaris Temple Level 2", "kind": "travel", "arealvl": 28,
+     "do": ["Reach Dialla at the end of the maze: talk (The Gemling Queen), turn in the Ribbon Spool, hand over the Sulphite → INFERNAL TALC",
+            "Tag the waypoint next to her, then waypoint → The Sewers"]},
+
+    {"zone": "The Sewers", "kind": "travel", "arealvl": 26,
+     "do": ["From the WP, run to the Undying Blockage (quest-marked) and burn it with the Infernal Talc",
+            "Enter The Ebony Barracks"]},
+
+    {"zone": "The Ebony Barracks", "kind": "kill", "arealvl": 29,
+     "do": ["Climb the tiers — tag the waypoint by the Imperial Gardens door on the right wall",
+            "Kill General Gravicius at his camp up the big stairs — heavy FIRE damage",
+            "Continue behind the camp to The Lunaris Temple Level 1"],
+     "tip": "Ruby Flask trivializes Gravicius."},
+
+    {"zone": "The Lunaris Temple Level 1", "kind": "travel", "arealvl": 29,
+     "do": ["Push through the halls — the waypoint sits at the stairs down to Level 2"]},
+
+    {"zone": "The Lunaris Temple Level 2", "kind": "kill", "arealvl": 30,
+     "do": ["Climb — three staircases up, never take stairs down",
+            "Kill Piety — she swaps between LIGHTNING and ICE forms; keep moving",
+            "Pick up the TOWER KEY she drops",
+            "LOGOUT to town"],
+     "tip": "Topaz + Sapphire flasks cover both of her forms."},
+
+    {"zone": "The Sarn Encampment", "kind": "town",
+     "do": ["Turn in: Piety's Pets → +1 PASSIVE (Grigor), Sever the Right Hand → gem reward (Maramoa)",
+            "Buy/socket gem upgrades",
+            "Waypoint → The Ebony Barracks — the Imperial Gardens door is right beside the WP"]},
+
+    {"zone": "The Imperial Gardens", "kind": "trial", "arealvl": 30,
+     "do": ["Tag the waypoint at the road fork",
+            "DO the Trial of Ascendancy (dart traps) — 6 of 6: NORMAL LAB is now open (Aspirants' Plaza, in town)",
+            "IF your build needs gems: left fork → The Library — bring Siosa the 4 Golden Pages from The Archives and he sells nearly every gem",
+            "Take the right fork and open The Sceptre of God with the Tower Key"],
+     "layout": "Trial is usually in the top-left corner. Rubble piles on the roads can be jumped with movement skills.",
+     "tip": "Most builds run Normal Lab right after Dominus — Ascendancy is the biggest power spike of the campaign."},
+
+    {"zone": "The Sceptre of God", "kind": "travel", "arealvl": 32,
+     "do": ["Climb the three circular floors — waypoint is in a random room on the third",
+            "Continue up to The Upper Sceptre of God"]},
+
+    {"zone": "The Upper Sceptre of God", "kind": "kill", "arealvl": 33,
+     "do": ["Climb to the top and kill Dominus — phase 1: dodge the Touch of God slam (huge LIGHTNING); phase 2 demon form: don't stand in the blood rain, it stacks damage over time",
+            "Take the passage beyond the arena → Act 4 (The Aqueduct)"],
+     "tip": "Target: level 32–33 leaving Act 3. Run Normal Lab now if you haven't."}
+  ]
+}

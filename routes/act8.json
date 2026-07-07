@@ -1,0 +1,99 @@
+{
+  "act": 8,
+  "steps": [
+    {"zone": "The Sarn Ramparts", "kind": "travel", "arealvl": 55,
+     "do": ["Run the wall — tag the waypoint on the way through",
+            "Enter The Sarn Encampment at the far gate"],
+     "layout": "Linear rampart — one path along the wall.",
+     "tip": "~Level 54–55 entering is on pace."},
+
+    {"zone": "The Sarn Encampment", "kind": "town",
+     "do": ["Quick NPC round: Sin + Hargan (Essence of the Hag), Clarissa (Love is Dead), Maramoa (The Gemling Legion)",
+            "Enter The Toxic Conduits through the sewer entrance"]},
+
+    {"zone": "The Toxic Conduits", "kind": "travel", "arealvl": 56,
+     "do": ["Find the passage down into Doedre's Cesspool (no waypoint here — it's after the boss)"]},
+
+    {"zone": "Doedre's Cesspool", "kind": "kill", "arealvl": 56,
+     "do": ["Push to The Cauldron and turn the valve to start the fight",
+            "Kill Doedre the Vile — turn the valve mid-fight to clear her vortexes and summons",
+            "Tag the waypoint after the Cauldron fight",
+            "Take the NORTH branch of the T-junction to The Quay (the south branch leads to The Grand Promenade — if you end up there, backtrack into the Cesspool)"],
+     "tip": "Chaos DoT everywhere — keep moving, don't stand in the vortexes."},
+
+    {"zone": "The Quay", "kind": "kill", "arealvl": 57,
+     "do": ["Grab the ANKH OF ETERNITY from the shrine near the entrance",
+            "Find the Resurrection Site → give Clarissa the Ankh → kill the zombie waves, then risen Tolman",
+            "Exit to The Grain Gate"],
+     "layout": "Ankh is close to the zone entrance (look for the long bridge); the Resurrection Site is deeper along the waterfront.",
+     "tip": "Worth the sweep: +1 passive + 2 respec points on turn-in."},
+
+    {"zone": "The Grain Gate", "kind": "kill", "arealvl": 57,
+     "do": ["Kill the Gemling Legionnaires as you cross (+1 passive on turn-in)",
+            "Tag the waypoint",
+            "Exit up to The Imperial Fields"]},
+
+    {"zone": "The Imperial Fields", "kind": "travel", "arealvl": 58,
+     "do": ["Tag the waypoint",
+            "Cross the fields and enter The Solaris Temple Level 1"]},
+
+    {"zone": "The Solaris Temple Level 1", "kind": "travel", "arealvl": 59,
+     "do": ["Tag the waypoint",
+            "Climb to The Solaris Temple Level 2"]},
+
+    {"zone": "The Solaris Temple Level 2", "kind": "kill", "arealvl": 59,
+     "do": ["Kill Dawn, Harbinger of Solaris — heavy FIRE, don't stand in the solar beam",
+            "Take the SUN ORB",
+            "LOGOUT to town"],
+     "tip": "Logout warp — instant free travel, fully allowed."},
+
+    {"zone": "The Sarn Encampment", "kind": "town",
+     "do": ["Turn in: Essence of the Hag (Hargan), Love is Dead (Clarissa — +1 passive, +2 respec), The Gemling Legion (Maramoa — +1 passive)",
+            "Buy/refresh gems per your build sheet",
+            "Waypoint → The Solaris Temple Level 1, take the exit out to The Solaris Concourse"]},
+
+    {"zone": "The Solaris Concourse", "kind": "travel", "arealvl": 58,
+     "do": ["Tag the waypoint",
+            "Take the exit onto The Harbour Bridge"]},
+
+    {"zone": "The Harbour Bridge", "kind": "travel", "arealvl": 60,
+     "do": ["Run straight across, past the Sky Shrine altars mid-bridge (you'll return with both orbs)",
+            "Exit to The Lunaris Concourse"],
+     "tip": "Level 60 zone — don't fight, just run."},
+
+    {"zone": "The Lunaris Concourse", "kind": "travel", "arealvl": 58,
+     "do": ["Tag the waypoint",
+            "Take the exit up to The Bath House"]},
+
+    {"zone": "The Bath House", "kind": "trial", "arealvl": 57,
+     "do": ["Tag the waypoint",
+            "DO the Trial of Ascendancy — first of three for Merciless Lab",
+            "Kill Hector Titucius, Eternal Servant → grab the WINGS OF VASTIRI (jewel from Hargan on turn-in)",
+            "IF you spot The Hidden Underbelly (secret side area): optional loot detour only — skip when racing",
+            "Exit to The High Gardens"]},
+
+    {"zone": "The High Gardens", "kind": "kill", "arealvl": 58,
+     "do": ["Push to the Pools of Terror at the far end — kill Yugul, Reflection of Terror (+1 passive on turn-in)",
+            "Walk back through The Bath House, drop down to The Lunaris Concourse, enter The Lunaris Temple Level 1"],
+     "tip": "Don't logout here — the walk back is just as fast and keeps the guide in sync."},
+
+    {"zone": "The Lunaris Temple Level 1", "kind": "travel", "arealvl": 59,
+     "do": ["Tag the waypoint",
+            "Descend to The Lunaris Temple Level 2"]},
+
+    {"zone": "The Lunaris Temple Level 2", "kind": "kill", "arealvl": 59,
+     "do": ["Kill Dusk, Harbinger of Lunaris — stay off the dark vortex circles the moon orb drops",
+            "Take the MOON ORB",
+            "LOGOUT to town"]},
+
+    {"zone": "The Sarn Encampment", "kind": "town",
+     "do": ["Turn in The Wings of Vastiri to Hargan (rare jewel choice); talk to Sin for Reflection of Terror (+1 passive)",
+            "Waypoint → The Lunaris Concourse, run back onto The Harbour Bridge"]},
+
+    {"zone": "The Harbour Bridge", "kind": "kill", "arealvl": 60,
+     "do": ["Place the Sun and Moon Orbs at the Sky Shrine altars to summon the goddesses",
+            "Kill Solaris and Lunaris — phases alternate FIRE (Solaris) and COLD (Lunaris) before a joint finale",
+            "Take the passage that opens in the Sky Shrine → Act 9 (The Blood Aqueduct)"],
+     "tip": "Cap fire + cold res before the fight. Target: ~level 58–60 leaving Act 8."}
+  ]
+}

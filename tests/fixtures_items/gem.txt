@@ -1,0 +1,24 @@
+Item Class: Skill Gems
+Rarity: Gem
+Frostbolt
+--------
+Spell, Projectile, Cold
+Level: 3
+Cost: 7 Mana
+Cast Time: 0.75 sec
+Critical Strike Chance: 6.00%
+Effectiveness of Added Damage: 220%
+Quality: +7% (augmented)
+--------
+Requirements:
+Level: 10
+Int: 21
+--------
+Fires a slow-moving projectile that pierces through enemies, dealing cold damage.
+--------
+Deals 15 to 23 Cold Damage
+--------
+Experience: 25000/49725
+--------
+Place into an item socket of the right colour to gain this skill. Right click to remove from a socket.
+--------

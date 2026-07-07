@@ -1,0 +1,14 @@
+{
+ "result": [
+  {"id": "pseudo", "label": "Pseudo", "entries": [
+   {"id": "pseudo.pseudo_total_cold_resistance", "text": "+#% total to Cold Resistance", "type": "pseudo"},
+   {"id": "pseudo.pseudo_total_fire_resistance", "text": "+#% total to Fire Resistance", "type": "pseudo"},
+   {"id": "pseudo.pseudo_total_lightning_resistance", "text": "+#% total to Lightning Resistance", "type": "pseudo"}
+  ]},
+  {"id": "explicit", "label": "Explicit", "entries": [
+   {"id": "explicit.stat_3299347043", "text": "+# to maximum Life", "type": "explicit"},
+   {"id": "explicit.stat_4220027924", "text": "+#% to Cold Resistance", "type": "explicit"},
+   {"id": "explicit.stat_3372524247", "text": "+#% to Fire Resistance", "type": "explicit"}
+  ]}
+ ]
+}

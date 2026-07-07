@@ -1,0 +1,76 @@
+{
+  "act": 5,
+  "steps": [
+    {"zone": "The Slave Pens", "kind": "kill", "arealvl": 41,
+     "do": ["The Ascent portal drops you here — tag the waypoint on the way through",
+            "Kill Overseer Krow at the far end",
+            "Enter Overseer's Tower"],
+     "layout": "Maze of cages and hallways — Krow guards the tower gate at the end.",
+     "tip": "~Level 40 arriving is on pace."},
+
+    {"zone": "Overseer's Tower", "kind": "town",
+     "do": ["Turn in Return to Oriath → take the ring that patches your worst resist (Lani)",
+            "Exit to The Control Blocks"]},
+
+    {"zone": "The Control Blocks", "kind": "kill", "arealvl": 41,
+     "do": ["Grab the Miasmeter from the Experimental Supplies chest — spawns near the LEFT edge of the map",
+            "Kill Justicar Casticus and loot his Eyes of Zeal",
+            "Exit to Oriath Square"],
+     "layout": "No waypoint. Miasmeter chest hugs the left edge; Casticus and the exit are in the top-right corner.",
+     "tip": "The Miasmeter is +1 passive on turn-in — don't skip it."},
+
+    {"zone": "Oriath Square", "kind": "travel", "arealvl": 42,
+     "do": ["Tag the waypoint",
+            "LOGOUT to town (Esc → Exit to Login)"],
+     "layout": "WP is by the central plaza. The Templar Courts door is north, across the river."},
+
+    {"zone": "Overseer's Tower", "kind": "town",
+     "do": ["Turn in In Service to Science → Book of Skill, +1 passive (Vilenta)",
+            "Turn in The Key to Freedom → take the RUBY FLASK — Innocence and Kitava are both fire-heavy (Lani)",
+            "Waypoint → Oriath Square, head north over the river, open the Templar Courts door with the Eyes of Zeal"]},
+
+    {"zone": "The Templar Courts", "kind": "travel", "arealvl": 42,
+     "do": ["Run straight through to The Chamber of Innocence"],
+     "tip": "You'll re-run this exact map in reverse later (as the Torched Courts) — don't clear, just move."},
+
+    {"zone": "The Chamber of Innocence", "kind": "kill", "arealvl": 43,
+     "do": ["Push to the Sanctum of Innocence at the end",
+            "Kill High Templar Avarius, then Innocence manifests — heavy FIRE, keep moving and stay out of the beams",
+            "Sin appears after the kill (dialogue optional) — exit into The Torched Courts"],
+     "layout": "Mostly linear with small side rooms.",
+     "tip": "Death to Purity turn-in comes later — no town trip needed yet."},
+
+    {"zone": "The Torched Courts", "kind": "travel", "arealvl": 44,
+     "do": ["Run back down the burning Courts — same map reversed",
+            "Exit to The Ruined Square"],
+     "tip": "Monster level jumps to 44 here — respect the packs and skip the flame ground."},
+
+    {"zone": "The Ruined Square", "kind": "kill", "arealvl": 44,
+     "do": ["Tag the waypoint — the exit path leads straight to it; the Ossuary door is right beside it",
+            "Cross the river into the square and kill Utula, Stone and Steel near the fountain",
+            "Enter The Reliquary (bottom of the map): grab all 3 Kitava's Torments — Hinekora's Hair, Tukohama's Tooth, Valako's Jaw",
+            "LOGOUT to town"],
+     "layout": "North of the river is linear. The square is south; Reliquary door at the bottom, Cathedral Rooftop up the steps on the west side.",
+     "tip": "Reliquary bonus: two random chests hold keys to the vault beside its waypoint — free rares if you find both."},
+
+    {"zone": "Overseer's Tower", "kind": "town",
+     "do": ["Turn in Death to Purity → rare jewel (Lani)",
+            "Turn in Kitava's Torments → Book of Skill: +1 passive + 2 respec (Lani)",
+            "Turn in The King's Feast → rare weapon (Bannon)",
+            "Waypoint → The Ruined Square, take the Ossuary door next to the WP"],
+     "tip": "No trials in Act 5. If all six Act 1–3 trials are done, Normal Lab (WP → Sarn Encampment → Aspirants' Plaza) is a fast Ascendancy grab now."},
+
+    {"zone": "The Ossuary", "kind": "travel", "arealvl": 44,
+     "do": ["Run the loop to the Tomb of the First Templar at the far end and grab the Sign of Purity",
+            "Take the hidden passage by the tomb — it drops you back at the entrance",
+            "Cross the square to the steps on the west side and enter The Cathedral Rooftop"],
+     "layout": "One big clockwise loop — the Sign is at the end of it."},
+
+    {"zone": "The Cathedral Rooftop", "kind": "kill", "arealvl": 45,
+     "do": ["Run the rooftop to the Cathedral Apex",
+            "Kill Kitava, the Insatiable — near-constant fire: sidestep the scythe slams, kill adds for flask charges",
+            "Board Lilly Roth's ship past the arena → sail for Act 6"],
+     "layout": "Linear across the roof.",
+     "tip": "Beating Kitava costs -30% ALL resists permanently — restock res gear before Act 6. Target: level 44–46 leaving."}
+  ]
+}

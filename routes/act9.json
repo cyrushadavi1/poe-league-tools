@@ -1,0 +1,91 @@
+{
+  "act": 9,
+  "steps": [
+    {"zone": "The Blood Aqueduct", "kind": "travel", "arealvl": 61,
+     "do": ["Run the aqueduct channel — tag the waypoint on the way",
+            "Enter Highgate at the far end"],
+     "layout": "One straight canal — just follow the water.",
+     "tip": "~Level 60 entering is on pace. Famous Humility/Tabula farm zone — don't farm it now."},
+
+    {"zone": "Highgate", "kind": "town",
+     "do": ["Talk to Irasha, Petarus and Vanja, and Sin to flag the act's quests",
+            "Exit to The Descent"]},
+
+    {"zone": "The Descent", "kind": "travel", "arealvl": 61,
+     "do": ["Head downhill to The Vastiri Desert"]},
+
+    {"zone": "The Vastiri Desert", "kind": "kill", "arealvl": 61,
+     "do": ["Find the Storm Blade chest (open ring of pillars) — beat the mummy waves and take the STORM BLADE",
+            "Tag the waypoint",
+            "LOGOUT to town"],
+     "tip": "Ignore the sandstorm wall for now — it only opens with the Bottled Storm."},
+
+    {"zone": "Highgate", "kind": "town",
+     "do": ["Give the Storm Blade to Petarus and Vanja → pick a rare weapon",
+            "Talk to Sin, then Petarus and Vanja again → take the BOTTLED STORM",
+            "Waypoint → The Vastiri Desert"]},
+
+    {"zone": "The Vastiri Desert", "kind": "travel", "arealvl": 61,
+     "do": ["Run to the sandstorm wall and use the Bottled Storm to dispel it",
+            "Enter The Oasis"]},
+
+    {"zone": "The Oasis", "kind": "kill", "arealvl": 61,
+     "do": ["Push to the Sand Pit and kill Shakari, Queen of the Sands",
+            "IF you want Jun / Betrayal flagged: talk to her in The Forbidden Vault sub-area",
+            "LOGOUT to town"],
+     "tip": "Gauntlet fight: keep moving — dodge the stinger cones and don't stand in quicksand (stacking slow)."},
+
+    {"zone": "Highgate", "kind": "town",
+     "do": ["Turn in Queen of the Sands → BOOK OF SKILL (+1 passive, Irasha)",
+            "Waypoint → The Vastiri Desert, cross to the Foothills exit"]},
+
+    {"zone": "The Foothills", "kind": "kill", "arealvl": 62,
+     "do": ["Tag the waypoint",
+            "Find the dig site → kill Boulderback, take the CALENDAR OF FORTUNE",
+            "Take the side exit to The Boiling Lake"]},
+
+    {"zone": "The Boiling Lake", "kind": "kill", "arealvl": 62,
+     "do": ["Kill The Basilisk and grab the BASILISK ACID — required for the main quest",
+            "LOGOUT to town"],
+     "tip": "Two Sulphuric Fossilised Remains hide near the entrance corner — free fossils if you spot them."},
+
+    {"zone": "Highgate", "kind": "town",
+     "do": ["Turn in Fastis Fortuna → BOOK OF REGRETS (2 respec points, Petarus and Vanja)",
+            "Waypoint → The Foothills, exit to The Tunnel"]},
+
+    {"zone": "The Tunnel", "kind": "trial", "arealvl": 62,
+     "do": ["Tag the waypoint",
+            "DO the Trial of Ascendancy (blade sentries) — spawns left or right of the main path; second of three for Merciless Lab",
+            "Exit to The Quarry"]},
+
+    {"zone": "The Quarry", "kind": "kill", "arealvl": 63,
+     "do": ["Tag the waypoint",
+            "Enter the Shrine of the Winds arena (west or east edge): kill Kira, then Garukhan, Queen of the Winds",
+            "Take the SEKHEMA FEATHER from the arena",
+            "Find the entrance to The Refinery and go in"],
+     "tip": "Kira dies fast; Garukhan is the real fight — stay mobile and clear the sand adds."},
+
+    {"zone": "The Refinery", "kind": "kill", "arealvl": 63,
+     "do": ["Fight through to General Adus and take the TRARTHAN POWDER",
+            "LOGOUT to town"]},
+
+    {"zone": "Highgate", "kind": "town",
+     "do": ["Give the Sekhema Feather to Irasha (or Tasuni) → BOOK OF SKILL (+1 passive)",
+            "Hand Sin the Basilisk Acid + Trarthan Powder",
+            "Waypoint → The Quarry"]},
+
+    {"zone": "The Quarry", "kind": "travel", "arealvl": 63,
+     "do": ["Meet Sin at the blood pools by the Lesion (hand over Acid + Powder here if you still carry them) — he burns open the way",
+            "Enter The Belly of the Beast"]},
+
+    {"zone": "The Belly of the Beast", "kind": "travel", "arealvl": 63,
+     "do": ["Push through the gut corridors to The Rotting Core"]},
+
+    {"zone": "The Rotting Core", "kind": "kill", "arealvl": 64,
+     "do": ["Meet Sin at the Black Core",
+            "Clear the three wings in any order: Doedre, Darksoul / Maligaro, The Broken / Shavronne, Unbound",
+            "Enter The Black Heart, talk to Sin, then kill THE DEPRAVED TRINITY — stay out of the effluent pools",
+            "Talk to Lilly outside and set sail → Act 10"],
+     "tip": "Target: level 63–64 leaving Act 9."}
+  ]
+}

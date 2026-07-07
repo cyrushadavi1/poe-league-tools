@@ -1,0 +1,102 @@
+{
+  "act": 4,
+  "steps": [
+    {"zone": "The Aqueduct", "kind": "travel", "arealvl": 33,
+     "do": ["Tag the waypoint on the way through",
+            "Run straight through to Highgate"],
+     "layout": "Linear channel — one direction, no branches.",
+     "tip": "Dialla waits mid-zone — talking to her is optional, the quest advances anyway."},
+
+    {"zone": "Highgate", "kind": "town",
+     "do": ["Quick vendor check — Petarus and Vanja stock this act's gems",
+            "Take the south-west stairs down to The Dried Lake"]},
+
+    {"zone": "The Dried Lake", "kind": "kill", "arealvl": 34,
+     "do": ["Cross the lakebed to Voll's ruined camp",
+            "Kill Voll, Emperor of Purity — loot DESHRET'S BANNER",
+            "LOGOUT to town"],
+     "layout": "You enter in the north-west; the camp is south-east — cut diagonally across.",
+     "tip": "Locals deal mostly lightning — a Topaz ring helps. Voll resists everything but only swings phys. No waypoint here; logout is the ride home."},
+
+    {"zone": "Highgate", "kind": "town",
+     "do": ["Use Deshret's Banner on the Seal at the Mines entrance",
+            "Talk to Oyun → gem reward (Breaking the Seal)",
+            "IF you want Delve this league: talk to Niko at the Mines entrance",
+            "Enter The Mines Level 1"],
+     "tip": "Good lab window: Normal Labyrinth (Aspirant's Plaza via Sarn WP) runs well at ~33–35 if your build wants its ascendancy now."},
+
+    {"zone": "The Mines Level 1", "kind": "travel", "arealvl": 34,
+     "do": ["Push through to The Mines Level 2"],
+     "tip": "Two cave levels, no waypoint until The Crystal Veins — hug one wall and keep moving."},
+
+    {"zone": "The Mines Level 2", "kind": "travel", "arealvl": 35,
+     "do": ["Find Deshret's spirit and FREE it (An Indomitable Spirit — +1 passive on turn-in)",
+            "Continue to The Crystal Veins"]},
+
+    {"zone": "The Crystal Veins", "kind": "travel", "arealvl": 36,
+     "do": ["Tag the waypoint",
+            "Talk to Dialla at the Rapture Device — she wants Kaom's and Daresso's eyes",
+            "Enter Kaom's Dream"],
+     "tip": "The Burning Man explodes on death — pop him at range or walk off the corpse."},
+
+    {"zone": "Kaom's Dream", "kind": "travel", "arealvl": 37,
+     "do": ["Climb through the burning dream to Kaom's Stronghold"],
+     "tip": "Skip the packs you can — the totem/ambush spawns aren't worth the time."},
+
+    {"zone": "Kaom's Stronghold", "kind": "kill", "arealvl": 38,
+     "do": ["Tag the waypoint on the way up",
+            "Kill King Kaom in the caldera at the top — loot THE EYE OF FURY",
+            "LOGOUT → in town, take the Book of Skill from Tasuni (+1 passive, 2 respec)",
+            "WP → The Crystal Veins, enter Daresso's Dream"],
+     "tip": "Kaom hits very hard for the level — keep the fight mobile, don't facetank the leap."},
+
+    {"zone": "Daresso's Dream", "kind": "travel", "arealvl": 37,
+     "do": ["Push through to The Grand Arena"],
+     "tip": "Cage ambushes lock you in until the wave is dead — burn them fast rather than running."},
+
+    {"zone": "The Grand Arena", "kind": "kill", "arealvl": 38,
+     "do": ["Tag the waypoint",
+            "Kill Daresso in the arena at the end — loot THE EYE OF DESIRE",
+            "WP → The Crystal Veins",
+            "Hand BOTH eyes to Dialla → take the gem reward; she fires the Rapture Device",
+            "Enter the wound it opens: The Belly of the Beast Level 1"],
+     "tip": "Daresso goes immune while arena adds pour in — clear them quickly, dodge his dash."},
+
+    {"zone": "The Belly of the Beast Level 1", "kind": "travel", "arealvl": 38,
+     "do": ["Follow the flesh corridors down to Level 2"]},
+
+    {"zone": "The Belly of the Beast Level 2", "kind": "kill", "arealvl": 39,
+     "do": ["Fight into the Bowels of the Beast and kill Piety, the Abomination",
+            "TALK to Piety's human form afterwards — required to open the path",
+            "Continue to The Harvest"],
+     "tip": "Bleed city: Gut Flayers puncture and Piety's beam applies Corrupted Blood — a Staunching flask is close to mandatory."},
+
+    {"zone": "The Harvest", "kind": "kill", "arealvl": 40,
+     "do": ["Tag the waypoint",
+            "Kill the three organ guardians — Doedre, Shavronne, Maligaro — loot an organ from each",
+            "Deliver the organs to Piety at the Black Core door (Corpus Malachus)",
+            "Enter The Black Core"],
+     "layout": "Boss platforms branch off the central chamber — sweep them one by one.",
+     "tip": "Do all three in one sitting — a fresh instance respawns them."},
+
+    {"zone": "The Black Core", "kind": "kill", "arealvl": 40,
+     "do": ["Phase 1: fight Malachai — let Piety's beam strip his immunity shield",
+            "Take the door in the arena centre → The Black Heart"],
+     "tip": "Hardest fight of the campaign so far — pot early, keep moving, stand in nothing."},
+
+    {"zone": "The Black Heart", "kind": "kill", "arealvl": 40,
+     "do": ["Phase 2: when Malachai drains a Heart of the Beast, kill that heart — three hearts, then finish him",
+            "Take the portal back to Highgate"]},
+
+    {"zone": "Highgate", "kind": "town",
+     "do": ["Talk to Tasuni — closes The Eternal Nightmare, starts Return to Oriath",
+            "Stash, vendor, gem check before the level-40 zones",
+            "Exit to The Ascent"]},
+
+    {"zone": "The Ascent", "kind": "travel", "arealvl": 40,
+     "do": ["Climb the trail — the rope bridge marks halfway",
+            "Pull the lever at the Resonator on the summit → Oriath Portal",
+            "Portal → The Slave Pens → Act 5"],
+     "tip": "No waypoint in here. Target: ~level 40 entering Act 5."}
+  ]
+}

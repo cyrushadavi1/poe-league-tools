@@ -1,0 +1,110 @@
+{
+  "act": 7,
+  "steps": [
+    {"zone": "The Bridge Encampment", "kind": "town",
+     "do": ["Arrive from Act 6 — stash, vendor-check gems",
+            "Grab quests: Eramir (The Master of a Million Faces), Weylam Roth (Silver Locket + Kishara's Star)",
+            "Exit to The Broken Bridge"]},
+
+    {"zone": "The Broken Bridge", "kind": "travel", "arealvl": 50,
+     "do": ["Cross the span to The Crossroads exit on the far side",
+            "IF you spot Weylam's buried lockbox on the way: grab the SILVER LOCKET (flask reward — only if it's on the path)"],
+     "tip": "No waypoint in this zone — just run it."},
+
+    {"zone": "The Crossroads", "kind": "travel", "arealvl": 51,
+     "do": ["Tag the waypoint mid-zone",
+            "Take the lower fork → The Fellshrine Ruins"],
+     "layout": "Chamber of Sins is the other (north-west) exit — you WP back for it after the Crypt.",
+     "tip": "Alva spawns here — first Incursions if you want temple loot; skip when racing."},
+
+    {"zone": "The Fellshrine Ruins", "kind": "travel", "arealvl": 51,
+     "do": ["Push through to The Crypt entrance"],
+     "layout": "Follow the ruined road — the Crypt entrance sits among the church ruins."},
+
+    {"zone": "The Crypt", "kind": "trial", "arealvl": 51,
+     "do": ["Tag the waypoint",
+            "DO the Trial of Ascendancy — first of two this act (Cruel Lab set)",
+            "Loot MALIGARO'S MAP from the Container of Sins",
+            "Waypoint (or logout → WP) → The Crossroads"],
+     "tip": "Dead-end zone: trial + map container are both inside, sweep to the back."},
+
+    {"zone": "The Crossroads", "kind": "travel", "arealvl": 51,
+     "do": ["Cross to the north-west exit → The Chamber of Sins Level 1"]},
+
+    {"zone": "The Chamber of Sins Level 1", "kind": "travel", "arealvl": 52,
+     "do": ["Tag the waypoint near the central chamber",
+            "Find Silk at the map device, place Maligaro's Map, enter the portal to Maligaro's Sanctum"],
+     "layout": "WP, Silk and the map device all sit around the middle of the floor."},
+
+    {"zone": "Maligaro's Sanctum", "kind": "kill", "arealvl": 52,
+     "do": ["Kill Maligaro (Sin claims his essence — Essence of the Artist)",
+            "Kill the spider Black Death and loot the BLACK VENOM",
+            "Head back out to the Chamber of Sins"]},
+
+    {"zone": "The Chamber of Sins Level 1", "kind": "travel", "arealvl": 52,
+     "do": ["Give the Black Venom to Silk → take the OBSIDIAN KEY (Web of Secrets)",
+            "Open the way down to Level 2"]},
+
+    {"zone": "The Chamber of Sins Level 2", "kind": "trial", "arealvl": 52,
+     "do": ["DO the Trial of Ascendancy — second this act; with Act 6's Prison trial that's all three for Cruel Lab",
+            "Take Helena's secret passage out to The Den"]},
+
+    {"zone": "The Den", "kind": "travel", "arealvl": 53,
+     "do": ["Tag the waypoint", "Push through the caves to The Ashen Fields"]},
+
+    {"zone": "The Ashen Fields", "kind": "kill", "arealvl": 53,
+     "do": ["Tag the waypoint",
+            "At the ruined Forest Encampment: kill Greust, Lord of the Forest, then destroy the Ralakesh totem in the arena centre",
+            "Continue to The Northern Forest"],
+     "tip": "The fight spawns bandit + beast adds — clear them, don't get surrounded."},
+
+    {"zone": "The Northern Forest", "kind": "travel", "arealvl": 53,
+     "do": ["Tag the waypoint",
+            "Take the side exit into The Dread Thicket"],
+     "layout": "The Thicket is a dead-end branch; the Causeway exit is separate — you return here by WP."},
+
+    {"zone": "The Dread Thicket", "kind": "kill", "arealvl": 53,
+     "do": ["Collect all 7 FIREFLIES (quest tracker counts them — the zone always has 7)",
+            "Find the Den of Despair and kill Gruthkul (+1 passive on turn-in)",
+            "LOGOUT to town"],
+     "tip": "Fireflies glow on the ground — sweep methodically, a near-full clear finds them. Don't facetank Gruthkul's slams."},
+
+    {"zone": "The Bridge Encampment", "kind": "town",
+     "do": ["Turn in to Eramir: The Master of a Million Faces (+1 passive) and Queen of Despair (+1 passive)",
+            "Optional: boots from Helena (Essence of the Artist); take GREUST'S NECKLACE from Helena if you want the amulet",
+            "Waypoint → The Northern Forest"]},
+
+    {"zone": "The Northern Forest", "kind": "travel", "arealvl": 53,
+     "do": ["Head to the far exit → The Causeway",
+            "IF carrying Greust's Necklace and you pass the Azmeri shrine: place it (amulet from Helena later — skippable)"]},
+
+    {"zone": "The Causeway", "kind": "travel", "arealvl": 54,
+     "do": ["Tag the waypoint",
+            "Grab KISHARA'S STAR from the lockbox — usually near the far (Vaal City) end",
+            "Enter The Vaal City"],
+     "layout": "One long flooded span — run it end to end."},
+
+    {"zone": "The Vaal City", "kind": "travel", "arealvl": 54,
+     "do": ["Fight to the centre and tag the waypoint next to Yeena",
+            "Give Yeena the 7 fireflies — she burns open the Temple of Decay (Lighting the Way)",
+            "Waypoint → town"],
+     "layout": "The centre is ringed by dead-end streets — trust the quest arrow, not your instincts."},
+
+    {"zone": "The Bridge Encampment", "kind": "town",
+     "do": ["Turn in Kishara's Star → Weylam Roth (+1 passive, +2 respec points)",
+            "Stash + vendor — last stop before the act boss",
+            "Waypoint → The Vaal City"]},
+
+    {"zone": "The Vaal City", "kind": "travel", "arealvl": 54,
+     "do": ["Enter the burned-open gate → The Temple of Decay Level 1"]},
+
+    {"zone": "The Temple of Decay Level 1", "kind": "travel", "arealvl": 54,
+     "do": ["Descend — find the stairs to Level 2"],
+     "layout": "Web-choked tunnels, mostly linear."},
+
+    {"zone": "The Temple of Decay Level 2", "kind": "kill", "arealvl": 55,
+     "do": ["Kill Arakaali, Spinner of Shadows — big AoE plus waves of spider adds, keep moving",
+            "Exit through the passage beyond her arena → The Sarn Ramparts (Act 8)"],
+     "tip": "Chaos res helps here. Target: level 52–54 leaving Act 7. Cruel Lab is now unlocked — run it from Aspirants' Plaza when you're ready."}
+  ]
+}

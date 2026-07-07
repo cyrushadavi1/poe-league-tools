@@ -1,0 +1,227 @@
+{
+  "_note": "TRIMMED catalog: the full /api/trade/data/stats response is ~1.9 MB (13 groups, ~15k entries); this file keeps only the 44 most common leveling-relevant stats (life/mana/ES, resists incl. pseudo totals, movement/attack/cast speed, added damage, attributes, accuracy, regen/leech, minion + gem levels), with their exact official ids. Re-fetch the endpoint to widen coverage.",
+  "source": "https://www.pathofexile.com/api/trade/data/stats",
+  "fetched_utc": "2026-07-07T20:12:22Z",
+  "stats": [
+    {
+      "id": "pseudo.pseudo_total_fire_resistance",
+      "text": "+#% total to Fire Resistance",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_cold_resistance",
+      "text": "+#% total to Cold Resistance",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_lightning_resistance",
+      "text": "+#% total to Lightning Resistance",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_chaos_resistance",
+      "text": "+#% total to Chaos Resistance",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_elemental_resistance",
+      "text": "+#% total Elemental Resistance",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_resistance",
+      "text": "+#% total Resistance",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_life",
+      "text": "+# total maximum Life",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_mana",
+      "text": "+# total maximum Mana",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_energy_shield",
+      "text": "+# total maximum Energy Shield",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_strength",
+      "text": "+# total to Strength",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_dexterity",
+      "text": "+# total to Dexterity",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_intelligence",
+      "text": "+# total to Intelligence",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_all_attributes",
+      "text": "+# total to all Attributes",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_attack_speed",
+      "text": "+#% total Attack Speed",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_total_cast_speed",
+      "text": "+#% total Cast Speed",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_adds_physical_damage_to_attacks",
+      "text": "Adds # to # Physical Damage to Attacks",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_adds_fire_damage_to_attacks",
+      "text": "Adds # to # Fire Damage to Attacks",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_adds_cold_damage_to_attacks",
+      "text": "Adds # to # Cold Damage to Attacks",
+      "type": "pseudo"
+    },
+    {
+      "id": "pseudo.pseudo_adds_lightning_damage_to_attacks",
+      "text": "Adds # to # Lightning Damage to Attacks",
+      "type": "pseudo"
+    },
+    {
+      "id": "explicit.stat_3299347043",
+      "text": "+# to maximum Life",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_1050105434",
+      "text": "+# to maximum Mana",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_3489782002",
+      "text": "+# to maximum Energy Shield",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_3372524247",
+      "text": "+#% to Fire Resistance",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_4220027924",
+      "text": "+#% to Cold Resistance",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_1671376347",
+      "text": "+#% to Lightning Resistance",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_2923486259",
+      "text": "+#% to Chaos Resistance",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_2901986750",
+      "text": "+#% to all Elemental Resistances",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_2250533757",
+      "text": "#% increased Movement Speed",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_681332047",
+      "text": "#% increased Attack Speed",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_2891184298",
+      "text": "#% increased Cast Speed",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_2974417149",
+      "text": "#% increased Spell Damage",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_1509134228",
+      "text": "#% increased Physical Damage",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_387439868",
+      "text": "#% increased Elemental Damage with Attack Skills",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_4080418644",
+      "text": "+# to Strength",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_3261801346",
+      "text": "+# to Dexterity",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_328541901",
+      "text": "+# to Intelligence",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_1379411836",
+      "text": "+# to all Attributes",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_803737631",
+      "text": "+# to Accuracy Rating",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_3325883026",
+      "text": "Regenerate # Life per second",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_789117908",
+      "text": "#% increased Mana Regeneration Rate",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_3593843976",
+      "text": "#% of Physical Attack Damage Leeched as Life",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_1589917703",
+      "text": "Minions deal #% increased Damage",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_2162097452",
+      "text": "+# to Level of all Minion Skill Gems",
+      "type": "explicit"
+    },
+    {
+      "id": "explicit.stat_124131830",
+      "text": "+# to Level of all Spell Skill Gems",
+      "type": "explicit"
+    }
+  ]
+}

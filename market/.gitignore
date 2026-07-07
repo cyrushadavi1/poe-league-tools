@@ -1,0 +1,4 @@
+market.db
+market.db-journal
+market.db-wal
+market.db-shm

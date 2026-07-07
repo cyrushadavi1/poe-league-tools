@@ -1,0 +1,13 @@
+{
+  "_VERIFY": "Rough end-of-act totals a leveling character wants from ALL gear combined (life flat, res_total = summed resistance % across gear). Authored from leveling experience, not live-verified; tune during the Mirage rehearsal. Kitava penalties (-30% after Act 5, -60% after Act 10) are why res_total ramps hard in the back half.",
+  "1": {"life": 50, "res_total": 30},
+  "2": {"life": 90, "res_total": 60},
+  "3": {"life": 130, "res_total": 100},
+  "4": {"life": 170, "res_total": 140},
+  "5": {"life": 210, "res_total": 190},
+  "6": {"life": 250, "res_total": 230},
+  "7": {"life": 290, "res_total": 270},
+  "8": {"life": 330, "res_total": 310},
+  "9": {"life": 370, "res_total": 350},
+  "10": {"life": 420, "res_total": 400}
+}

@@ -1,0 +1,25 @@
+{
+  "client_txt": "C:\\Program Files (x86)\\Grinding Gear Games\\Path of Exile\\logs\\Client.txt",
+  "poll_ms": 300,
+  "opacity": 0.92,
+  "width": 360,
+  "font_pt": 11,
+  "lookahead": 4,
+  "routes_dir": "../routes",
+  "build_notes": null,
+  "timer": true,
+  "runs_dir": "../runs",
+  "item_eval": true,
+  "links_best": 3,
+  "party": {
+    "me": "",
+    "members": [],
+    "gap_warn": 3
+  },
+  "hotkeys": {
+    "prev": "F2",
+    "next": "F3",
+    "toggle": "F4",
+    "clickthrough": "F6"
+  }
+}

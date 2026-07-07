@@ -1,0 +1,117 @@
+{
+ "_meta": {
+  "captured": "2026-07-07",
+  "league": "Ancestors",
+  "note": "Trimmed real poe.ninja capture: class dimension whole, skills top-60 (keys remapped into trimmed gem dictionary), other dimensions dropped except a dummy weaponmode.",
+  "url": "https://poe.ninja/poe1/api/data/index-state",
+  "content_type": "application/json"
+ },
+ "economyLeagues": [
+  {
+   "name": "Ancestors",
+   "url": "ancestors",
+   "displayName": "Ancestors"
+  },
+  {
+   "name": "Mirage",
+   "url": "mirage",
+   "displayName": "Mirage"
+  },
+  {
+   "name": "Hardcore Ancestors",
+   "url": "ancestorshc",
+   "displayName": "HC Ancestors"
+  },
+  {
+   "name": "Hardcore Mirage",
+   "url": "miragehc",
+   "displayName": "Hardcore Mirage"
+  }
+ ],
+ "snapshotVersions": [
+  {
+   "url": "ancestors",
+   "type": "exp",
+   "name": "Ancestors",
+   "timeMachineLabels": [
+    "hour-6",
+    "hour-18",
+    "week-1",
+    "day-6",
+    "hour-3",
+    "day-4",
+    "hour-12",
+    "day-2",
+    "day-5",
+    "day-3",
+    "day-1"
+   ],
+   "version": "2002-20260707-55341",
+   "snapshotName": "ancestors",
+   "overviewType": 0,
+   "passiveTree": "PassiveTree-3.28-Alternate",
+   "atlasTree": "AtlasTree-3.28"
+  },
+  {
+   "url": "mirage",
+   "type": "exp",
+   "name": "Mirage",
+   "timeMachineLabels": [
+    "week-14",
+    "hour-6",
+    "hour-18",
+    "week-3",
+    "week-2",
+    "week-6",
+    "week-4",
+    "week-7",
+    "week-1",
+    "week-13",
+    "day-6",
+    "hour-3",
+    "week-15",
+    "week-5",
+    "day-4",
+    "week-10",
+    "hour-12",
+    "week-16",
+    "day-2",
+    "day-5",
+    "day-3",
+    "day-1",
+    "week-8",
+    "week-12",
+    "week-17",
+    "week-11",
+    "week-9"
+   ],
+   "version": "1841-20260707-17205",
+   "snapshotName": "mirage",
+   "overviewType": 0,
+   "passiveTree": "PassiveTree-3.28",
+   "atlasTree": "AtlasTree-3.28"
+  }
+ ],
+ "buildLeagues": [
+  {
+   "name": "Ancestors",
+   "url": "ancestors",
+   "displayName": "Ancestors"
+  },
+  {
+   "name": "Mirage",
+   "url": "mirage",
+   "displayName": "Mirage"
+  },
+  {
+   "name": "Hardcore Ancestors",
+   "url": "ancestorshc",
+   "displayName": "HC Ancestors"
+  },
+  {
+   "name": "Hardcore Mirage",
+   "url": "miragehc",
+   "displayName": "Hardcore Mirage"
+  }
+ ]
+}

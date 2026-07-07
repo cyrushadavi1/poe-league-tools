@@ -1,0 +1,130 @@
+{
+  "act": 2,
+  "steps": [
+    {"zone": "The Southern Forest", "kind": "travel", "arealvl": 13,
+     "do": ["Run the road north — the entrance waypoint activates by itself",
+            "Enter The Forest Encampment"],
+     "layout": "Linear like The Ledge — river on one side, cliffs on the other."},
+
+    {"zone": "The Forest Encampment", "kind": "town",
+     "do": ["Nothing to turn in yet — quick shop check (Yeena sells gems + flasks)",
+            "Exit east to The Old Fields"]},
+
+    {"zone": "The Old Fields", "kind": "travel", "arealvl": 14,
+     "do": ["Follow the winding road east — Gneiss blocks it partway, kill or skirt him",
+            "IF you spot The Den (either side of the road, near the far end): dip in, kill the Great White Beast — Yeena's turn-in offers a SECOND Quicksilver Flask",
+            "Exit to The Crossroads"]},
+
+    {"zone": "The Crossroads", "kind": "travel", "arealvl": 15,
+     "do": ["Tag the waypoint where the roads meet",
+            "Head north-west past the cliffs to The Chamber of Sins Level 1"],
+     "layout": "Three exits off the WP: NW → Chamber of Sins, NE road → Broken Bridge, SE road → Fellshrine. You'll use all three."},
+
+    {"zone": "The Chamber of Sins Level 1", "kind": "travel", "arealvl": 15,
+     "do": ["Tag the waypoint",
+            "Find the stairs down — cross the central atrium, then check the corridors off the four-exit room"]},
+
+    {"zone": "The Chamber of Sins Level 2", "kind": "trial", "arealvl": 16,
+     "do": ["DO the Trial of Ascendancy (sawblades) — second of six for Normal Lab",
+            "Kill Fidelitas at the end (past the Piety scene)",
+            "Grab the BALEFUL GEM from the Strange Device and talk to Helena",
+            "LOGOUT to town"],
+     "tip": "Necromancers here curse with Conductivity — a little lightning res helps. A side room can have free level-1 gems on the floor."},
+
+    {"zone": "The Forest Encampment", "kind": "town",
+     "do": ["Talk to Helena in town — completes Intruders in Black; take the gem reward from Greust; she sets up The Root of the Problem",
+            "If you killed the Great White Beast: flask reward from Yeena",
+            "Waypoint → The Crossroads"]},
+
+    {"zone": "The Crossroads", "kind": "travel", "arealvl": 15,
+     "do": ["Take the road north-east to The Broken Bridge"]},
+
+    {"zone": "The Broken Bridge", "kind": "kill", "arealvl": 16,
+     "do": ["Follow the road to the bridge at the far end — BANDIT 1: kill Kraityn, take his amulet",
+            "Default route = kill all three bandits → +1 passive point from Eramir",
+            "LOGOUT to town, then WP → The Crossroads"],
+     "tip": "Prefer a bandit buff over the point? Alira (+15% all res) is great for res-starved builds, Oak (+40 life) for tanky ones — you still kill the other two, only spare your pick."},
+
+    {"zone": "The Crossroads", "kind": "travel", "arealvl": 15,
+     "do": ["Take the road south-east to The Fellshrine Ruins"]},
+
+    {"zone": "The Fellshrine Ruins", "kind": "travel", "arealvl": 16,
+     "do": ["Follow the road south-east to the ruined church",
+            "Enter The Crypt Level 1 by the church"],
+     "layout": "The road forks then rejoins — either branch works."},
+
+    {"zone": "The Crypt Level 1", "kind": "trial", "arealvl": 17,
+     "do": ["Tag the waypoint by the entrance",
+            "DO the Trial of Ascendancy (spinning blades) — third of six",
+            "Take the stairs down to The Crypt Level 2"]},
+
+    {"zone": "The Crypt Level 2", "kind": "travel", "arealvl": 18,
+     "do": ["Find the big bridge room — grab the GOLDEN HAND from the altar",
+            "LOGOUT to town"],
+     "tip": "Archbishop Geofri guards nothing you need — skip him."},
+
+    {"zone": "The Forest Encampment", "kind": "town",
+     "do": ["Turn in the Golden Hand → Yeena's Book of Skill (+1 passive, +2 respec — Through Sacred Ground)",
+            "Exit west to The Riverways"]},
+
+    {"zone": "The Riverways", "kind": "travel", "arealvl": 15,
+     "do": ["Follow the stone road south-west, tag the waypoint on the way",
+            "Continue down the road to The Western Forest"],
+     "layout": "The Wetlands exit is the break in the road with two pillars right by the WP — that's for later."},
+
+    {"zone": "The Western Forest", "kind": "kill", "arealvl": 17,
+     "do": ["Tag the waypoint on the road",
+            "A torch + stone path off the road marks Alira's camp — BANDIT 2: kill Alira, take her amulet",
+            "Enter The Weaver's Chambers on the opposite side of the road (webbed cave)"]},
+
+    {"zone": "The Weaver's Chambers", "kind": "kill", "arealvl": 18,
+     "do": ["Push through the web maze to the end chamber — the Weaver drops from the ceiling",
+            "Kill it, grab MALIGARO'S SPIKE",
+            "Exit back to The Western Forest"]},
+
+    {"zone": "The Western Forest", "kind": "kill", "arealvl": 17,
+     "do": ["Follow the road south to the Blackguard camp — kill Captain Arteri, take the Thaumetic Emblem",
+            "Use the emblem on the Thaumetic Seal at the blocked pass (The Way Forward)",
+            "LOGOUT to town"],
+     "tip": "That seal is +1 passive from Bestel back in Act 1 — don't skip Arteri."},
+
+    {"zone": "The Forest Encampment", "kind": "town",
+     "do": ["Turn in Maligaro's Spike → support gem from Silk (Sharp and Cruel)",
+            "WP → Lioneye's Watch: Bestel's Book of Skill (+1 passive — The Way Forward)",
+            "WP → The Riverways, take the pillared break in the road to The Wetlands"]},
+
+    {"zone": "The Wetlands", "kind": "kill", "arealvl": 19,
+     "do": ["Oak's camp is on the central hill — BANDIT 3: kill Oak, take his amulet",
+            "Tag the waypoint in the west, right at the Vaal Ruins door",
+            "LOGOUT to town"],
+     "tip": "Oak is tanky and hits hard — don't facetank him at zone level. ~Level 18 here is on pace."},
+
+    {"zone": "The Forest Encampment", "kind": "town",
+     "do": ["Give Eramir all three amulets → +1 passive point and THE APEX (Deal with the Bandits)",
+            "Keep The Apex — it unlocks the act boss",
+            "Waypoint → The Wetlands"]},
+
+    {"zone": "The Wetlands", "kind": "travel", "arealvl": 19,
+     "do": ["At the Vaal Ruins door next to the WP: use the Spike + Baleful Gem on the tree roots (The Root of the Problem)",
+            "Enter The Vaal Ruins"]},
+
+    {"zone": "The Vaal Ruins", "kind": "travel", "arealvl": 20,
+     "do": ["Maze — push through and TOUCH THE ANCIENT SEAL (yes, unleashing the Darkness is the plan)",
+            "Take the stairs behind it up to The Northern Forest"],
+     "tip": "The Corruption Altar here is one free Vaal-orb corrupt — gamble a spare item or gem if you like."},
+
+    {"zone": "The Northern Forest", "kind": "travel", "arealvl": 21,
+     "do": ["Tag the waypoint",
+            "Head for The Caverns — skip The Dread Thicket"]},
+
+    {"zone": "The Caverns", "kind": "travel", "arealvl": 22,
+     "do": ["Linear cave — tag the waypoint at the midpoint",
+            "Keep pushing into the pyramid base and enter The Ancient Pyramid"]},
+
+    {"zone": "The Ancient Pyramid", "kind": "kill", "arealvl": 23,
+     "do": ["Climb the four floors to the Pyramid Apex",
+            "Activate the Dark Altar (consumes nothing — needs The Apex in inventory) and kill the Vaal Oversoul",
+            "Exit past the arena → Act 3"],
+     "tip": "Stay mobile — dodge the slams and falling rocks. Target: level 22-23 leaving Act 2."}
+  ]
+}

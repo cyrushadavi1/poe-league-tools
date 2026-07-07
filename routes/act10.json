@@ -1,0 +1,93 @@
+{
+  "act": 10,
+  "steps": [
+    {"zone": "Oriath Docks", "kind": "town",
+     "do": ["Arrive from Act 9 — talk to Lani on the dock (starts Safe Passage)",
+            "Talk to Weylam Roth and Divinia if they offer quests — flags the Ossuary pickups (respec book + Sanctum tome)",
+            "Stash/vendor, then head out to The Cathedral Rooftop"]},
+
+    {"zone": "The Cathedral Rooftop", "kind": "kill", "arealvl": 64,
+     "do": ["Fight across the rooftop to the Cathedral Apex",
+            "Kill Plaguewing and free Bannon",
+            "Take the exit down into The Ravaged Square"],
+     "layout": "Linear — one path along the roof, arena at the end.",
+     "tip": "Don't full-clear the cultist waves — pop the boss and move."},
+
+    {"zone": "The Ravaged Square", "kind": "travel", "arealvl": 64,
+     "do": ["Fight up to the waypoint at the upper-left and tag it — the north bridge is out, so the route winds",
+            "The Ossuary entrance sits right beside the waypoint"],
+     "layout": "Hub zone — the plaza is dead centre, every act exit rings it. You'll pass through several more times."},
+
+    {"zone": "The Ossuary", "kind": "trial", "arealvl": 67,
+     "do": ["Tag the waypoint",
+            "DO the Trial of Ascendancy near the WP — last of the Merciless Lab trio (Acts 8/9/10)",
+            "Grab the Elixir of Allure and the Mortinomicon if marked — quick pickups, both pay out in town",
+            "Grab the crafting recipe if you spot it",
+            "LOGOUT to town"],
+     "tip": "Lvl 67 — highest zone in the act. Trial + pickups only, don't clear."},
+
+    {"zone": "Oriath Docks", "kind": "town",
+     "do": ["Turn in Safe Passage (Lani — flask rewards)",
+            "Turn in the Elixir of Allure → Weylam Roth: Book of Regrets, 2 RESPEC POINTS",
+            "Give the Mortinomicon to Divinia (unlocks the Forbidden Sanctum later)",
+            "Waypoint → The Ravaged Square"]},
+
+    {"zone": "The Ravaged Square", "kind": "travel", "arealvl": 64,
+     "do": ["Cross the plaza and take the south exit to The Control Blocks"]},
+
+    {"zone": "The Control Blocks", "kind": "kill", "arealvl": 66,
+     "do": ["Tag the waypoint just inside",
+            "Hunt down and kill Vilenta",
+            "LOGOUT to town"],
+     "layout": "Vilenta sits deep in the block — where the Miasmeter stood in Act 5.",
+     "tip": "Optional zone but never skip it — the kill is worth +1 passive."},
+
+    {"zone": "Oriath Docks", "kind": "town",
+     "do": ["Turn in Vilenta's Vengeance → Book of Skill, +1 PASSIVE (Lani)",
+            "OPTIONAL: all three Merciless trials are now done — run Merciless Lab (WP → Aspirant's Plaza) if your build wants ascendancy points 5–6 before Kitava",
+            "Waypoint → The Ravaged Square"]},
+
+    {"zone": "The Ravaged Square", "kind": "travel", "arealvl": 64,
+     "do": ["Take the upper-right (north-east) exit to The Torched Courts",
+            "IF you care about Lilly's side quest: The Teardrop sits in The Reliquary (lower-right exit) — reward is only a rare belt, skip on league start"]},
+
+    {"zone": "The Torched Courts", "kind": "travel", "arealvl": 65,
+     "do": ["Push straight through to The Desecrated Chambers"],
+     "tip": "Fire-heavy packs — mind your fire res here and for the rest of the act."},
+
+    {"zone": "The Desecrated Chambers", "kind": "kill", "arealvl": 65,
+     "do": ["Tag the waypoint near the entrance",
+            "Kill Avarius, Reassembled in the Sanctum of Innocence — pick up THE STAFF OF PURITY",
+            "Grab the crafting recipe if you spot it",
+            "LOGOUT to town"],
+     "layout": "Mirrors Act 5's Chamber of Innocence — the boss sanctum sits at the centre of the loop.",
+     "tip": "Don't leave without the staff — it's the key through Kitava's Horns."},
+
+    {"zone": "Oriath Docks", "kind": "town",
+     "do": ["Give the Staff of Purity to Bannon — he sacrifices himself to wake Innocence",
+            "Talk to Lani for the Death and Rebirth reward (rare body armour)",
+            "Waypoint → The Ravaged Square"]},
+
+    {"zone": "The Ravaged Square", "kind": "travel", "arealvl": 64,
+     "do": ["Talk to Innocence at the plaza — he shatters Kitava's Horns",
+            "Enter the now-open gate to The Canals"]},
+
+    {"zone": "The Canals", "kind": "travel", "arealvl": 66,
+     "do": ["Push straight through to The Feeding Trough"],
+     "layout": "Follow the waterway — near-linear."},
+
+    {"zone": "The Feeding Trough", "kind": "kill", "arealvl": 67,
+     "do": ["Fight to the far end, grab the crafting recipe if you spot it",
+            "Talk to Sin to start the fight, then kill Kitava, the Insatiable at the Altar of Hunger",
+            "Take the portal back to Oriath Docks"],
+     "tip": "Hardest campaign boss — cap fire res, keep moving through the slam/beam combos. Deaths in Part 2 cost 5% XP."},
+
+    {"zone": "Oriath Docks", "kind": "town",
+     "do": ["Talk to Lilly Roth and set sail for Karui Shores"]},
+
+    {"zone": "Karui Shores", "kind": "town",
+     "do": ["Turn in An End to Hunger → +2 PASSIVES (Lani)",
+            "Type /passives — 24/24 quest points if you ran the kill-all-bandits route",
+            "Campaign complete. Kitava's curse: another -30% all res (-60% total) — fix resists before maps. Kirac and the map device are here."]}
+  ]
+}

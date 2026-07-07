@@ -1,0 +1,5 @@
+ayy anyone selling a tabula
+2026/07/24 20:11:03 1234 ac9 [INFO Client 5] : You have entered The Coast.
+random pasted chat, definitely not an item
+--------
+even a stray dashed line should not fool the parser

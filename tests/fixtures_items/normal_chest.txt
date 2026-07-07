@@ -1,0 +1,15 @@
+Item Class: Body Armours
+Rarity: Normal
+Superior Shabby Jerkin
+--------
+Quality: +8% (augmented)
+Evasion Rating: 32 (augmented)
+--------
+Requirements:
+Level: 3
+Dex: 14
+--------
+Sockets: G-G-G-B
+--------
+Item Level: 6
+--------

@@ -1,0 +1,13 @@
+{
+ "lines": [
+  {"currencyTypeName": "Divine Orb", "pay": {"id": 0, "league_id": 346, "pay_currency_id": 3, "get_currency_id": 1, "sample_time_utc": "2026-07-07T20:20:36.9614276Z", "count": 30, "value": 0.002369, "data_point_count": 1, "includes_secondary": false, "listing_count": 584}, "receive": {"id": 0, "league_id": 346, "pay_currency_id": 1, "get_currency_id": 3, "sample_time_utc": "2026-07-07T20:20:36.9614276Z", "count": 11, "value": 500.0, "data_point_count": 1, "includes_secondary": false, "listing_count": 132}, "chaosEquivalent": 443.0, "detailsId": "divine-orb"},
+  {"currencyTypeName": "Stacked Deck", "receive": {"id": 0, "league_id": 346, "pay_currency_id": 1, "get_currency_id": 45, "sample_time_utc": "2026-07-07T20:20:36.9614276Z", "count": 21, "value": 7.36, "data_point_count": 1, "includes_secondary": true, "listing_count": 159}, "chaosEquivalent": 7.36, "detailsId": "stacked-deck"},
+  {"currencyTypeName": "Gemcutter's Prism", "pay": {"id": 0, "league_id": 346, "pay_currency_id": 15, "get_currency_id": 1, "sample_time_utc": "2026-07-07T20:20:36.9614276Z", "count": 1, "value": 1.0, "data_point_count": 1, "includes_secondary": false, "listing_count": 22}, "receive": {"id": 0, "league_id": 346, "pay_currency_id": 1, "get_currency_id": 15, "sample_time_utc": "2026-07-07T20:20:36.9614276Z", "count": 14, "value": 6.14, "data_point_count": 1, "includes_secondary": true, "listing_count": 136}, "chaosEquivalent": 6.14, "detailsId": "gemcutters-prism"}
+ ],
+ "currencyDetails": [
+  {"id": 1, "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXM...", "name": "Chaos Orb", "tradeId": "chaos"},
+  {"id": 3, "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXM...", "name": "Divine Orb", "tradeId": "divine"},
+  {"id": 15, "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXM...", "name": "Gemcutter's Prism", "tradeId": "gcp"},
+  {"id": 45, "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXM...", "name": "Stacked Deck", "tradeId": "stacked-deck"}
+ ]
+}

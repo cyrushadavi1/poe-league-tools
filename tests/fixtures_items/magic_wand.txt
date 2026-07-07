@@ -1,0 +1,22 @@
+Item Class: Wands
+Rarity: Magic
+Frosted Driftwood Wand of Shining
+--------
+Wand
+Physical Damage: 5-9
+Critical Strike Chance: 7.00%
+Attacks per Second: 1.40
+--------
+Requirements:
+Level: 5
+Int: 14
+--------
+Sockets: B-B
+--------
+Item Level: 7
+--------
+11% increased Spell Damage (implicit)
+--------
+Adds 1 to 3 Cold Damage
+5% increased Light Radius
+--------

@@ -1,0 +1,8 @@
+{
+ "lines": [
+  {"id": 129648, "name": "The Golden Charlatan", "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHs...", "levelRequired": 65, "baseType": "Lion Sword", "links": 6, "itemClass": 3, "itemType": "Two Handed Sword", "chaosValue": 34168, "exaltedValue": 82752, "divineValue": 186.0, "count": 3, "detailsId": "the-golden-charlatan-lion-sword-6l", "listingCount": 3},
+  {"id": 129546, "name": "The Golden Charlatan", "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHs...", "levelRequired": 65, "baseType": "Lion Sword", "itemClass": 3, "itemType": "Two Handed Sword", "chaosValue": 30678, "exaltedValue": 74299, "divineValue": 167.0, "count": 6, "detailsId": "the-golden-charlatan-lion-sword", "listingCount": 6},
+  {"id": 130071, "name": "Foulborn Hand of Wisdom and Action", "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHs...", "levelRequired": 68, "baseType": "Imperial Claw", "variant": "Strength, Dex Multi", "itemClass": 3, "mutatedModifiers": [{"text": "(8-12)% increased Strength", "optional": false}, {"text": "+3% to Critical Strike Multiplier per 25 Dexterity", "optional": false}], "itemType": "Claw", "chaosValue": 2572, "exaltedValue": 6229, "divineValue": 14.0, "count": 14, "detailsId": "foulborn-hand-of-wisdom-and-action-strength-dex-multi-imperial-claw", "tradeInfo": [{"mod": "explicit.stat_734614379", "min": 0, "max": 0}, {"mod": "explicit.stat_2846122155", "min": 0, "max": 0}], "listingCount": 14},
+  {"id": 423, "name": "Divinarius", "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHs...", "levelRequired": 66, "baseType": "Imperial Skean", "itemClass": 3, "itemType": "Dagger", "chaosValue": 918.5, "exaltedValue": 2225, "divineValue": 5.0, "count": 16, "detailsId": "divinarius-imperial-skean", "listingCount": 16}
+ ]
+}

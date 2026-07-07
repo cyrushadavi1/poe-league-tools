@@ -1,0 +1,23 @@
+{
+ "economyLeagues": [
+  {"name": "Ancestors", "url": "ancestors", "displayName": "Ancestors"},
+  {"name": "Mirage", "url": "mirage", "displayName": "Mirage"},
+  {"name": "Hardcore Ancestors", "url": "ancestorshc", "displayName": "HC Ancestors"},
+  {"name": "Hardcore Mirage", "url": "miragehc", "displayName": "Hardcore Mirage"},
+  {"name": "Standard", "url": "standard", "displayName": "Standard"},
+  {"name": "Hardcore", "url": "hardcore", "displayName": "Hardcore"}
+ ],
+ "oldEconomyLeagues": [
+  {"name": "Phrecia 2.0", "url": "phrecia2.0", "displayName": "Phrecia 2.0"}
+ ],
+ "snapshotVersions": [
+  {"url": "ancestors", "type": "exp", "name": "Ancestors", "version": "2002-20260707-55341", "snapshotName": "ancestors", "overviewType": 0, "passiveTree": "PassiveTree-3.28-Alternate", "atlasTree": "AtlasTree-3.28"},
+  {"url": "mirage", "type": "exp", "name": "Mirage", "version": "1841-20260707-17205", "snapshotName": "mirage", "overviewType": 0, "passiveTree": "PassiveTree-3.28", "atlasTree": "AtlasTree-3.28"}
+ ],
+ "buildLeagues": [
+  {"name": "Ancestors", "url": "ancestors", "displayName": "Ancestors"}
+ ],
+ "oldBuildLeagues": [
+  {"name": "Phrecia 2.0", "url": "phrecia2.0", "displayName": "Phrecia 2.0"}
+ ]
+}

@@ -1,0 +1,9 @@
+# poe-league-tools — Python 3.10+. Everything is stdlib except:
+PyQt6           # the overlay UI (overlay/main.py); nothing else needs it
+
+# Optional LLM extra — all LLM features degrade gracefully without it:
+#     pip install anthropic
+# then set ANTHROPIC_API_KEY. Enables: advisor/, market/brief.py,
+# tools/tradeq.py, tools/retro.py (retro text), tools/verify_routes_llm.py,
+# and the console's '?' anomaly explainer. (Kill switch: POE_TOOLS_LLM=off)
+# anthropic

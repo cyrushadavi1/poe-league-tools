@@ -1,0 +1,19 @@
+Item Class: Boots
+Rarity: Unique
+Wanderlust
+Wool Shoes
+--------
+Energy Shield: 8 (augmented)
+--------
+Item Level: 12
+--------
++5 to Dexterity
++14 to maximum Energy Shield
++13 to maximum Life
+Regenerate 1.5 Mana per second
+20% increased Movement Speed
+Cannot be Frozen
+--------
+"All the fastest runners
+run in Wanderlust."
+--------

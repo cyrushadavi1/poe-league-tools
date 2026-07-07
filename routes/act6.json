@@ -1,0 +1,92 @@
+{
+  "act": 6,
+  "steps": [
+    {"zone": "Lioneye's Watch", "kind": "town",
+     "do": ["Talk to Lilly Roth → take Fallen from Grace",
+            "Exit to The Twilight Strand"],
+     "tip": "Part 2 begins. Same map as Act 1 but level 45+ — don't autopilot."},
+
+    {"zone": "The Twilight Strand", "kind": "kill", "arealvl": 45,
+     "do": ["Clear ALL the undead on the beach — the tracker counts them down; Rhys of Abram is the big one",
+            "LOGOUT to town when the quest completes"],
+     "layout": "The starting beach — linear, hug the shoreline.",
+     "tip": "Do NOT skip: 2 respec points AND it unlocks Lilly's full gem shop."},
+
+    {"zone": "Lioneye's Watch", "kind": "town",
+     "do": ["Turn in Fallen from Grace → Book of Regrets (Lilly Roth, 2 respec points)",
+            "Lilly now sells nearly every skill gem — buy your Act 6+ gem upgrades",
+            "Exit to The Coast"]},
+
+    {"zone": "The Coast", "kind": "travel", "arealvl": 45,
+     "do": ["Tag the waypoint",
+            "IF you want Bestel's Epic: The Tidal Island has his Manuscript (rare belt/amulet on turn-in) — skip on a speed run",
+            "Talk to Ailith by the blocked passage (she grants the ability to burn the organic walls), then exit north-east to The Mud Flats"]},
+
+    {"zone": "The Mud Flats", "kind": "kill", "arealvl": 46,
+     "do": ["Kill The Dishonoured Queen → loot the Eye of Conquest",
+            "Socket the Eye at the sealed Karui totem door (old Fetid Pool spot) and enter The Karui Fortress"],
+     "layout": "Karui camps sit on the old rhoa-nest arms — the Queen is among them.",
+     "tip": "Nessa's scene plays out here on its own — keep moving."},
+
+    {"zone": "The Karui Fortress", "kind": "kill", "arealvl": 46,
+     "do": ["Enter the keep structure at the centre of the fortress and kill Tukohama — break his totems, stay off the burning ground",
+            "Exit the fortress to The Ridge"],
+     "tip": "Turn-in is Tarkleigh (+1 passive) — save it for the town trip after Ryslatha. Sin introduces the Pantheon here; souls unlock on god kills automatically."},
+
+    {"zone": "The Ridge", "kind": "travel", "arealvl": 46,
+     "do": ["Tag the waypoint", "Push through to The Lower Prison"],
+     "layout": "Ledge-style canyon — follow it in one direction."},
+
+    {"zone": "The Lower Prison", "kind": "trial", "arealvl": 47,
+     "do": ["Tag the waypoint",
+            "DO the Trial of Ascendancy (spike traps) — first of three for Cruel Lab",
+            "Continue to Shavronne's Tower"]},
+
+    {"zone": "Shavronne's Tower", "kind": "kill", "arealvl": 47,
+     "do": ["Climb the five floors — ladder on floor 4 leads to the rooftop",
+            "Kill Shavronne the Returned — she swaps out with Reassembled Brutus mid-fight",
+            "Take the door that unlocks behind the arena and drop out to Prisoner's Gate"],
+     "tip": "Lightning res for Shavronne, keep moving for Brutus' slams."},
+
+    {"zone": "Prisoner's Gate", "kind": "kill", "arealvl": 47,
+     "do": ["Tag the waypoint",
+            "Kill Abberath on the road — stay off the burning hoofprints",
+            "Follow the road out to The Western Forest"],
+     "tip": "Nessa appears by the waterfall — the scene triggers on its own."},
+
+    {"zone": "The Western Forest", "kind": "travel", "arealvl": 48,
+     "do": ["Follow the road, tag the waypoint", "Exit to The Riverways"],
+     "layout": "Same road as Act 2 — the barricade and Alira's camp are landmarks, not detours."},
+
+    {"zone": "The Riverways", "kind": "kill", "arealvl": 48,
+     "do": ["Tag the waypoint on the road",
+            "Take the side exit to The Wetlands (no waypoint there) → find The Spawning Ground inside → clear the pit; Ryslatha waits at the top on your way back out — kill her",
+            "LOGOUT to town"],
+     "layout": "Wetlands branches off the river; the Southern Forest exit is further along the road.",
+     "tip": "Ryslatha = +1 passive on turn-in plus a Pantheon soul. Worth it every time."},
+
+    {"zone": "Lioneye's Watch", "kind": "town",
+     "do": ["Turn in: The Father of War (+1 passive, Tarkleigh), The Puppet Mistress (+1 passive, Tarkleigh), The Cloven One (+1 passive, Bestel) — Essence of Umbra also completes at Tarkleigh",
+            "Waypoint → The Riverways, take the southern exit to The Southern Forest"]},
+
+    {"zone": "The Southern Forest", "kind": "travel", "arealvl": 49,
+     "do": ["Tag the waypoint",
+            "Find the entrance to The Cavern of Anger and go in"],
+     "layout": "Follow the river."},
+
+    {"zone": "The Cavern of Anger", "kind": "travel", "arealvl": 49,
+     "do": ["Grab The Black Flag (quest-marked)",
+            "Push through — the far exit leads to The Beacon"]},
+
+    {"zone": "The Beacon", "kind": "travel", "arealvl": 49,
+     "do": ["Tag the waypoint",
+            "Climb the lighthouse and throw The Black Flag into the flames to summon Weylam Roth's ship",
+            "Board the Black Crest at the dock → sail to The Brine King's Reef"],
+     "tip": "IF you spot the crafting bench here: it unlocks the +life bench craft — grab it."},
+
+    {"zone": "The Brine King's Reef", "kind": "kill", "arealvl": 50,
+     "do": ["Kill Tsoagoth, The Brine King — dodge the geysers and wave slams, clear the drowned adds between phases",
+            "Talk to Weylam Roth and sail to Act 7"],
+     "tip": "His kill unlocks Soul of the Brine King — equip it (Pantheon) to stop stun-chains. Target: level 48–50 leaving Act 6."}
+  ]
+}

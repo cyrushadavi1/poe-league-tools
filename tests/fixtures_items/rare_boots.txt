@@ -1,0 +1,22 @@
+Item Class: Boots
+Rarity: Rare
+Gale Trail
+Velvet Slippers
+--------
+Quality: +12% (augmented)
+Energy Shield: 26 (augmented)
+--------
+Requirements:
+Level: 22
+Int: 42
+--------
+Sockets: B-B-R G
+--------
+Item Level: 33
+--------
++42 to maximum Life
++35% to Fire Resistance
++12% to Cold Resistance
+20% increased Movement Speed
++24 to maximum Mana
+--------

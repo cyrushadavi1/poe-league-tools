@@ -1,0 +1,21 @@
+{
+ "core": {
+  "items": [
+   {"id": "chaos", "name": "Chaos Orb", "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ...", "category": "Currency", "detailsId": "chaos-orb"},
+   {"id": "divine", "name": "Divine Orb", "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ...", "category": "Currency", "detailsId": "divine-orb"}
+  ],
+  "rates": {"divine": 0.005442},
+  "primary": "chaos",
+  "secondary": "divine"
+ },
+ "lines": [
+  {"id": "deafening-essence-of-doubt", "primaryValue": 2.06, "volumePrimaryValue": 678.0, "maxVolumeCurrency": "chaos", "maxVolumeRate": 0.485, "sparkline": {"totalChange": 145.2, "data": [92.83, 86.68, 100.3, 173.2, 99.81, 109.2, 145.2]}},
+  {"id": "deafening-essence-of-fear", "primaryValue": 2.28, "volumePrimaryValue": 979.5, "maxVolumeCurrency": "chaos", "maxVolumeRate": 0.4378, "sparkline": {"totalChange": -4.04, "data": [-12.31, -8.67, -17.44, 3.75, -1.31, -38.51, -4.04]}},
+  {"id": "deafening-essence-of-greed", "primaryValue": 2.19, "volumePrimaryValue": 370.8, "maxVolumeCurrency": "chaos", "maxVolumeRate": 0.4562, "sparkline": {"totalChange": 97.78, "data": [35.29, 35.58, 65.56, 102.2, 48.24, 73.56, 97.78]}}
+ ],
+ "items": [
+  {"id": "deafening-essence-of-doubt", "name": "Deafening Essence of Doubt", "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ...", "category": "Essences", "detailsId": "deafening-essence-of-doubt"},
+  {"id": "deafening-essence-of-fear", "name": "Deafening Essence of Fear", "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ...", "category": "Essences", "detailsId": "deafening-essence-of-fear"},
+  {"id": "deafening-essence-of-greed", "name": "Deafening Essence of Greed", "image": "/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ...", "category": "Essences", "detailsId": "deafening-essence-of-greed"}
+ ]
+}
