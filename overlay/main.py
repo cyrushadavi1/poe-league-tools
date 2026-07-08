@@ -28,6 +28,7 @@ from client_watcher import ClientWatcher, last_known_level
 from party_state import PartyState
 from route_engine import RouteEngine
 from run_tracker import RunTracker, xp_warning
+import find_client
 import item_rules
 import itemtext
 
@@ -37,14 +38,6 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # item export is well under 8 KB; anything larger isn't an item).
 MAX_CLIP_CHARS = 8192
 
-# Probed (in order) when the configured client_txt doesn't exist.
-COMMON_CLIENT_PATHS = [
-    r"C:\Program Files (x86)\Grinding Gear Games\Path of Exile\logs\Client.txt",
-    r"C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt",
-    r"C:\Program Files\Grinding Gear Games\Path of Exile\logs\Client.txt",
-    r"D:\SteamLibrary\steamapps\common\Path of Exile\logs\Client.txt",
-]
-
 
 def _resolve(path):
     return path if os.path.isabs(path) else os.path.join(HERE, path)
@@ -53,14 +46,38 @@ def _resolve(path):
 def _find_client(cli_arg, cfg):
     if cli_arg:
         return cli_arg
-    client = cfg["client_txt"]
-    if os.path.exists(client):
-        return client
-    for p in COMMON_CLIENT_PATHS:
-        if os.path.exists(p):
-            print(f"[client] using auto-detected log: {p}")
-            return p
-    return client
+    configured = cfg.get("client_txt") or ""
+    found, how = find_client.discover(configured)
+    if found:
+        if how != "config":
+            print(f"[client] auto-detected log ({how}): {found}\n"
+                  "         (run setup_pc.bat once to save it to the config)")
+        return found
+    return configured
+
+
+def _load_config(path):
+    """config.json -> dict, or exit with a message a non-dev can act on.
+
+    Friends hand-edit this file (or a copy of someone else's); a raw
+    json traceback in a console window that closes is where onboarding
+    dies, so both failure modes name the fix.
+    """
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print(f"!! No config at {path}\n"
+              "   Run setup_pc.bat (repo root) once -- it writes this "
+              "file for you.")
+    except json.JSONDecodeError as e:
+        print(f"!! {path} is not valid JSON: line {e.lineno}, col {e.colno}: "
+              f"{e.msg}\n"
+              "   Common causes: a missing/extra comma, or single \\ in a "
+              "Windows path (use \\\\ or /).\n"
+              "   Easiest fix: re-run setup_pc.bat -- the wizard rewrites "
+              "the config cleanly.")
+    sys.exit(2)
 
 
 # ---------------------------------------------------------------- pure logic
@@ -166,8 +183,7 @@ def main():
                     help="override the Client.txt path (e.g. a simulator "
                          "file when developing without the game)")
     args = ap.parse_args()
-    with open(args.config, encoding="utf-8") as f:
-        cfg = json.load(f)
+    cfg = _load_config(args.config)
 
     # Qt only from here on -- importing this module never pulls it in.
     from PyQt6.QtCore import QTimer
@@ -176,13 +192,17 @@ def main():
     import hotkeys
 
     client = _find_client(args.client, cfg)
-    if not os.path.exists(client):
-        probed = "\n".join(f"     {p}" for p in COMMON_CLIENT_PATHS)
-        print(f"!! Client.txt not found at:\n   {client}\n"
-              f"   Also probed these common locations:\n{probed}\n"
-              "   Edit overlay/config.json 'client_txt' to your install's "
+    client_missing = not (client and os.path.exists(client))
+    if client_missing:
+        print(f"!! Client.txt not found (configured: {client or '<unset>'});"
+              " also probed the common\n"
+              "   install paths, every Steam library and all drives.\n"
+              "   Steps will NOT auto-advance until this is fixed:\n"
+              "   run setup_pc.bat (or doctor.bat) in the repo root, or set\n"
+              "   'client_txt' in overlay/config.json to your install's "
               "logs\\Client.txt.\n"
               "   (No game on this machine? See tools/simulate_client.py)")
+        client = client or os.path.join(HERE, "Client.txt")  # watcher no-ops
 
     engine = RouteEngine(_resolve(cfg.get("routes_dir", "../routes")),
                          lookahead=cfg.get("lookahead", 4))
@@ -226,6 +246,12 @@ def main():
     if bn and os.path.exists(_resolve(bn)):
         with open(_resolve(bn), encoding="utf-8") as f:
             win.set_notes({int(x["act"]): x["text"] for x in json.load(f)})
+    elif bn:
+        # Configured but missing must be loud: "my gem reminders never
+        # showed up" is otherwise indistinguishable from working-as-set-up.
+        print(f"[notes] build_notes not found: {_resolve(bn)}\n"
+              "        gem reminders are OFF -- re-run setup_pc.bat or fix "
+              "'build_notes' in overlay/config.json")
 
     def refresh():
         win.show_step(engine.current(), engine.progress(), engine.peek())
@@ -328,6 +354,13 @@ def main():
 
     refresh()
     win.set_party(party.status_line())
+    if client_missing:
+        # A double-click launch may never read the console; park the
+        # problem on the card itself. Party events would repaint this
+        # row, but none can arrive without a log -- so it stays up
+        # exactly as long as it is true.
+        win.set_party("⚠ Client.txt not found — steps won't auto-advance "
+                      "(run doctor.bat)")
     win.move(40, 140)
     win.show()
     sys.exit(app.exec())

@@ -18,9 +18,12 @@ Outputs, per player: <player>_plan.md (printable leveling sheet) and
 <player>_notes.json (overlay gem reminders -- each person points
 `build_notes` in their own overlay config at their file). Plus one
 party_summary.md: who plays what and everyone's gem links side by side
-per act, for coordinating vendor/quest gem pickups.
+per act, for coordinating vendor/quest gem pickups. And one
+party_bundle.json: the machine-readable manifest tools/join_party.py
+uses on each gaming PC to write that player's overlay config (ship the
+whole folder, builds/ included).
 
-Also prints ready-to-paste "party" config for overlay/config.json.
+Also prints a ready-to-paste "party" config block for hand-editors.
 """
 import argparse
 import json
@@ -30,6 +33,8 @@ import re
 import pob
 
 MAX_PARTY = 3
+OVERLAY_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "overlay")
 
 
 def safe_name(player):
@@ -101,6 +106,31 @@ def summary_md(members):
     return "\n".join(lines)
 
 
+def write_bundle(members, path, league="3.29"):
+    """builds/party_bundle.json: everything a friend's PC needs to set
+    itself up (tools/join_party.py reads it and asks "who are you?").
+
+    Notes/plan paths are stored as basenames -- the bundle travels with
+    its directory when the folder is copied to each gaming PC, so paths
+    from the generating machine would be wrong on every one of them.
+    """
+    bundle = {
+        "league": league,
+        "members": [{
+            "player": m["player"],
+            "me": m["me"],
+            "class": m["class"],
+            "ascendancy": m["ascendancy"],
+            "notes": os.path.basename(m["notes_path"]),
+            "plan": os.path.basename(m["plan_path"]),
+        } for m in members],
+    }
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(bundle, f, indent=2)
+        f.write("\n")
+    return bundle
+
+
 def main():
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -122,18 +152,30 @@ def main():
     sum_path = os.path.join(a.out_dir, "party_summary.md")
     with open(sum_path, "w", encoding="utf-8") as f:
         f.write(summary_md(members))
+    bundle_path = os.path.join(a.out_dir, "party_bundle.json")
+    write_bundle(members, bundle_path, manifest.get("league", "3.29"))
 
     for m in members:
         print(f"{m['player']:<20} {m['class']}"
               f"{' (' + m['ascendancy'] + ')' if m['ascendancy'] else ''}"
               f"  -> {m['plan_path']}")
     print(f"party summary        -> {sum_path}")
+    print(f"party bundle         -> {bundle_path}")
 
+    print("\nShip the folder (with the builds dir -- it is gitignored, so "
+          "zip beats clone)\nto each gaming PC; setup_pc.bat there reads "
+          "the bundle and asks who you are.")
+
+    # Manual fallback: an overlay-relative path (forward slashes) works
+    # after the folder is copied to any machine; an absolute path from
+    # THIS machine would not.
     me = next((m for m in members if m["me"]), members[0])
     others = [m["player"] for m in members if m is not me]
-    print("\nPaste into overlay/config.json:")
+    rel_notes = os.path.relpath(os.path.abspath(me["notes_path"]),
+                                OVERLAY_DIR).replace(os.sep, "/")
+    print("\n(hand-editing instead? paste into overlay/config.json:)")
     print(json.dumps({
-        "build_notes": os.path.abspath(me["notes_path"]),
+        "build_notes": rel_notes,
         "party": {"me": me["player"], "members": others, "gap_warn": 3},
     }, indent=2))
 

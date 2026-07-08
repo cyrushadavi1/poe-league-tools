@@ -1,12 +1,20 @@
 @echo off
-rem One-time setup on the gaming PC (Windows). Needs Python 3.10+ installed
-rem (python.org installer, "py" launcher checked). Safe to re-run.
+rem One-time setup on the gaming PC (Windows). Safe to re-run.
+rem Portable bundle (made by tools\make_portable.py) ships its own
+rem python\ dir -- then NOTHING needs installing. Otherwise this needs
+rem Python 3.10+ (python.org installer, "py" launcher checked).
 rem NB: no %errorlevel% inside ( ) blocks -- cmd expands it at parse time;
 rem the runtime-safe "if errorlevel 1" / goto form is used instead.
 cd /d "%~dp0"
 
 echo == poe-league-tools PC setup ==
 
+if not exist python\python.exe goto :needvenv
+echo Bundled Python found - nothing to install.
+set "PY=python\python.exe"
+goto :wizard
+
+:needvenv
 if exist .venv\Scripts\python.exe goto :deps
 
 echo Creating .venv ...
@@ -34,16 +42,14 @@ if errorlevel 1 (
     pause
     exit /b 1
 )
+set "PY=.venv\Scripts\python.exe"
 
+:wizard
 echo.
-echo == Setup done. Next steps ==
-echo  1. Edit overlay\config.json: check client_txt points at your
-echo     Client.txt (auto-detection probes the common Steam/standalone
-echo     paths if the configured one is missing).
-echo  2. Optional LLM features (advisor, briefs, tradeq, retro text):
-echo        .venv\Scripts\pip install anthropic
-echo     then set ANTHROPIC_API_KEY in your environment.
-echo  3. Run the overlay: double-click overlay\run_overlay.bat
-echo  4. Sanity check: .venv\Scripts\python.exe tools\check.py
+echo == First-run setup (finds Client.txt, asks who you are) ==
+%PY% tools\join_party.py
+echo.
+echo Re-run this file any time. doctor.bat = health check.
+echo Optional LLM extras need a pip install - see README, LLM features.
 echo.
 pause

@@ -42,10 +42,19 @@ line.
 1. Copy `buildgen/party.example.json` to `party.json`, paste each member's
    PoB code, mark yours with `"me": true`.
 2. `python buildgen/party.py party.json --out-dir builds` → per-player
-   `<name>_plan.md` + `<name>_notes.json`, and `party_summary.md` with
-   everyone's gem links per act and a uniques wishlist.
-3. Paste the printed `build_notes` + `party` block into `overlay/config.json`
-   (each member runs their own overlay with their own name as `me`).
+   `<name>_plan.md` + `<name>_notes.json`, `party_summary.md` with
+   everyone's gem links per act and a uniques wishlist, and
+   `party_bundle.json` — the manifest each PC sets itself up from.
+3. `python tools/make_portable.py` → `dist/poe-league-tools-pc.zip`
+   (~92 MB): the whole toolkit **with a private Windows Python and PyQt6
+   inside** — friends install nothing. Built from the Mac; needs network
+   the first time (python.org + PyPI, cached in `dist/cache/`).
+4. Ship that zip plus `FRIENDS.md` as the cover note. On each PC,
+   `setup_pc.bat` finds Client.txt, asks "who are you?" and writes that
+   machine's `overlay/config.json` — nobody installs or edits anything.
+   (Skipped step 3? The zip-the-folder flow still works — `builds/` is
+   gitignored so zip beats clone — friends then need Python 3.10+ and
+   `setup_pc.bat` pip-installs the rest.)
 
 Solo works too: `python buildgen/pob.py plan <code>`, empty party config.
 
@@ -54,19 +63,21 @@ Solo works too: `python buildgen/pob.py plan <code>`, empty party config.
 Windows, Python 3.10+, game in **Windowed Fullscreen**, English client.
 
 ```
-setup_pc.bat                 (once — creates .venv, installs PyQt6)
+setup_pc.bat                 (once — first-run wizard; installs deps only
+                              when the folder has no bundled python\)
 overlay\run_overlay.bat      (or: .venv\Scripts\python.exe overlay\main.py)
+doctor.bat                   (health check — run when anything looks wrong)
 ```
 
-`Client.txt` is auto-detected at these common Steam/standalone paths; edit
-`client_txt` in `overlay/config.json` otherwise:
+The .bat files prefer, in order: the portable bundle's `python\`, the
+repo `.venv`, a system Python. LLM extras (`anthropic`) need the venv
+flavor — the embedded python ships without pip on purpose.
 
-```
-C:\Program Files (x86)\Grinding Gear Games\Path of Exile\logs\Client.txt
-C:\Program Files (x86)\Steam\steamapps\common\Path of Exile\logs\Client.txt
-C:\Program Files\Grinding Gear Games\Path of Exile\logs\Client.txt
-D:\SteamLibrary\steamapps\common\Path of Exile\logs\Client.txt
-```
+`Client.txt` is auto-detected (common installs, then every Steam library
+via `libraryfolders.vdf`, then a per-drive scan — `overlay/find_client.py`);
+the wizard persists what it finds, or set `client_txt` in
+`overlay/config.json` by hand. Handing the folder to the other players?
+Point them at `FRIENDS.md`.
 
 Hotkeys (global on
 Windows): **F2/F3** prev/next step · **F4** hide · **F6** click-through
@@ -136,7 +147,9 @@ python3.13 -m venv .venv && .venv/bin/pip install PyQt6      # once
 ```
 
 (`repl` instead of `walk` to type zone/level/join/death events by hand.)
-Deploy to the PC: copy the folder (or git clone), run `setup_pc.bat`.
+Deploy to the PC: copy the folder — `builds/` included — and run
+`setup_pc.bat`; the wizard (`tools/join_party.py`) and the doctor
+(`tools/preflight.py`) both run fine on macOS for testing.
 
 ## Route data
 
@@ -155,6 +168,8 @@ all 187 steps end-to-end through the engine.
 - [x] LLM infra + advisor pipeline (awaiting July 16 patch notes)
 - [x] Market stack: sources → store → scanner → console → PnL; briefs
 - [x] Meta ranker, tradeq, LLM route verifier, Client.txt simulator
+- [x] Friend onboarding: party bundle → `setup_pc.bat` wizard →
+      `doctor.bat` health check (FRIENDS.md is the hand-out)
 - [ ] **Before Jul 20:** Mirage rehearsal — 24 h daemon run, tune the
       price-fixing filter, capture real clipboard fixtures (see DECISIONS.md)
 - [ ] **Jul 16:** feed patch notes to the advisor; generate the watchlist

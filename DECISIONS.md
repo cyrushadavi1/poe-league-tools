@@ -77,12 +77,70 @@ DECISIONS.md convention). Newest at the bottom.
   fallback cannot undo input transparency, so main.py no longer binds it
   there.
 
+## 2026-07-07 friend onboarding sweep
+
+- **Nobody hand-edits JSON to join.** `buildgen/party.py` now also writes
+  `builds/party_bundle.json` (league + members: player/class/ascendancy +
+  notes/plan *basenames* — the bundle travels with its folder, so paths
+  from the generating machine would be wrong on every PC).
+  `tools/join_party.py` (chained from `setup_pc.bat`, re-run-safe) reads
+  it, asks "who are you?", finds Client.txt, and writes that machine's
+  `overlay/config.json` — preserving unrelated tweaks, backing up a
+  corrupt config to `.bak` instead of discarding it.
+- **The old printed paste-block was broken by design** for the actual
+  deploy flow (generate on the Mac → play on PCs): it embedded
+  `os.path.abspath` of the notes file on the *generating* machine. Kept
+  as a hand-editor fallback, now overlay-relative with forward slashes.
+- **Client.txt discovery** (`overlay/find_client.py`, injectable-FS,
+  shared by overlay/wizard/doctor): configured path → common installs →
+  every Steam library out of `libraryfolders.vdf` (registry `SteamPath`
+  + default dirs; read-only file parse) → per-drive layout scan.
+- **Doctor** (`tools/preflight.py`, `doctor.bat`): OK/INFO/WARN/FAIL
+  rows with a fix per line; exit 1 on FAIL. Catches the *silent* failure
+  modes: `me` misspelt vs the bundle, `build_notes` pointing nowhere
+  (previously skipped without a word — now also warned at overlay start),
+  stale `Client.txt` from an abandoned install, a log tail with zero
+  parseable lines (non-English client), typo'd config keys, duplicate
+  hotkeys. Never crashes: every check is wrapped.
+- **Failures must be loud where the friend is looking:** malformed
+  config.json → plain-language error + exit 2 (no traceback);
+  `run_overlay.bat` prints a doctor hint on non-zero exit; a missing
+  Client.txt is parked on the overlay card itself (party row — no party
+  events can arrive to repaint it while the log is missing).
+- **`FRIENDS.md`** is the hand-out: two double-clicks, a symptom table,
+  and the ToS answer up front. Ship the folder zipped (`builds/` is
+  gitignored, so a clone would lack the bundle).
+- **Zero-install PC bundle** (`tools/make_portable.py` →
+  `dist/poe-league-tools-pc.zip`, ~92 MB): python.org's *Windows
+  embeddable* CPython + the PyQt6 win_amd64 wheels unzipped straight
+  into its site-packages (wheels are install-by-extract; PyQt6 has no
+  post-install steps). Friends need no Python, no admin, no internet.
+  Chosen over PyInstaller/Nuitka because those cannot cross-build and
+  this project's build machine is a Mac; the embeddable approach is
+  pure downloads + file assembly, so the Mac builds it (network at
+  build time only, cached under `dist/cache/`).
+  - The `._pth` file takes FULL control of the embedded interpreter's
+    `sys.path` (no script-dir insertion), so it lists every package dir
+    the repo imports by-same-directory: `..`, `..\overlay`,
+    `..\buildgen`, `..\market`, `..\advisor`. Site stays disabled.
+  - `EMBED_VERSION` pinned (3.13.14, verified live 2026-07-07); its
+    major.minor must match pip's `--python-version` because
+    `PyQt6_sip` wheels are cpXY-specific (handled in the tool).
+  - Known limit: no pip inside the bundle, so LLM extras need the
+    .venv flavor (or a future `--with-llm` that vendors `anthropic`+
+    deps the same way). The .bat files prefer `python\` → `.venv` →
+    system Python, so both flavors coexist.
+  - Removed a stray empty `{overlay,routes,buildgen,tests}` dir at the
+    repo root (2026-07-06 brace-expansion accident) that leaked into
+    the first bundle build.
+
 ## Owner inputs still needed (from the plan §7 + build findings)
 
 1. **Starting bankroll** (chaos/div) for opportunity sizing once 3.29
    stabilizes — placeholder `bankroll_c: 2000` in `market/config.json`.
-2. **Party character names** → `overlay/config.json` `party` block, at
-   league start (also rerun `buildgen/party.py` with the real PoBs).
+2. **Party character names** at league start: rerun `buildgen/party.py`
+   with the real PoBs, re-ship `builds/`, everyone re-runs
+   `setup_pc.bat` (it re-asks against the fresh bundle).
 3. **Mirage rehearsal checklist (before Jul 20):** run the market daemon
    ≥ 24 h against Mirage; capture 5 real Ctrl+C item samples into
    `tests/fixtures_items/` (replacing authored ones); die once on purpose
