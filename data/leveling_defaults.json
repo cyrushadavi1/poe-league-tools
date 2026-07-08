@@ -1,0 +1,87 @@
+{
+  "_comment": "Generic per-class leveling gems, used when a PoB has no act-tagged skill sets (buildgen/pob.py make_plan fallback). Verified 2026-07-08 against Maxroll's class leveling guides (all 'Reviewed for PoE 3.28 Mirage') and poewiki gem levels. Edit freely — one short line per act, it renders on the overlay card's gem row. '@N' = character level. Re-check after 3.29 patch notes (Jul 16).",
+  "Witch": {
+    "1": "Rolling Magma + Elemental Proliferation; @4 Flame Wall, Holy Flame Totem, Frostblink",
+    "2": "@16 Herald of Thunder + Skitterbots + Wave of Conviction; Shield Charge for travel",
+    "3": "@24 Flammability on bosses; @28 swap Armageddon Brand + free Cremation quest gem",
+    "4": "@38 brand 4L: +Combustion + Immolate + Ignite Prolif; Cremation + Conc Effect",
+    "5": "coast on brand + corpses; wand/sceptre upgrade (+1 fire, spell dmg); Kitava -30% res next",
+    "6": "resists back to 75%; Cremation links: +Elemental Focus or Cruelty @18",
+    "7": "lab #2 on route; aura swap @24: Haste travelling, Anger on bosses",
+    "8": "life + res on every slot; Conc Effect on Cremation melts tough rares",
+    "9": "flasks up to date (bubbling life, ample mana); gems ~17-18",
+    "10": "final res check — Kitava -30% again after; portal up before the fight"
+  },
+  "Templar": {
+    "1": "Holy Strike + Hallow (new 3.28 gems) or Rolling Magma; @4 Holy Flame Totem + Flame Wall",
+    "2": "@10 Leap Slam + Momentum; @16 Herald of Thunder",
+    "3": "@24 Anger on bosses; @28 swap Armageddon Brand + free Cremation for single target",
+    "4": "@38 brand 4L: +Combustion + Immolate + Ignite Prolif; Cremation + Conc Effect",
+    "5": "coast; sceptre with flat fire to spells (bench craft @24) beats gem tweaks",
+    "6": "resists back to 75% after Kitava's -30%",
+    "7": "lab #2 on route; keep brand + totem levels capped",
+    "8": "life + res everywhere; Conc Effect swap for tanky rares",
+    "9": "flask pass; gems ~17-18",
+    "10": "res check before Kitava (-30% after); bench-craft missing res"
+  },
+  "Marauder": {
+    "1": "Ground Slam + Ruthless (lvl 1!) + Chance to Bleed; @4 War Banner + Blood and Sand",
+    "2": "@10 Leap Slam + Faster Attacks + Momentum; @12 swap Sunder; @16 Herald of Ash + Blood Rage",
+    "3": "@18 Sunder - Melee Physical Damage - Close Combat; @24 Pride on bosses, Haste travelling",
+    "4": "@38 4th link: Fist of War or Brutality; weapon > gems — chase pDPS every act",
+    "5": "coast; a better 2H every act or two carries the whole campaign",
+    "6": "resists to 75% after Kitava's -30%; life on every slot",
+    "7": "lab #2 on route; Intimidating Cry @10 before big slams if you like warcries",
+    "8": "weapon pass again (~200+ pDPS); Vulnerability curse on bosses",
+    "9": "flasks: bleed immunity is mandatory; gems ~17-18",
+    "10": "res check before Kitava; portal in town before the fight"
+  },
+  "Duelist": {
+    "1": "Spectral Throw + Chance to Bleed (carries until Sunder); @8 Frostblink",
+    "2": "@10 Leap Slam + Faster Attacks + Momentum; @12 swap Sunder + Ruthless; @16 Herald of Ash",
+    "3": "@18 Sunder - Melee Physical Damage - Close Combat; @24 Pride bosses / Haste travel",
+    "4": "@38 4th link: Fist of War; 1H+shield = comfy, 2H = faster — either way chase pDPS",
+    "5": "coast; weapon upgrade every act or two beats any gem tweak",
+    "6": "resists back to 75% post-Kitava; life everywhere",
+    "7": "lab #2 on route; Blood Rage @16 if you can sustain it",
+    "8": "weapon pass; Vulnerability on bosses",
+    "9": "flasks: bleed immune + life; gems ~17-18",
+    "10": "res check before Kitava (-30% again after)"
+  },
+  "Ranger": {
+    "1": "Galvanic Arrow + Momentum; @4 +Mirage Archer, Dash; Frostblink when found",
+    "2": "@12 swap Lightning Arrow + Mirage Archer + LMP; @16 Herald of Ice",
+    "3": "@24 Anger on bosses; @28 Manaforged Arrows + Storm Rain = free extra single target",
+    "4": "@38 +Returning Projectiles; bow upgrade every act — flat ele beats links",
+    "5": "coast; highest flat-ele bow wins, bench-craft flat cold/lightning",
+    "6": "resists to 75% post-Kitava; Grace aura from A8 if squishy",
+    "7": "lab #2 on route; quiver + rings with flat ele",
+    "8": "Barrage Support swap on bosses; life + res gear pass",
+    "9": "flasks: bleed immune mandatory; gems ~17-18",
+    "10": "res check before Kitava; keep distance, portal ready"
+  },
+  "Shadow": {
+    "1": "Cobra Lash to open, swap Rolling Magma + Ele Prolif ASAP (caster Shadow is the meta)",
+    "2": "@4 Frostblink + Flame Wall; @16 Herald of Thunder + Skitterbots + Wave of Conviction",
+    "3": "@24 Flammability; @28 Armageddon Brand + free Cremation; Whirling Blades @10 to move",
+    "4": "@38 brand 4L: +Combustion + Immolate + Ignite Prolif; Cremation + Conc Effect",
+    "5": "coast on brand + corpses; dagger/sceptre with spell damage",
+    "6": "resists back to 75% post-Kitava; life + evasion gear",
+    "7": "lab #2 on route; aura swap: Haste travel / Anger bosses",
+    "8": "Conc Effect on Cremation for bosses; keep gems capped",
+    "9": "flasks: bleed immune + jade; gems ~17-18",
+    "10": "res check before Kitava (-30% after)"
+  },
+  "Scion": {
+    "1": "Spectral Throw + Prismatic Burst + Momentum; @4 War Banner",
+    "2": "@10 Leap Slam + Faster Attacks; @12 swap Sunder; @16 Herald of Ash",
+    "3": "@18 Sunder - Melee Physical Damage - Close Combat; @24 Pride bosses / Haste travel",
+    "4": "@38 4th link: Ruthless or Fist of War; weapon upgrades carry you",
+    "5": "coast; Reliquarian asc (3.28) is unique-focused — plan lab picks in PoB",
+    "6": "resists back to 75% post-Kitava; life on every slot",
+    "7": "lab #2 on route; Ascendant points are flexible — damage node first",
+    "8": "boss swap support; keep gems capped",
+    "9": "flask pass (bleed immune + life); gems ~17-18",
+    "10": "res check before Kitava (-30% again after)"
+  }
+}

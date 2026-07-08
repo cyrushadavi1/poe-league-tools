@@ -110,6 +110,29 @@ DECISIONS.md convention). Newest at the bottom.
 - **`FRIENDS.md`** is the hand-out: two double-clicks, a symptom table,
   and the ToS answer up front. Ship the folder zipped (`builds/` is
   gitignored, so a clone would lack the bundle).
+- **Generic plans verified against the live 3.28 meta (2026-07-08).**
+  All seven `data/leveling_defaults.json` entries were rewritten to
+  match Maxroll's class leveling guides (each page "Reviewed for PoE
+  3.28 Mirage", Mar 2026) with every `@level` claim checked against
+  poewiki's cargo DB (two API queries, repo User-Agent). Notable
+  corrections over the first-draft classics: Ancestral Call removed
+  from Ground Slam/Cleave lines (slams aren't strikes — it never
+  worked); Templar now opens Holy Strike + Hallow (new 3.28 holy
+  gems); Witch/Templar/Shadow use the ignite-prolif Armageddon Brand +
+  Cremation route (not Controlled Destruction); Duelist/Scion open
+  Spectral Throw into Sunder @12 with Close Combat @18; Ranger gets
+  Momentum/LMP + Manaforged Arrows @28 tech. Re-verify after the
+  Jul 16 patch notes (3.29 may shuffle gems again).
+- **Bare PoBs get a generic class leveling plan.** A guide-site export
+  with only an "Endgame" skill set used to produce zero gem notes
+  (empty ⚙ row). `pob.make_plan` now falls back to
+  `data/leveling_defaults.json` — authored per class (7 × acts 1-10,
+  ≤110 chars/line for the card), league-agnostic classics, freely
+  editable. Fallback fires only on ZERO act-tagged notes (a partial
+  PoB is respected as authored); entries carry `"source": "generic"`
+  (the overlay ignores extra keys) so plan.md and the doctor label
+  them. Build-specific notes remain the upgrade path: title the PoB
+  sets "Act N ..." and re-run party.py.
 - **Zero-install PC bundle** (`tools/make_portable.py` →
   `dist/poe-league-tools-pc.zip`, ~92 MB): python.org's *Windows
   embeddable* CPython + the PyQt6 win_amd64 wheels unzipped straight
@@ -133,6 +156,22 @@ DECISIONS.md convention). Newest at the bottom.
   - Removed a stray empty `{overlay,routes,buildgen,tests}` dir at the
     repo root (2026-07-06 brace-expansion accident) that leaked into
     the first bundle build.
+
+## 2026-07-08 field feedback (first friend test on Mirage)
+
+- **Route fast-forward on startup** (requested: "fast forward to where
+  my progress was"). `RouteEngine.fast_forward(zones, known_level)`
+  takes the log tail's zone history (`client_watcher.recent_zones`,
+  4 MB tail) and reconciles two estimates: replaying the full history
+  through `on_zone` (exact when the log covers the run) and the last
+  history zone that names a route step (rescues fresh installs,
+  rotated logs, alt-character pollution). With a known level, the
+  estimate whose area level fits better wins — that's what tells the
+  act 1 from the act 6 "Lioneye's Watch". Startup-only: mid-play the
+  lookahead window stays the teleport guard. `resume_route: true`
+  config key (default on), F2/F3 to nudge a wrong landing.
+- Friend verdict otherwise: runs fine, not intrusive; card is not
+  clickable by design (hotkeys only, F6 = click-through).
 
 ## Owner inputs still needed (from the plan §7 + build findings)
 

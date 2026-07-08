@@ -85,6 +85,21 @@ def last_known_level(path, is_me, tail_bytes=262144):
     return level
 
 
+def recent_zones(path, tail_bytes=4194304):
+    """Zone names from 'You have entered' lines in the log tail, oldest
+    first (a few MB ≈ hours of play). Powers the startup route
+    fast-forward; chat spoofing is already rejected by parse_line."""
+    try:
+        size = os.path.getsize(path)
+        with open(path, "rb") as f:
+            f.seek(max(0, size - tail_bytes))
+            text = f.read().decode("utf-8", errors="ignore")
+    except OSError:
+        return []
+    return [ev[1] for ev in map(parse_line, text.splitlines())
+            if ev and ev[0] == "zone"]
+
+
 class ClientWatcher:
     """Incremental log reader. Call poll() regularly; returns new events."""
 

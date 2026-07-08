@@ -32,8 +32,9 @@ OK, INFO, WARN, FAIL = "OK", "INFO", "WARN", "FAIL"
 # Everything overlay/main.py + overlay_window.py actually read; anything
 # else in config.json is almost certainly a typo doing nothing.
 KNOWN_KEYS = {"client_txt", "poll_ms", "opacity", "width", "font_pt",
-              "lookahead", "routes_dir", "build_notes", "timer", "runs_dir",
-              "item_eval", "links_best", "party", "hotkeys", "league"}
+              "lookahead", "routes_dir", "resume_route", "build_notes",
+              "timer", "runs_dir", "item_eval", "links_best", "party",
+              "hotkeys", "league"}
 KNOWN_PARTY_KEYS = {"me", "members", "gap_warn"}
 KNOWN_HOTKEYS = {"prev", "next", "toggle", "clickthrough"}
 
@@ -208,8 +209,12 @@ def check_notes(cfg, base=OVERLAY):
         return [(WARN, "gem notes", f"{os.path.basename(path)} has no "
                  "entries -- name PoB skill sets 'Act 1 ...' etc. and "
                  "re-run buildgen/party.py")]
+    generic = all(isinstance(x, dict) and x.get("source") == "generic"
+                  for x in notes)
+    kind = ("generic class plan (the PoB had no act-tagged skill sets)"
+            if generic else "from your PoB")
     return [(OK, "gem notes", f"{os.path.basename(path)} covers act(s) "
-             f"{', '.join(map(str, acts))}")]
+             f"{', '.join(map(str, acts))} -- {kind}")]
 
 
 def check_party(cfg, base=OVERLAY):

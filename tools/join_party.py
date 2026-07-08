@@ -42,6 +42,7 @@ DEFAULT_CONFIG = {
     "font_pt": 11,
     "lookahead": 4,
     "routes_dir": "../routes",
+    "resume_route": True,
     "build_notes": None,
     "timer": True,
     "runs_dir": "../runs",

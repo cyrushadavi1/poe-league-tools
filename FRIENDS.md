@@ -23,7 +23,9 @@ input, no automation; nothing leaves your machine.
    **Windowed Fullscreen** (the overlay can't draw over exclusive
    fullscreen). English client only.
 4. **Double-click `overlay\run_overlay.bat`.** Drag the card wherever
-   you like. Done — it advances by itself as you zone.
+   you like. Done — it advances by itself as you zone, and if you're
+   already partway through the campaign it fast-forwards to where you
+   are (F2/F3 nudges it if it lands a step off).
 
 Hotkeys: **F2/F3** step back/forward · **F4** hide/show ·
 **F6** click-through (so the card never eats a click).
@@ -41,7 +43,7 @@ says how to fix itself. Screenshot it to the group chat if stuck.
 | Overlay invisible in game | Game is in exclusive Fullscreen → set Windowed Fullscreen |
 | Steps don't advance | Wrong/missing Client.txt → re-run `setup_pc.bat` (or non-English client) |
 | Party row empty / levels stuck at `?` | Names in config don't match the real character names → re-run `setup_pc.bat` |
-| No gem reminders on steps | `builds\` folder missing or notes not wired → doctor.bat says which |
+| No gem reminders on steps | `builds\` folder missing or notes not wired → doctor.bat says which. (A build without act-tagged PoB sets gets a generic class plan automatically.) |
 | No verdict when I Ctrl+C an item | That's item-eval — make sure you copied while hovering an item in game |
 | Hotkeys dead | Another app grabbed F2–F6 → rebind in `overlay\config.json` under `hotkeys` |
 

@@ -45,6 +45,10 @@ line.
    `<name>_plan.md` + `<name>_notes.json`, `party_summary.md` with
    everyone's gem links per act and a uniques wishlist, and
    `party_bundle.json` — the manifest each PC sets itself up from.
+   PoBs with act-tagged skill sets ("Act 1 …", "Act 3-5 …") get
+   build-specific gem notes; a bare endgame-only PoB falls back to the
+   generic per-class plan in `data/leveling_defaults.json` (edit it to
+   taste) — labelled as generic in plan.md and by the doctor.
 3. `python tools/make_portable.py` → `dist/poe-league-tools-pc.zip`
    (~92 MB): the whole toolkit **with a private Windows Python and PyQt6
    inside** — friends install nothing. Built from the Mac; needs network
@@ -89,6 +93,11 @@ red flash when someone dies); `⏱ A3 41:22 (-2:10 PB) ⚠ XP -38%` timer/XP
 row; and a 6-second color-coded verdict when you Ctrl+C an item in game
 (pure local parsing — nothing leaves your machine). Feature flags in
 config: `timer`, `item_eval`, `links_best`, `runs_dir`.
+
+Starting the overlay mid-campaign (or restarting it)? It reads the log
+tail and **fast-forwards to where you already are** — zone history plus
+your level disambiguates repeated zone names like the act 1/6 towns
+(`resume_route: false` to disable; F2/F3 to fine-tune the landing).
 
 Runs are saved to `runs/` on exit; `python tools/retro.py runs/<file>.json`
 prints splits vs PB, level curve, deaths — plus three concrete improvements

@@ -40,6 +40,68 @@ class RouteEngine:
                 return True
         return False
 
+    def _step_level(self, j):
+        """Monster level at step j; towns carry no arealvl, so borrow
+        the nearest same-act step that has one."""
+        s = self.steps[j]
+        if s.get("arealvl"):
+            return int(s["arealvl"])
+        act = s["act"]
+        for k in list(range(j + 1, len(self.steps))) + \
+                list(range(j - 1, -1, -1)):
+            t = self.steps[k]
+            if t["act"] == act and t.get("arealvl"):
+                return int(t["arealvl"])
+        return 1
+
+    def fast_forward(self, zones, known_level=None):
+        """One-shot mid-campaign resume: jump to where the log's zone
+        history (oldest first) says the player already is.
+
+        Two estimates:
+        1. Walk the whole history through on_zone — a log that covers
+           the run from the start replays it exactly like live play.
+        2. The LAST history zone that names a route step — covers a
+           tail that starts mid-campaign (fresh overlay install, log
+           rotated, or an alt's early zones polluting the walk).
+           Duplicate zone names (act 1 vs 6 towns...) are broken by
+           arealvl closest to known_level, deeper step on ties.
+        With a known character level the estimate whose area level
+        fits it better wins; without one, a walk that moved is
+        trusted over the guess.
+
+        Startup-only by design: during play the lookahead window is
+        what stops towns/portals from teleporting the guide.
+        Returns the number of steps skipped.
+        """
+        if not zones:
+            return 0
+        start = self.i
+        for z in zones:
+            self.on_zone(z)
+        walk_i, self.i = self.i, start
+
+        cand_i = start
+        for z in reversed(zones):
+            zl = z.strip().lower()
+            matches = [j for j in range(start, len(self.steps))
+                       if self.steps[j].get("zone", "").lower() == zl]
+            if matches:
+                if known_level:
+                    matches.sort(key=lambda j: (
+                        abs(self._step_level(j) - known_level), -j))
+                    cand_i = matches[0]
+                else:
+                    cand_i = matches[-1]
+                break
+
+        if known_level:
+            self.i = min((walk_i, cand_i), key=lambda j: (
+                abs(self._step_level(j) - known_level), -j))
+        else:
+            self.i = walk_i if walk_i > start else cand_i
+        return self.i - start
+
     # -- manual navigation --------------------------------------------------
     def next(self):
         self.i = min(self.i + 1, len(self.steps) - 1)

@@ -24,7 +24,7 @@ import json
 import os
 import sys
 
-from client_watcher import ClientWatcher, last_known_level
+from client_watcher import ClientWatcher, last_known_level, recent_zones
 from party_state import PartyState
 from route_engine import RouteEngine
 from run_tracker import RunTracker, xp_warning
@@ -237,6 +237,21 @@ def main():
         if tracker is not None:
             tracker.level = known
         print(f"[client] resumed at level {known} (from the log tail)")
+
+    # Fast-forward the guide to where the log says the player already
+    # is — a mid-campaign start otherwise opens on step 1 and means
+    # F3-ing through half the route by hand.
+    if cfg.get("resume_route", True):
+        try:
+            skipped = engine.fast_forward(recent_zones(client),
+                                          party.my_level)
+        except Exception:  # noqa: BLE001 -- resume is best-effort
+            skipped = 0
+        if skipped:
+            cur = engine.current() or {}
+            print(f"[route] fast-forwarded {skipped} steps to act "
+                  f"{cur.get('act')}: {cur.get('zone')}  (F2/F3 to adjust;"
+                  " resume_route:false in config to disable)")
 
     app = QApplication(sys.argv)
     win = OverlayWindow(cfg)

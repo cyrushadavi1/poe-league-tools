@@ -140,6 +140,61 @@ eng.next()
 assert eng.i == 16, "next() must clamp at the last step"
 
 
+# ------------------------------------------- startup fast-forward
+def all_routes_engine():
+    return RouteEngine(os.path.join(ROOT, "routes"))
+
+
+# 1. full history replays exactly like live play (overlay restart)
+ff = all_routes_engine()
+history = [z for z, _ in walk]
+skipped = ff.fast_forward(history)
+assert skipped == 16 and ff.i == 16, f"walked to {ff.i}"
+
+# 2. cold start mid-campaign: tail names a unique deep zone
+ff = all_routes_engine()
+deep = [s for s in ff.steps if s["act"] == 8][3]
+skipped = ff.fast_forward(["Some Hideout", deep["zone"]], 60)
+assert ff.steps[ff.i] is deep or ff.steps[ff.i]["zone"] == deep["zone"], \
+    f"landed on {ff.steps[ff.i]}"
+assert ff.steps[ff.i]["act"] == 8 and skipped > 0
+
+# 3. mirrored town names resolve by level (Lioneye's: act 1 vs act 6)
+ff = all_routes_engine()
+ff.fast_forward(["Lioneye's Watch"], 45)
+assert ff.steps[ff.i]["act"] == 6, \
+    f"lvl 45 + Lioneye's must mean act 6, got act {ff.steps[ff.i]['act']}"
+ff2 = all_routes_engine()
+ff2.fast_forward(["Lioneye's Watch"], 2)
+assert ff2.steps[ff2.i]["act"] == 1
+
+# 4. an alt's early zones must not mask the main char's real position
+ff = all_routes_engine()
+act9 = next(s for s in ff.steps if s["act"] == 9 and s.get("arealvl"))
+ff.fast_forward(["The Coast", "The Mud Flats", act9["zone"]], 64)
+assert ff.steps[ff.i]["act"] == 9, f"got act {ff.steps[ff.i]['act']}"
+
+# 5. no zones / no matches -> stays put
+ff = all_routes_engine()
+assert ff.fast_forward([]) == 0 and ff.i == 0
+assert ff.fast_forward(["Not A Zone", "Also Fake"]) == 0 and ff.i == 0
+
+# 6. recent_zones reads the tail, rejects chat spoofing
+zr_tmp = tempfile.mkdtemp(prefix="poe_zones_test_")
+try:
+    zlog = os.path.join(zr_tmp, "Client.txt")
+    with open(zlog, "w", encoding="utf-8") as f:
+        f.write(f"{PRE} : You have entered The Coast.\n"
+                f"{PRE} #Troll: You have entered Kitava's Hideout.\n"
+                f"{PRE} : You have entered The Mud Flats.\n"
+                "garbage line\n")
+    from client_watcher import recent_zones
+    assert recent_zones(zlog) == ["The Coast", "The Mud Flats"]
+    assert recent_zones(os.path.join(zr_tmp, "missing.txt")) == []
+finally:
+    shutil.rmtree(zr_tmp)
+
+
 # ---------------------------------------------------------- PoB round-trip
 def sample_pob(class_name, asc, main_gem):
     root = ET.Element("PathOfBuilding")
@@ -181,6 +236,49 @@ leveling_text = ("Rolling Magma – Arcane Surge Support – "
 assert notes == [{"act": 1, "text": leveling_text},
                  {"act": 2, "text": leveling_text}], \
     "'Act 1-2' skill set emits a note for EVERY act in the span"
+
+
+# ------------------------------------ generic fallback for bare PoBs
+def bare_pob(class_name):
+    """A realistic guide-site export: one 'Endgame' set, no act tags."""
+    root = ET.Element("PathOfBuilding")
+    ET.SubElement(root, "Build", {"level": "92", "className": class_name,
+                                  "ascendClassName": ""})
+    skills = ET.SubElement(root, "Skills")
+    ss = ET.SubElement(skills, "SkillSet", {"title": "Endgame"})
+    sk = ET.SubElement(ss, "Skill", {"label": ""})
+    ET.SubElement(sk, "Gem", {"nameSpec": "Fireball"})
+    ET.SubElement(root, "Tree")
+    return root
+
+
+md_g, notes_g = pob.make_plan(bare_pob("Witch"))
+assert [n["act"] for n in notes_g] == list(range(1, 11)), \
+    "bare PoB must fall back to the generic class plan, acts 1-10"
+assert all(n.get("source") == "generic" for n in notes_g), \
+    "generic notes must be marked so doctor/plan.md can say so"
+assert "Generic Witch leveling gems" in md_g and "class defaults" in md_g
+assert "Rolling Magma" in notes_g[0]["text"]
+
+assert all("source" not in n for n in notes), \
+    "act-tagged PoBs must never get generic notes mixed in"
+
+md_u, notes_u = pob.make_plan(bare_pob("NotAClass"))
+assert notes_u == [] and "Generic" not in md_u, \
+    "unknown class: no notes, no crash"
+
+# the data file: every class, every act, card-sized lines
+with open(pob.GENERIC_PLANS, encoding="utf-8") as f:
+    _plans = json.load(f)
+_classes = {"Marauder", "Duelist", "Ranger", "Shadow", "Witch",
+            "Templar", "Scion"}
+assert _classes <= set(_plans), f"missing: {_classes - set(_plans)}"
+for _cls in _classes:
+    assert set(_plans[_cls]) == {str(a) for a in range(1, 11)}, \
+        f"{_cls}: acts must be exactly 1-10"
+    for _a, _text in _plans[_cls].items():
+        assert 0 < len(_text) <= 110, \
+            f"{_cls} act {_a}: line too long for the overlay card"
 
 # ranged / short act titles resolve to full spans
 assert pob.acts_in_title("Act 6-10 gems") == [6, 7, 8, 9, 10]

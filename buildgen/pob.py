@@ -15,13 +15,22 @@ Guide PoBs usually ship multiple tree Specs ("Level 30", "Final") and
 multiple Skill Sets ("Act 1-2", "Endgame") — this tool turns those into
 an act-by-act sheet, and `--json` output can be fed to the overlay via
 `build_notes` in config.json so gem links show up on the correct act.
+
+A PoB with NO act-tagged skill sets (a bare endgame export) falls back
+to the generic per-class plan in data/leveling_defaults.json — clearly
+labelled, because it knows the class, not the build.
 """
 import argparse
 import base64
 import json
+import os
 import re
 import zlib
 import xml.etree.ElementTree as ET
+
+GENERIC_PLANS = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "data", "leveling_defaults.json")
 
 
 def read_code(arg: str) -> str:
@@ -195,6 +204,24 @@ def acts_in_title(title):
     return [a for a in range(lo, hi + 1) if 1 <= a <= 10]
 
 
+def load_generic_plan(class_name, path=GENERIC_PLANS):
+    """Generic per-class leveling notes, or [] when the class (or the
+    data file) is unknown. Entries carry "source": "generic" so
+    downstream tools (doctor, plan.md) can say where they came from;
+    the overlay ignores extra keys."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            plans = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return []
+    acts = plans.get(class_name)
+    if not isinstance(acts, dict):
+        return []
+    return [{"act": int(a), "text": t, "source": "generic"}
+            for a, t in sorted(acts.items(), key=lambda kv: int(kv[0]))
+            if str(a).isdigit() and 1 <= int(a) <= 10]
+
+
 def make_plan(root):
     info = build_info(root)
     specs = tree_specs(root)
@@ -215,6 +242,17 @@ def make_plan(root):
             # skill sets titled "Act N"/"Act N-M" become overlay notes
             # for EVERY act in the span
             notes.append({"act": act, "text": text})
+
+    if not notes:
+        notes = load_generic_plan(info["class"])
+        if notes:
+            lines += [f"## Generic {info['class']} leveling gems", "",
+                      "*(This PoB has no act-tagged skill sets, so these "
+                      "are class defaults, not build-specific. Title PoB "
+                      'skill sets "Act 1 ...", "Act 3-5 ..." and re-run '
+                      "for build-specific notes.)*", ""]
+            lines += [f"- **Act {n['act']}**: {n['text']}" for n in notes]
+            lines.append("")
 
     lines += ["## Passive tree checkpoints", ""]
     prev = set()
