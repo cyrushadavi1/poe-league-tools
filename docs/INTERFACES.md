@@ -49,6 +49,7 @@ this file wins; propose changes here rather than silently diverging.
 | route-verifier-llm | `tools/verify_routes_llm.py`, `data/wiki_cache/`, `tests/test_verify_routes.py` |
 | meta-ranker | `tools/meta.py`, `tests/test_meta.py` |
 | craft | `craft/*.py`, `tools/refresh_repoe.py`, `tools/craft_check.py`, `data/repoe_craft.json`, `data/craft_recipes.json`, `tests/fixtures_craft/`, `tests/test_craft.py` |
+| layouts | `overlay/layout_index.py`, `overlay/layout_panel.py`, `overlay/ui_state.py`, `tools/fetch_layouts.py`, `tools/crosscheck_routes.py`, `data/exileui/`, `tests/test_layouts.py` |
 | integration (later) | `overlay/main.py`, `overlay/overlay_window.py`, `overlay/config.json`, `README.md`, `tools/check.py`, `requirements.txt`, `setup_pc.bat` |
 
 Do not create or edit files outside your row. `data/` files not listed are

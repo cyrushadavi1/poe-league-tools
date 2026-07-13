@@ -48,9 +48,10 @@ DEFAULT_CONFIG = {
     "runs_dir": "../runs",
     "item_eval": True,
     "links_best": 3,
+    "layouts": {"enabled": True, "auto_show": True, "dir": "assets/layouts"},
     "party": {"me": "", "members": [], "gap_warn": 3},
     "hotkeys": {"prev": "F2", "next": "F3", "toggle": "F4",
-                "clickthrough": "F6"},
+                "clickthrough": "F6", "layouts": "F7"},
 }
 
 

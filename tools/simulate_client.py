@@ -13,6 +13,7 @@ Point the overlay at the fake log:
 Interactive driver (type events, see the overlay react live):
     python tools/simulate_client.py repl --out /tmp/fake_client.txt
       z The Coast          -> you enter a zone
+      a 1_1_2 [lvl] [seed] -> instance generated (drives the layouts panel)
       l Exile59 Witch 7    -> a player hits a level
       j FriendChar         -> player joins your area
       p FriendChar         -> player leaves your area
@@ -28,10 +29,15 @@ import argparse
 import datetime
 import json
 import os
+import re
 import tempfile
 import time
 
 STAMP_TAIL = "1234 ac9 [INFO Client 5]"
+DEBUG_STAMP_TAIL = "1234 ac9 [DEBUG Client 5]"   # 'Generating ...' lines
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+AREAS_JSON = os.path.join(HERE, "..", "data", "exileui", "areas.json")
 
 # Cross-platform default (a bare /tmp does not exist on Windows).
 DEFAULT_OUT = os.path.join(tempfile.gettempdir(), "fake_client.txt")
@@ -83,6 +89,40 @@ def zone(out, name):
     append(out, f"You have entered {name}.")
 
 
+def area(out, area_id, lvl=1, seed=1):
+    """The DEBUG 'Generating ...' line the game writes before 'You have
+    entered' -- drives the overlay's zone-layouts panel."""
+    ts = datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S")
+    line = (f"{ts} {DEBUG_STAMP_TAIL} Generating level {lvl} area "
+            f'"{area_id}" with seed {seed}')
+    ensure_parent(out)
+    with open(out, "a", encoding="utf-8") as f:
+        f.write(line + "\n")
+    print(f"  >> {line}")
+
+
+def norm_zone(name):
+    """Match tools/crosscheck_routes.norm: drop a leading 'The', write
+    'X Level N' as 'X (N)' (the Exile-UI table's spelling)."""
+    name = name.strip().lower()
+    if name.startswith("the "):
+        name = name[4:]
+    return re.sub(r" level (\d+)$", r" (\1)", name)
+
+
+def area_lookup(act):
+    """normalized zone-name -> (area_id, lvl) for one act, from the
+    vendored Exile-UI table; {} when the data file isn't there."""
+    try:
+        with open(AREAS_JSON, encoding="utf-8") as f:
+            acts = json.load(f)
+        entries = acts[act - 1]
+    except (OSError, ValueError, IndexError):
+        return {}
+    return {norm_zone(e.get("name", "")): (e["id"], e.get("lvl", 1))
+            for e in entries}
+
+
 def level(out, name, cls, lvl):
     append(out, f"{name} ({cls}) is now level {lvl}")
 
@@ -108,6 +148,14 @@ def repl(a):
         cmd, _, rest = line.partition(" ")
         if cmd == "z" and rest:
             zone(a.out, rest)
+        elif cmd == "a" and rest:
+            parts = rest.split()
+            try:
+                area(a.out, parts[0],
+                     int(parts[1]) if len(parts) > 1 else 1,
+                     int(parts[2]) if len(parts) > 2 else 1)
+            except ValueError:
+                print("  usage: a <area_id> [lvl] [seed]")
         elif cmd == "l":
             try:
                 name, cls, lvl = rest.split()
@@ -123,16 +171,18 @@ def repl(a):
         elif cmd == "raw" and rest:
             append(a.out, rest)
         else:
-            print("  ? commands: z <zone> | l <name> <class> <lvl> | "
-                  "j/p/d <name> | raw <text> | quit")
+            print("  ? commands: z <zone> | a <area_id> [lvl] [seed] | "
+                  "l <name> <class> <lvl> | j/p/d <name> | raw <text> | quit")
 
 
 # ------------------------------------------------------------------ walk
 def walk(a):
     with open(a.route, encoding="utf-8") as f:
-        steps = json.load(f)["steps"]
+        route = json.load(f)
+    steps = route["steps"]
     me_name, me_cls = parse_char(a.me)
     party = [parse_char(s) for s in a.party.split(",")] if a.party else []
+    areas = area_lookup(route.get("act", 1))   # zone name -> (id, lvl)
 
     ensure_parent(a.out)
     open(a.out, "a", encoding="utf-8").close()
@@ -140,6 +190,9 @@ def walk(a):
     lvl = 1
     for i, step in enumerate(steps):
         time.sleep(a.interval)
+        hit = areas.get(norm_zone(step["zone"]))
+        if hit:                    # the real log Generates before it enters
+            area(a.out, hit[0], step.get("arealvl", hit[1]), seed=1000 + i)
         zone(a.out, step["zone"])
         if i == 1:                        # party trickles in at first town
             for name, _ in party:

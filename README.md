@@ -84,8 +84,15 @@ the wizard persists what it finds, or set `client_txt` in
 Point them at `FRIENDS.md`.
 
 Hotkeys (global on
-Windows): **F2/F3** prev/next step · **F4** hide · **F6** click-through
+Windows): **F2/F3** prev/next step · **F4** hide · **F6** click-through,
+card and layouts panel together · **F7** layouts panel hide/show
 (F6 is Windows-only — the non-Windows fallback shortcuts could not undo it).
+
+Getting in the way of clicking? **Mouse-wheel** over the card (or the
+layouts panel) resizes it, **double-click** collapses the card to just
+its header line, **F6** makes everything click-through. Sizes and
+positions persist across restarts (`overlay/ui_state.json`,
+machine-written — not part of the shared config).
 
 What the card shows: current step checklist + layout/tips + gem notes;
 `● Name lvl` party row (● in your area, ⚠ level-gap ≥ `gap_warn`, ☠ deaths,
@@ -102,6 +109,52 @@ your level disambiguates repeated zone names like the act 1/6 towns
 Runs are saved to `runs/` on exit; `python tools/retro.py runs/<file>.json`
 prints splits vs PB, level curve, deaths — plus three concrete improvements
 if the LLM extra is enabled.
+
+## Zone layouts (the "act decoder")
+
+Optional but great: ~470 hand-traced zone layout images from
+[Exile-UI](https://github.com/Lailloken/Exile-UI) (MIT). Fetched by
+`setup_pc.bat`, or by hand:
+
+```
+python tools/fetch_layouts.py
+```
+
+Entering a zone pops a panel with every layout the zone can roll
+(white = zone outline, green = path to the exit, purple = waypoint).
+Glance at your minimap, **left-click** the variant that matches — it
+stays pinned (with any deeper-floor images) until the next zone;
+**right-click** shows all variants again. The panel reads the area ID
+from the same Client.txt line the game already writes, so ToS safety is
+unchanged. `layouts.auto_show: false` in the config if you'd rather
+summon it with F7 only.
+
+## Updating
+
+Your personal settings never get clobbered by an update: they live in
+`overlay/config.json` and `overlay/ui_state.json`, which are
+machine-written and untracked — pulling new code can't touch them.
+
+**If you cloned with git** (needs [git](https://git-scm.com) installed):
+
+```
+git pull
+setup_pc.bat
+```
+
+`setup_pc.bat` is safe to re-run every time: it upgrades dependencies,
+keeps your existing answers in the setup wizard (just press Enter
+through it), and updates the zone-layout image pack.
+
+**If you got the portable zip** (no git, no Python install): download
+the new `poe-league-tools-pc.zip`, unzip it next to your old folder,
+copy your old `overlay\config.json` into the new folder (or skip that
+and answer the setup wizard again), run `setup_pc.bat` once, then
+delete the old folder.
+
+**Zone-layout images only:** `python tools/fetch_layouts.py --check`
+says whether the community pack has new images; re-run
+`python tools/fetch_layouts.py` (or `setup_pc.bat`) to update it.
 
 ## LLM features (optional)
 
@@ -183,6 +236,12 @@ point, trial, bandit choice, logout-warp tech), `arealvl` per step for XP
 warnings. Format in `routes/schema.md`; `tests/test_routes_all.py` walks
 all 187 steps end-to-end through the engine.
 
+`tools/crosscheck_routes.py` validates every zone name and area level
+against community data vendored from Exile-UI (`data/exileui/`) — it
+runs in the test suite, so a typo that would break auto-advance can't
+sneak in. `--coverage` also diffs our route against the community
+leveling guide (differences are usually deliberate skips).
+
 ## Status / roadmap
 
 - [x] Overlay engine + UI, Client.txt watcher, hotkeys, party row
@@ -195,8 +254,19 @@ all 187 steps end-to-end through the engine.
 - [x] Meta ranker, tradeq, LLM route verifier, Client.txt simulator
 - [x] Friend onboarding: party bundle → `setup_pc.bat` wizard →
       `doctor.bat` health check (FRIENDS.md is the hand-out)
+- [x] Zone-layout panel (Exile-UI image pack, F7) · resizable/compact
+      overlay · routes cross-checked against community data
 - [ ] **Before Jul 20:** Mirage rehearsal — 24 h daemon run, tune the
       price-fixing filter, capture real clipboard fixtures (see DECISIONS.md)
 - [ ] **Jul 16:** feed patch notes to the advisor; generate the watchlist
 - [ ] **Jul 24:** set the 3.29 league in `market/config.json`; re-verify
       poe.ninja endpoints + meta.py after launch
+
+## Credits
+
+Zone layout images and campaign reference data come from
+[Exile-UI](https://github.com/Lailloken/Exile-UI) by Lailloken (MIT) —
+the act-decoder image pack is fetched on demand by
+`tools/fetch_layouts.py` (attribution ships alongside it in
+`overlay/assets/layouts/ATTRIBUTION.md`), and `data/exileui/` vendors
+two of its data tables for offline route validation.

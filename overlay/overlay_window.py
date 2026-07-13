@@ -1,8 +1,15 @@
-"""Always-on-top overlay card (PyQt6). Purely visual — never sends input."""
+"""Always-on-top overlay card (PyQt6). Purely visual — never sends input.
+
+Stays out of the way: mouse wheel over the card rescales it (persisted),
+double-click collapses it to just the header line, and F6 (Windows)
+makes it click-through entirely.
+"""
 import html
 
 from PyQt6.QtCore import Qt, QTimer
 from PyQt6.QtWidgets import QFrame, QLabel, QVBoxLayout, QWidget
+
+from ui_state import clamp_scale
 
 KIND_COLORS = {"kill": "#e46a6a", "town": "#6ab0e4",
                "trial": "#c9a44a", "travel": "#9aa4b2"}
@@ -12,9 +19,10 @@ VERDICT_COLORS = {"TAKE": "#7ec27d", "SKIP": "#8a93a0", "CHECK": "#c9a44a"}
 
 
 class OverlayWindow(QWidget):
-    def __init__(self, cfg):
+    def __init__(self, cfg, state=None):
         super().__init__()
         self._drag = None
+        self._dragged = False
         self.level = 1
         self.notes = {}                      # act -> gem note text
         self._party_text = ""
@@ -22,12 +30,17 @@ class OverlayWindow(QWidget):
         self._meta_bits = []                 # current step's meta lines
         self._status_text = ""               # run-tracker timer/XP bit
 
+        self._state = state
+        self._base_width = cfg.get("width", 360)
+        self._base_pt = cfg.get("font_pt", 11)
+        self._scale = clamp_scale(state.get("card", "scale")) if state else 1.0
+        self._compact = bool(state.get("card", "compact")) if state else False
+
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint
                             | Qt.WindowType.WindowStaysOnTopHint
                             | Qt.WindowType.Tool)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         self.setWindowOpacity(cfg.get("opacity", 0.92))
-        self.setFixedWidth(cfg.get("width", 360))
 
         card = QFrame(self)
         card.setObjectName("card")
@@ -59,7 +72,14 @@ class OverlayWindow(QWidget):
         self._flash_timer.setSingleShot(True)
         self._flash_timer.timeout.connect(self._end_flash)
 
-        pt = cfg.get("font_pt", 11)
+        self._apply_style()
+        if self._compact:
+            self._apply_compact()
+
+    def _apply_style(self):
+        """(Re)build size-dependent styling; called on every rescale."""
+        pt = max(6, round(self._base_pt * self._scale))
+        self.setFixedWidth(int(self._base_width * self._scale))
         self.setStyleSheet(f"""
             #card {{ background: rgba(14, 16, 21, 235);
                      border: 1px solid #2a2f3a; border-radius: 10px; }}
@@ -71,6 +91,16 @@ class OverlayWindow(QWidget):
             #item {{ color: #dfe5ee; font-size: {pt - 1}pt; }}
             #next {{ color: #6d7683; font-size: {pt - 2}pt; }}
         """)
+        self.adjustSize()
+
+    def set_scale(self, value):
+        value = clamp_scale(value)
+        if value == self._scale:
+            return
+        self._scale = value
+        self._apply_style()
+        if self._state:
+            self._state.set("card", "scale", value)
 
     # -- content ----------------------------------------------------------
     def show_step(self, step, progress, peek):
@@ -113,7 +143,7 @@ class OverlayWindow(QWidget):
         if self._status_text:
             bits.append(f"⏱ {self._status_text}")
         self.meta.setText("<br>".join(bits))
-        self.meta.setVisible(bool(bits))
+        self.meta.setVisible(bool(bits) and not self._compact)
 
     # -- clipboard item verdict (transient, separate from the death flash) ---
     def show_item(self, verdict, name, reason, ms=6000):
@@ -127,7 +157,7 @@ class OverlayWindow(QWidget):
             f"<span style='color:{color}'><b>{html.escape(str(verdict))}"
             f"</b></span> {html.escape(str(name))} "
             f"<span style='color:#9aa4b2'>— {html.escape(str(reason))}</span>")
-        self.item.setVisible(True)
+        self.item.setVisible(not self._compact)
         self._item_timer.start(ms)
 
     def _hide_item(self):
@@ -139,12 +169,13 @@ class OverlayWindow(QWidget):
         self._party_text = text
         if not self._flashing:
             self.party.setText(text)
-            self.party.setVisible(bool(text))
+            self.party.setVisible(bool(text) and not self._compact)
 
     def flash(self, text, ms=6000):
         """Show an urgent message on the party row, then restore it.
         A newer flash restarts the timer (full display time) instead of
-        being wiped early by the previous flash's timeout."""
+        being wiped early by the previous flash's timeout. Deliberately
+        breaks through compact mode (a death is worth the pixels)."""
         self._flashing = True
         self.party.setText(f"<span style='color:#e46a6a'>{text}</span>")
         self.party.setVisible(True)
@@ -157,6 +188,30 @@ class OverlayWindow(QWidget):
     # -- window behaviour ---------------------------------------------------
     def toggle_visible(self):
         self.setVisible(not self.isVisible())
+
+    def toggle_compact(self):
+        """Collapse to the header line only (double-click toggles).
+
+        The quickest 'get out of my way' short of hiding entirely: act,
+        step count, zone and level stay readable, everything else goes.
+        """
+        self._compact = not self._compact
+        self._apply_compact()
+        if self._state:
+            self._state.set("card", "compact", self._compact)
+
+    def _apply_compact(self):
+        for w in (self.body, self.nxt):
+            w.setVisible(not self._compact)
+        self._render_meta()
+        if self._compact:
+            self.party.setVisible(self._flashing)
+            self.item.setVisible(False)
+        else:
+            if not self._flashing:
+                self.party.setVisible(bool(self._party_text))
+            # a pending item verdict stays hidden; the next one shows
+        self.adjustSize()
 
     def toggle_clickthrough(self):
         # setWindowFlags hides the window as a side effect; only re-show
@@ -171,10 +226,24 @@ class OverlayWindow(QWidget):
     def mousePressEvent(self, e):
         if e.button() == Qt.MouseButton.LeftButton:
             self._drag = e.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            self._dragged = False
 
     def mouseMoveEvent(self, e):
         if self._drag is not None:
             self.move(e.globalPosition().toPoint() - self._drag)
+            self._dragged = True
 
     def mouseReleaseEvent(self, e):
         self._drag = None
+        if self._dragged and self._state:
+            self._state.set("card", "pos", [self.x(), self.y()])
+        self._dragged = False
+
+    def mouseDoubleClickEvent(self, e):
+        if e.button() == Qt.MouseButton.LeftButton:
+            self.toggle_compact()
+
+    def wheelEvent(self, e):
+        delta = e.angleDelta().y()
+        if delta:
+            self.set_scale(self._scale + (0.1 if delta > 0 else -0.1))

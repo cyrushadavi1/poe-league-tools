@@ -28,7 +28,18 @@ input, no automation; nothing leaves your machine.
    are (F2/F3 nudges it if it lands a step off).
 
 Hotkeys: **F2/F3** step back/forward · **F4** hide/show ·
-**F6** click-through (so the card never eats a click).
+**F6** click-through (so the card never eats a click) ·
+**F7** zone-layouts panel hide/show.
+
+Card too big / in the way? **Mouse-wheel** over it to resize,
+**double-click** to shrink it to one line, F6 to click straight
+through it. When you enter a zone, a second panel shows every shape
+the zone can roll — click the one matching your minimap and follow the
+green line to the exit (right-click to see all of them again).
+
+**Updating later:** re-download the folder (or `git pull` if you
+cloned it), then double-click `setup_pc.bat` again — it keeps all your
+answers and settings.
 
 Your printable leveling sheet is `builds\<YourChar>_plan.md`, and
 `builds\party_summary.md` shows everyone's gem links per act.
@@ -45,7 +56,8 @@ says how to fix itself. Screenshot it to the group chat if stuck.
 | Party row empty / levels stuck at `?` | Names in config don't match the real character names → re-run `setup_pc.bat` |
 | No gem reminders on steps | `builds\` folder missing or notes not wired → doctor.bat says which. (A build without act-tagged PoB sets gets a generic class plan automatically.) |
 | No verdict when I Ctrl+C an item | That's item-eval — make sure you copied while hovering an item in game |
-| Hotkeys dead | Another app grabbed F2–F6 → rebind in `overlay\config.json` under `hotkeys` |
+| Hotkeys dead | Another app grabbed F2–F7 → rebind in `overlay\config.json` under `hotkeys` |
+| No zone-layout pictures | Image pack not fetched → re-run `setup_pc.bat` (or `python tools\fetch_layouts.py`) |
 
 Re-running `setup_pc.bat` is always safe — it keeps your tweaks and
 just re-asks the two questions.

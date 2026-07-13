@@ -18,6 +18,17 @@ import re
 _SYSTEM_RE = re.compile(
     r"^\S+ \S+ \S+ \S+ \[INFO Client \d+\] : (?P<msg>.*)$")
 
+# Area generation is a DEBUG line with no ': ' separator:
+#   ... [DEBUG Client 5] Generating level 2 area "1_1_2" with seed 1094830447
+# It precedes the matching "You have entered X." INFO line and carries the
+# internal area ID (keys the zone-layout images), the monster level and the
+# instance seed. Anchored from line start like _SYSTEM_RE, so the pattern
+# can't be spoofed from chat (chat is always '[INFO ...] : Name: ...').
+AREA_RE = re.compile(
+    r'^\S+ \S+ \S+ \S+ \[DEBUG Client \d+\] '
+    r'Generating level (?P<lvl>\d+) area "(?P<id>[^"]+)" '
+    r'with seed (?P<seed>\d+)\s*$')
+
 # Event patterns run against the extracted system message, fully anchored.
 # Guilded characters are prefixed with their guild tag ('<TAG> Bob has
 # joined the area.'), hence the optional tag group on name-bearing events.
@@ -35,12 +46,17 @@ def parse_line(line):
     """Parse one log line into an event tuple, or None.
 
     ('zone', zone_name)               -- you entered a zone
+    ('area', (area_id, lvl, seed))    -- an instance was generated for you
     ('level', (name, class, int))     -- any player (you or party) leveled
     ('join', name) / ('leave', name)  -- a player entered/left your area
     ('slain', name)                   -- a player died in your area
     """
     sm = _SYSTEM_RE.match(line)
     if not sm:
+        m = AREA_RE.match(line)
+        if m:
+            return ("area", (m.group("id"), int(m.group("lvl")),
+                             int(m.group("seed"))))
         return None
     msg = sm.group("msg")
     m = ZONE_RE.match(msg)
@@ -83,6 +99,28 @@ def last_known_level(path, is_me, tail_bytes=262144):
         if ev and ev[0] == "level" and is_me(ev[1][0]):
             level = ev[1][2]
     return level
+
+
+def last_area(path, tail_bytes=262144):
+    """Most recent ('area', ...) payload in the file's tail, or None.
+
+    Same restart problem as last_known_level: the watcher primes at EOF,
+    so without this the layouts panel stays blank until the next zone
+    transition after an overlay restart.
+    """
+    try:
+        size = os.path.getsize(path)
+        with open(path, "rb") as f:
+            f.seek(max(0, size - tail_bytes))
+            text = f.read().decode("utf-8", errors="ignore")
+    except OSError:
+        return None
+    area = None
+    for line in text.splitlines():
+        ev = parse_line(line)
+        if ev and ev[0] == "area":
+            area = ev[1]
+    return area
 
 
 def recent_zones(path, tail_bytes=4194304):

@@ -9,6 +9,13 @@ plan.md
 build_notes.json
 fake_client.txt
 runs/
+# per-machine, machine-written -- setup_pc.bat recreates config.json,
+# the overlay recreates ui_state.json; never merge-conflict a friend's
+# settings on update
+overlay/config.json
+overlay/ui_state.json
+# fetched third-party image pack (tools/fetch_layouts.py re-downloads)
+overlay/assets/
 llm_usage.jsonl
 data/wiki_cache/
 data/3.29/

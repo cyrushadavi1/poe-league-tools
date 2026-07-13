@@ -24,7 +24,8 @@ import json
 import os
 import sys
 
-from client_watcher import ClientWatcher, last_known_level, recent_zones
+from client_watcher import (ClientWatcher, last_area, last_known_level,
+                            recent_zones)
 from party_state import PartyState
 from route_engine import RouteEngine
 from run_tracker import RunTracker, xp_warning
@@ -95,9 +96,13 @@ def dispatch_events(events, engine, party, tracker=None):
         ("level", int)   my level changed (update header, then refresh)
         ("flash", str)   urgent transient message (a death)
         ("party", str)   new party status line
+        ("area", (id, lvl, seed))  instance generated (layouts panel)
     """
     ops = []
     for kind, val in events:
+        if kind == "area":
+            ops.append(("area", val))
+            continue
         if kind == "zone":
             advanced = engine.on_zone(val)
             if tracker is not None:
@@ -254,8 +259,31 @@ def main():
                   " resume_route:false in config to disable)")
 
     app = QApplication(sys.argv)
-    win = OverlayWindow(cfg)
+    from ui_state import UiState, valid_pos
+    state = UiState(os.path.join(HERE, "ui_state.json"))
+    win = OverlayWindow(cfg, state)
     win.set_level(party.my_level)
+
+    # -- zone-layouts panel (the Exile-UI act-decoder image pack) -----------
+    panel = None
+    lay_cfg = cfg.get("layouts") or {}
+    if lay_cfg.get("enabled", True):
+        from layout_index import LayoutIndex
+        lay_dir = _resolve(lay_cfg.get("dir", "assets/layouts"))
+        idx = LayoutIndex(lay_dir)
+        if idx.count:
+            from layout_panel import LayoutPanel
+            panel = LayoutPanel(idx, state,
+                                auto_show=lay_cfg.get("auto_show", True))
+            print(f"[layouts] {idx.count} images / {len(idx.zones)} zones "
+                  f"(pack: {lay_dir})")
+            primed = last_area(client)     # restart mid-zone -> panel primes
+            if primed:
+                panel.set_area(primed[0])
+        else:
+            print(f"[layouts] no image pack at {lay_dir}\n"
+                  "          run  python tools/fetch_layouts.py  once to "
+                  "enable zone-layout images (optional)")
 
     bn = cfg.get("build_notes")
     if bn and os.path.exists(_resolve(bn)):
@@ -289,6 +317,8 @@ def main():
                 win.flash(op[1])
             elif op[0] == "party":
                 win.set_party(op[1])
+            elif op[0] == "area" and panel is not None:
+                panel.set_area(op[1][0])
 
     timer = QTimer()
     timer.timeout.connect(tick)
@@ -357,11 +387,21 @@ def main():
         hk.get("next", "F3"): on_next,
         hk.get("toggle", "F4"): win.toggle_visible,
     }
+    if panel is not None:
+        bindings[hk.get("layouts", "F7")] = panel.toggle_visible
+
+    def clickthrough_all():
+        # one hotkey flips the card AND the layouts panel: a half-solid
+        # overlay after F6 reads as a bug, not a feature
+        win.toggle_clickthrough()
+        if panel is not None:
+            panel.toggle_clickthrough()
+
     if sys.platform == "win32":
         # Clickthrough only with GLOBAL hotkeys: the non-Windows fallback
         # uses window-local shortcuts, and an input-transparent window can
         # never receive the keypress to toggle back — a one-way trap.
-        bindings[hk.get("clickthrough", "F6")] = win.toggle_clickthrough
+        bindings[hk.get("clickthrough", "F6")] = clickthrough_all
     else:
         print("[hotkeys] clickthrough disabled on this platform (window-"
               "local shortcuts could not undo it)")
@@ -376,7 +416,25 @@ def main():
         # exactly as long as it is true.
         win.set_party("⚠ Client.txt not found — steps won't auto-advance "
                       "(run doctor.bat)")
-    win.move(40, 140)
+
+    def place(window, saved, default):
+        """Restore a saved position, clamped onto the current screen —
+        a stale position from an unplugged monitor must not strand the
+        window somewhere unreachable (frameless = no OS-level rescue)."""
+        pos = valid_pos(saved)
+        if not pos:
+            window.move(*default)
+            return
+        geo = app.primaryScreen().availableGeometry()
+        x = min(max(pos[0], geo.left()), geo.right() - 60)
+        y = min(max(pos[1], geo.top()), geo.bottom() - 60)
+        window.move(x, y)
+
+    place(win, state.get("card", "pos"), (40, 140))
+    if panel is not None:
+        geo = app.primaryScreen().availableGeometry()
+        place(panel, state.get("layouts", "pos"),
+              (geo.right() - 560, geo.top() + 140))
     win.show()
     sys.exit(app.exec())
 

@@ -49,6 +49,10 @@ echo.
 echo == First-run setup (finds Client.txt, asks who you are) ==
 %PY% tools\join_party.py
 echo.
+echo == Zone-layout images (optional, ~15 MB, safe to skip) ==
+%PY% tools\fetch_layouts.py
+if errorlevel 1 echo (layout pack skipped - overlay works without it; re-run to retry)
+echo.
 echo Re-run this file any time. doctor.bat = health check.
 echo Optional LLM extras need a pip install - see README, LLM features.
 echo.
