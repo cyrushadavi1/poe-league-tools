@@ -73,7 +73,7 @@ def pth_content(embed_version):
         f"python{nodot}.zip",
         ".",
         r"Lib\site-packages",
-        "..",              # repo root: tools.*, llm.*
+        "..",              # repo root: tools.*, llm.*, craft.*
         r"..\overlay",     # client_watcher & co (overlay/main.py)
         r"..\buildgen",    # pob (buildgen/party.py)
         r"..\market",      # store & co (market/console.py, daemon.py)

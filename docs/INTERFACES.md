@@ -48,6 +48,7 @@ this file wins; propose changes here rather than silently diverging.
 | brief | `market/brief.py`, `market/prompts.py`, `tests/test_brief.py` |
 | route-verifier-llm | `tools/verify_routes_llm.py`, `data/wiki_cache/`, `tests/test_verify_routes.py` |
 | meta-ranker | `tools/meta.py`, `tests/test_meta.py` |
+| craft | `craft/*.py`, `tools/refresh_repoe.py`, `tools/craft_check.py`, `data/repoe_craft.json`, `data/craft_recipes.json`, `tests/fixtures_craft/`, `tests/test_craft.py` |
 | integration (later) | `overlay/main.py`, `overlay/overlay_window.py`, `overlay/config.json`, `README.md`, `tools/check.py`, `requirements.txt`, `setup_pc.bat` |
 
 Do not create or edit files outside your row. `data/` files not listed are
@@ -172,6 +173,29 @@ verdict ∈ `"TAKE" | "SKIP" | "CHECK"` and ctx =
 `{"level": int, "act": int, "links_best": int, "build": dict|None}`.
 Per-act resist budget table in `data/resist_budget.json`. Pure stdlib, no
 Qt — the clipboard hook is wired by integration, not here.
+
+### Crafting copilot (craft/, addendum 5G)
+
+Dataset `data/repoe_craft.json` compiled by `tools/refresh_repoe.py` from
+https://repoe-fork.github.io/ (static JSON, no auth; refetch after each
+game patch — format documented in the tool's docstring).
+
+`craft.pool.CraftData.load(path=None)`; `match_item(parsed)` identifies a
+parsed item's mod lines (tier per trade convention, prefix/suffix, origin
+roll/essence/special/bench/implicit) and estimates open affix slots;
+`pool(base, ilvl)` = rollable ladders (domain- and tag-filtered, first-
+matching-spawn-weight semantics); `essences_for(cls, ilvl)`,
+`bench_for(cls)`. `craft.copilot.advise(parsed, ctx, data=None,
+recipes=None, llm_factory=None) -> {digest, text, plan, llm_note}` —
+deterministic digest always; LLM (standard tier, feature `craft_copilot`,
+schema-validated plan) degrades to digest-only on LLMDisabled/LLMError.
+All numbers come from the dataset; the LLM only selects and explains.
+CLI: `tools/craft_check.py`. Recipes: `data/craft_recipes.json`
+(authored; `craft.recipes.applicable(recipes, cls, level)`).
+
+`itemtext.parse` additionally returns `mod_tags`: the parenthetical tag
+per mod line ("implicit", "crafted", "fractured", ...; "" = explicit),
+aligned with `mods`. Existing consumers of `mods` are unaffected.
 
 ### Watchlist (market/watchlist.json)
 

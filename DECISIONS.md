@@ -173,6 +173,95 @@ DECISIONS.md convention). Newest at the bottom.
 - Friend verdict otherwise: runs fine, not intrusive; card is not
   clickable by design (hotkeys only, F6 = click-through).
 
+## 2026-07-11 crafting copilot (addendum 5G, task 29)
+
+- **Data source: the RePoE fork** (repoe-fork.github.io) — static JSON
+  extracted from game files, the same substrate Craft of Exile uses.
+  Craft of Exile itself has no API; scraping its internal files was
+  rejected (unlicensed, fragile, redundant). `tools/refresh_repoe.py`
+  compiles 4 raw files (~25 MB) into `data/repoe_craft.json` (2.1 MB,
+  committed) — mods already carry rendered English templates, so
+  stat_translations isn't needed. Currently 3.28.0.14.3 data; **rerun
+  after the 3.29 patch drops** (added to the launch checklist below).
+- **Division of labor:** every number (tiers, ranges, level gates, spawn
+  weights, essence ilvl caps, bench costs) is computed deterministically
+  in `craft/pool.py`; the LLM (standard tier, schema-validated) only
+  selects among methods present in the digest + the 12 authored recipes
+  (`data/craft_recipes.json`) and explains. Prompt forbids invented
+  numbers and anything automated.
+- **Matcher subtleties encoded in tests:** mods only roll in their own
+  domain (without the base-domain filter, flask mods "spawned" on wands
+  via their `default` tag); spawn weights are first-match-wins over the
+  mod's ordered tag list; hybrid mods collapse consecutive lines into one
+  affix; `itemtext.parse` grew a backwards-compatible `mod_tags` key so
+  implicits/enchants don't count toward affix slots and `(crafted)` lines
+  resolve against the bench table. Affix counts are labeled an estimate
+  whenever any line stayed unidentified/ambiguous.
+- **Fixture caveat:** the authored `magic_wand.txt` has a lone
+  "5% increased Light Radius" line — the real mod is a two-line hybrid
+  (radius + accuracy), so it can't match. Real Ctrl+C captures during the
+  Mirage rehearsal (owner checklist item 3) should also feed
+  `tests/fixtures_craft/` expectations.
+- **Overlay hotkey wiring deferred** to an integration pass: the copilot
+  is CLI-first (`tools/craft_check.py`, stdin/clipboard pipe); wiring it
+  to the Qt clipboard signal must keep the LLM call off the 300 ms path
+  (worker thread, like the item evaluator's planned LLM path).
+
+## 2026-07-11 crafting recipe research sweep (Reddit + poewiki)
+
+- **Sources:** Reddit consensus harvested via Tavily search (reddit.com
+  blocks direct crawling; Tavily's cached index works — extract does not).
+  Every mechanic then verified against poewiki's MediaWiki API with the
+  repo User-Agent before entering the data files. Rule of the sweep:
+  *Reddit is consensus, the wiki is truth.*
+- **Correction found:** the authored `plus1_caster_weapon` recipe used the
+  outdated ruby/topaz/sapphire-ring + alteration form. Current recipe
+  (verified): NORMAL rune dagger/sceptre/staff/wand + 2+ gems totaling
+  40% quality with the matching damage tag (warstaff/generic dagger
+  excluded). Also added its minion-helmet variant.
+- **New recipes:** `minion_plus1_helmet`, `orb_of_binding` (Harbinger-
+  sourced caveat; 4-socket bases from ilvl 25), `fractured_base`,
+  `vendor_shopping` (restock on level-up; linked-RGB → Chromatic,
+  6-socket → 7 Jeweller's); `phys_weapon_rustic` gained exact ranges
+  (magic sash 40–49%, rare 50–64%).
+- **New layer: `data/craft_guidelines.json`** — 11 general principles
+  (open-affix-first, life+res rule, essence-over-chaos, stop-loss,
+  craft-vs-buy, weapon-first, base/ilvl, magic-is-fine, currency
+  scarcity order, don't-outcraft-uniques, fractured-forever). Included
+  in every LLM payload (`digest["guidelines"]`); human-readable copy in
+  `docs/CRAFTING_GUIDELINES.md`. Not rendered in the CLI digest to keep
+  it scannable.
+
+## 2026-07-12 order-of-operations layer (craft copilot)
+
+- Recipes alone don't make plans — sequencing does. New
+  `data/craft_order.json`: 7 canonical phases (base → quality → sockets/
+  links/colors → mods → regal/scour → bench → corrupt) plus 8 hard
+  sequencing rules the LLM must never violate (quality-before-fusings and
+  jeweller/fusing quality effects verified verbatim on poewiki; rarity-
+  sensitive vendor recipes before currency; rerolls delete bench crafts
+  so bench goes last; corruption is final). Prompt rule 6 enforces it and
+  tells the model to plan from the item's *current* state rather than
+  scouring back to the textbook sequence. CLI digest prints the one-line
+  phase chain; the full rationale lives in docs/CRAFTING_GUIDELINES.md.
+
+## 2026-07-12 method-selection matrix (craft copilot)
+
+- Third static layer, `data/craft_methods.json`: when essence vs fossil
+  vs beastcraft vs harvest vs unveil vs Rog vs eldritch is the right
+  tool. Three parts: `choose` (need-shaped one-liners: one mod → essence;
+  themed combo → fossils; fix half → harvest keep-affixes; gamble →
+  imprint first; free gear → Rog), `stages` (campaign / early maps / 75+,
+  with `from_level` thresholds and explicit skip-lists — no hoarding for
+  mechanics that don't exist yet), `methods` (per-method what/where/
+  use_when/avoid_when). Availability claims verified on poewiki: Harvest
+  is maps-only (Sacred Grove portals in maps); Delve opens Act 4 at
+  level 14 via Niko, so fossils ARE campaign-reachable. Prompt rule 2
+  widened accordingly (it previously forbade anything beyond recipes/
+  essences/bench, which would have banned fossils outright); it now also
+  enforces stage gating. CLI digest prints the ctx-level's stage line.
+  Recombinators entry carries a `VERIFY:` for 3.29 availability.
+
 ## Owner inputs still needed (from the plan §7 + build findings)
 
 1. **Starting bankroll** (chaos/div) for opportunity sizing once 3.29
@@ -190,4 +279,6 @@ DECISIONS.md convention). Newest at the bottom.
    `advisor/advise.py` + `advisor/exposure.py` on the party's PoBs and
    `market/brief.py watchlist`.
 5. **At launch (Jul 24):** set the 3.29 league name in `market/config.json`,
-   re-verify poe.ninja endpoints and `tools/meta.py` protobuf schema.
+   re-verify poe.ninja endpoints and `tools/meta.py` protobuf schema, and
+   rerun `tools/refresh_repoe.py` once the fork publishes 3.29 data (check
+   the version line the tool prints).

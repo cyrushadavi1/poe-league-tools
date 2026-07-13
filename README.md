@@ -126,6 +126,22 @@ route audit (advisory only):
 python tools/verify_routes_llm.py all
 ```
 
+**Crafting copilot:** Ctrl+C an item in game, then
+
+```
+Get-Clipboard | python tools/craft_check.py - --level 34   # PC
+pbpaste | python tools/craft_check.py - --no-llm           # Mac, digest only
+```
+
+prints what the mods are (tiers, prefix/suffix, open slots), what can
+still roll on that base at its item level, usable essences, bench crafts
+with costs, and — with the LLM — a grounded step-by-step plan. The odds
+data is compiled from RePoE (`python tools/refresh_repoe.py`, rerun after
+each patch); the model only selects and explains, it never invents
+numbers. You execute every step by hand in game, as always.
+League-start crafting principles + verified vendor recipes:
+`docs/CRAFTING_GUIDELINES.md`.
+
 ## Market stack
 
 ```

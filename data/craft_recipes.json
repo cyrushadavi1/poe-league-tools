@@ -1,0 +1,151 @@
+[
+  {
+    "id": "magic_beats_bad_rare",
+    "name": "A good magic item beats a bad rare",
+    "kind": "currency",
+    "applies_to": ["gear"],
+    "level": [1, 45],
+    "when": "Early acts, any slot that feels weak",
+    "how": "Orb of Transmutation on a strong white base, then Orbs of Alteration until one great mod (movement speed, flat damage, life). Orb of Augmentation to add a second mod."
+  },
+  {
+    "id": "alt_aug_regal",
+    "name": "Alt → Aug → Regal (the budget rare)",
+    "kind": "currency",
+    "applies_to": ["gear"],
+    "level": [15, 100],
+    "when": "You want one specific mod plus whatever comes with it",
+    "how": "Alteration until the key mod appears, Augmentation to fill the second magic mod, then Regal Orb to rare — it keeps both mods and adds one more. Finish open affixes at the bench."
+  },
+  {
+    "id": "essence_reroll",
+    "name": "Essence upgrade / reroll",
+    "kind": "essence",
+    "applies_to": ["gear"],
+    "level": [10, 100],
+    "when": "You need one mod guaranteed (life, a resist, flat damage)",
+    "how": "An essence upgrades a normal item to rare — or completely rerolls an existing rare — always granting the essence's mod. The cheapest deterministic craft at league start; repeat with another essence if the rest rolled badly.",
+    "notes": "Low-tier essences cannot be applied to items above their item-level cap (shown per essence in the digest)."
+  },
+  {
+    "id": "bench_finish",
+    "name": "Finish it at the crafting bench",
+    "kind": "bench",
+    "applies_to": ["any"],
+    "level": [8, 100],
+    "when": "The item is one affix short of good",
+    "how": "Unlock the bench via Helena (Act 2, hideout). Craft the missing life / resist / movement-speed line into an open affix for pocket change — exact options and costs are in the digest. Crafting again over a bench mod replaces it."
+  },
+  {
+    "id": "movespeed_boots",
+    "name": "Craft your own movement-speed boots",
+    "kind": "currency",
+    "applies_to": ["Boots"],
+    "level": [10, 70],
+    "when": "Anyone in the party is below 20% movement speed",
+    "how": "Alteration a white base until 10–25% increased Movement Speed (higher tiers gate on item level), Augmentation, Regal, then bench life or a resist. The single biggest leveling quality-of-life craft."
+  },
+  {
+    "id": "plus1_caster_weapon",
+    "name": "+1 spell gems caster weapon (vendor recipe)",
+    "kind": "vendor",
+    "applies_to": ["Wand", "Sceptre", "Staff", "Rune Dagger"],
+    "level": [1, 45],
+    "when": "Any caster, as soon as quality gems pile up",
+    "how": "Sell to any vendor: a NORMAL (white) wand/sceptre/staff/rune dagger + two or more gems totaling 40% quality, all carrying the element's tag (Fire/Cold/Lightning/Physical/Chaos) → that weapon, now magic, with +1 to Level of all that element's Spell Skill Gems. Save quality gem drops for this. Warstaves and non-rune daggers don't work.",
+    "notes": "Recipe changed from the old ruby/topaz/sapphire-ring + alteration form — verified poewiki 2026-07-11."
+  },
+  {
+    "id": "minion_plus1_helmet",
+    "name": "+1 minion gems helmet (vendor recipe)",
+    "kind": "vendor",
+    "applies_to": ["Helmet"],
+    "level": [1, 45],
+    "when": "Minion builds",
+    "how": "Sell to any vendor: a NORMAL helmet + two or more gems totaling 40% quality, all with the Minion tag → a magic helmet with +1 to Level of all Minion Skill Gems.",
+    "notes": "Verified poewiki 2026-07-11."
+  },
+  {
+    "id": "phys_weapon_rustic",
+    "name": "% physical damage weapon (vendor recipe)",
+    "kind": "vendor",
+    "applies_to": ["weapon"],
+    "level": [1, 35],
+    "when": "Attack builds needing a weapon bump between drops",
+    "how": "Sell to any vendor: a weapon (any rarity) + a Rustic Sash + a Blacksmith's Whetstone → a magic weapon with % increased Physical Damage: 40-49% from a magic sash, 50-64% from a rare one.",
+    "notes": "Ranges verified poewiki 2026-07-11."
+  },
+  {
+    "id": "orb_of_binding",
+    "name": "Orb of Binding: instant 4-link rare",
+    "kind": "currency",
+    "applies_to": ["gear"],
+    "level": [25, 70],
+    "when": "You hold Binding Orbs/Shards (Harbinger drops) and need a 4-link",
+    "how": "Orb of Binding on a good NORMAL base upgrades it to rare with up to four linked sockets — the cheapest campaign 4-link there is. Four-socket bases exist from item level 25.",
+    "notes": "Harbinger-sourced, so supply depends on the league's content mix."
+  },
+  {
+    "id": "fractured_base",
+    "name": "Fractured bases are premium craft targets",
+    "kind": "currency",
+    "applies_to": ["gear"],
+    "level": [30, 100],
+    "when": "A fractured item drops with a mod the build wants",
+    "how": "The fractured mod is locked forever: essence or alt/regal over the item freely — every reroll keeps it. A fractured movement-speed or life base outclasses anything else you'll craft on while leveling. Fractured items can't be used in vendor recipes."
+  },
+  {
+    "id": "vendor_shopping",
+    "name": "Shop the town vendors after level-ups",
+    "kind": "vendor",
+    "applies_to": ["any"],
+    "level": [1, 60],
+    "when": "Every couple of level-ups, while in town anyway",
+    "how": "Vendor inventories restock as you level: check for linked bases and movement-speed boots — a 3-link blue for a few wisdoms beats crafting one. Linked red-green-blue items resell to any vendor for a Chromatic Orb; 6-socket items for 7 Jeweller's Orbs."
+  },
+  {
+    "id": "flask_suffixes",
+    "name": "Roll your utility flasks",
+    "kind": "currency",
+    "applies_to": ["flask"],
+    "level": [4, 100],
+    "when": "Before act bosses and whenever a new flask drops",
+    "how": "Orbs of Alteration until an immunity suffix — bleed ('of Staunching') is near-mandatory by Act 3; freeze ('of Heat') for cold-heavy zones. On life flasks, an instant/strong prefix (Seething/Bubbling). Usually a handful of alts."
+  },
+  {
+    "id": "quality_cheap",
+    "name": "Quality is cheap on white items",
+    "kind": "currency",
+    "applies_to": ["any"],
+    "level": [1, 100],
+    "when": "Before investing currency in a keeper item",
+    "how": "Blacksmith's Whetstones (weapons), Armourer's Scraps (armour) and Glassblower's Baubles (flasks) add +5% quality per use on normal items, +2% on magic, +1% on rare — so quality first, craft after."
+  },
+  {
+    "id": "scour_reset",
+    "name": "Scour to start over",
+    "kind": "currency",
+    "applies_to": ["gear"],
+    "level": [20, 100],
+    "when": "A craft went wrong on a base worth keeping",
+    "how": "Orb of Scouring returns a magic or rare item to normal so the craft can restart. Fractured mods survive scouring — fractured bases are re-craft-friendly."
+  },
+  {
+    "id": "essence_weapon_damage",
+    "name": "Essence-spam a leveling weapon",
+    "kind": "essence",
+    "applies_to": ["weapon"],
+    "level": [12, 100],
+    "when": "Damage feels low and essences are piling up",
+    "how": "Use the essence whose mod on your weapon class matches the build's damage type (the digest's essence table shows exactly what each grants on this item). Each use rerolls the weapon with that mod guaranteed."
+  },
+  {
+    "id": "bench_sockets",
+    "name": "Sockets, links and colors at the bench",
+    "kind": "bench",
+    "applies_to": ["any"],
+    "level": [8, 100],
+    "when": "An item needs a 4-link or off-color sockets",
+    "how": "The bench crafts socket count, links and colors for fixed costs (digest lists them) — while leveling this is almost always cheaper than hand-spamming Jeweller's and Fusings."
+  }
+]

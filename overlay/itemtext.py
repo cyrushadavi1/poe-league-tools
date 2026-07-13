@@ -15,7 +15,8 @@ client strings, 2026-07-07):
     (enchant), (fractured), ...
 
 parse(text) -> dict | None.  Returns None for non-item text; never raises
-on garbage input.
+on garbage input.  parsed["mod_tags"] mirrors parsed["mods"] with each
+line's parenthetical tag ("" for plain explicits).
 """
 from __future__ import annotations
 
@@ -196,6 +197,10 @@ def parse(text) -> dict | None:
         "stack_size": None,
         "corrupted": False,
         "mods": [],
+        # parallel to mods: the parenthetical tag of each line ("implicit",
+        # "crafted", "fractured", ...; "" = plain explicit). Added for the
+        # crafting copilot; consumers that only read mods are unaffected.
+        "mod_tags": [],
     }
 
     anchor = 0  # mods live in blocks after the Item Level block
@@ -232,7 +237,9 @@ def parse(text) -> dict | None:
         for block in blocks[anchor + 1:]:
             for line in block:
                 if _is_mod_line(line):
+                    tag = _MOD_TAG_RE.search(line)
                     parsed["mods"].append(_clean_mod(line))
+                    parsed["mod_tags"].append(tag.group(1) if tag else "")
 
     parsed["props"] = _derive_props(parsed["mods"])
     return parsed

@@ -1,0 +1,13 @@
+[
+  {"id": "open_affix_first", "text": "Before spending anything, check open prefixes vs suffixes (the digest shows them). Wanting a bench life craft with no open prefix is the classic wasted-currency mistake."},
+  {"id": "life_plus_res", "text": "Every rare worn while leveling wants life plus a resist. If the item already has two of the three, bench the missing one instead of rerolling the item."},
+  {"id": "essence_over_chaos", "text": "For a specific mod, essences beat chaos/alch spam: same full reroll, one mod guaranteed. At league start essences are plentiful and chaos are precious."},
+  {"id": "stop_loss", "text": "Decide the stop condition before the first orb ('T3+ life and any resist' beats 'perfect'). Leveling gear only has to carry the character ~10 levels."},
+  {"id": "craft_vs_buy", "text": "Buy build-enablers (mandatory uniques, links); craft commodity rares (life/resist fillers, boots, weapons). On league days 1-2 trade is thin and overpriced, so crafting wins more often than usual."},
+  {"id": "weapon_first", "text": "Damage comes from the weapon: re-craft or re-recipe the weapon every few acts before investing in armour slots. Casters can ride the +1 gems vendor recipe for the whole campaign."},
+  {"id": "base_and_ilvl", "text": "Item level caps mod tiers and the base's tags decide what can roll at all — the digest's pool is exact. Currency into the right white base beats currency into the wrong rare."},
+  {"id": "magic_is_fine", "text": "A strong 2-mod magic item beats a bad rare while leveling. Don't regal a good blue unless there's a plan (and an open affix) to finish it at the bench."},
+  {"id": "cheap_currency_order", "text": "League-start scarcity order: transmutes, alts, augs and low essences are spendable; regals, alchs, scours and chaos are savings. Plan crafts around the cheap half."},
+  {"id": "dont_fight_uniques", "text": "Leveling uniques usually beat anything craftable in their slot. Spend the crafting budget on the slots the uniques don't cover."},
+  {"id": "fracture_forever", "text": "Fractured mods survive every reroll. A fractured base with a build mod is the best craft target of the campaign — never vendor one unchecked."}
+]

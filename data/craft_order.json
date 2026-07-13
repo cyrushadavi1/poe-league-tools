@@ -1,0 +1,21 @@
+{
+  "phases": [
+    {"n": 1, "name": "Base", "text": "Pick the base before spending anything: right class/tags for the wanted mods, best item level available (ilvl caps tiers — the digest pool is exact), fixable sockets. Vendor recipes that PRODUCE a base (+1 gems weapon, % phys weapon) happen now, because they require or reset rarity."},
+    {"n": 2, "name": "Quality", "text": "Quality while the item is NORMAL: +5% per Whetstone/Scrap/Bauble against +2% on magic and +1% on rare. Quality also improves Jeweller's and Fusing outcomes, so it always precedes socket work."},
+    {"n": 3, "name": "Sockets", "text": "Socket count, then links, then colors — changing the count disturbs links and colors, and Fusings reroll links (colors survive). While leveling, the bench's fixed prices beat orb-spamming."},
+    {"n": 4, "name": "Mods", "text": "Magic route: Transmute, Alterations until the key mod, Augmentation. Rare route: essence (guaranteed mod, full reroll) or Alchemy. Every full reroll erases bench crafts — finish rerolling before benching."},
+    {"n": 5, "name": "Upgrade or reset", "text": "Regal keeps both magic mods and adds one — only regal a good blue with an open-affix plan for the bench. Scouring wipes everything except fractured mods."},
+    {"n": 6, "name": "Bench", "text": "Bench-craft the missing affix LAST, into a confirmed open slot of the right generation. Crafting again replaces the bench mod; any reroll deletes it."},
+    {"n": 7, "name": "Corrupt", "text": "Vaal Orb is final — a corrupted item can never be modified again. While leveling: just don't."}
+  ],
+  "rules": [
+    "Vendor recipes check rarity: the +1 gems recipe needs a NORMAL weapon — transmuting first ruins the recipe; the Rustic Sash recipe overwrites existing mods (result is always magic).",
+    "Fractured and corrupted items cannot be vendor-recipe ingredients; corrupted items cannot be crafted on at all.",
+    "Quality before Jeweller's and Fusings: item quality improves both socket-count and link outcomes, and quality is 5x cheaper to apply on normal items.",
+    "Socket count before links, links before colors: changing the count disturbs links and colors; Fusings reroll links but keep colors.",
+    "Essences, Chaos, Alterations and Scours are full rerolls: they delete bench-crafted mods. Bench only after the last reroll.",
+    "Regal preserves existing mods (magic to rare, adds one); Scouring preserves only fractured mods.",
+    "Never bench without a confirmed open affix of the right generation — the digest counts them.",
+    "A Vaal Orb, if used at all, is the last step of any plan."
+  ]
+}

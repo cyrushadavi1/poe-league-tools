@@ -50,6 +50,26 @@ The accepted pattern in the PoE tool ecosystem (Awakened PoE Trade et al.): the 
 - UI: verdict renders in the overlay meta line for ~6 s, hotkey-toggleable feature. Kill switch → rules-only mode.
 - Acceptance: parser fixtures round-trip; rules unit-tested against synthetic items; a leveling session produces sane verdicts (manual smoke, logged).
 
+### 5G. Crafting copilot — `craft/` + `tools/refresh_repoe.py` (task 29, P1, M) — BUILT 2026-07-11
+
+Deterministic substrate: `tools/refresh_repoe.py` compiles RePoE fork data
+(static JSON at repoe-fork.github.io — mods with spawn weights and rendered
+English templates, bases with tags/domains, essences with ilvl caps, bench
+options with costs) into `data/repoe_craft.json` (~2 MB, committed; rerun
+after each patch). `craft/pool.py` computes legal mod pools per base+ilvl
+(first-matching-spawn-weight, domain-filtered) and identifies a Ctrl+C'd
+item's mods (tiers, prefix/suffix, open slots; hybrids collapse to one mod;
+implicits/enchants excluded via the new `itemtext` `mod_tags`, crafted lines
+resolved against the bench table). `craft/copilot.py` renders the digest and
+asks the LLM (standard tier, schema-validated, feature `craft_copilot`) for
+a step plan grounded ONLY in the digest + `data/craft_recipes.json` (12
+authored league-start methods). Degrades to digest-only. CLI:
+`tools/craft_check.py` (stdin/file; `--no-llm`). Overlay hotkey wiring is a
+follow-up integration task.
+Acceptance (met): fixture-compiled dataset round-trips; rare-boots fixture
+identifies 3 prefixes/2 suffixes with 1 open suffix; flask mods never
+appear on weapon pools; full suite green.
+
 ### 5D. NL → trade query — `tools/tradeq.py` (task 28a, P2, M)
 
 `tradeq "boots 30 movespeed, life, cold res, max 5c"` → LLM (standard) emits official-trade-API query JSON constrained by a schema **and** validated against the real stat catalog (fetch once from the trade API's data/stats endpoint — `VERIFY:` path at runtime, cache to `data/trade_stats.json`). Tool POSTs the search (a read operation), prints the result count + site URL, opens the browser. The human does everything after that. Degrades to: print the JSON for manual pasting.
@@ -146,6 +166,7 @@ Run daemon + scanner against the dying Mirage economy for ≥ 24 h: validates en
 | 26 | watchlist + daily brief + anomaly explainer | P1 | 19, 24, 18 | M |
 | 27 | 5B nerf-exposure report | P1 | 16 | S |
 | 28 | 5D tradeq · 5E retro · 5F overlay ask | P2 | 19 | M each |
+| 29 | 5G crafting copilot (RePoE data + pool/matcher + LLM plan) | P1 | 19, 21 | M |
 
 Revised critical path: 4→5→(6,20)→7→17 unchanged; market P0 tasks (22–24) parallelize against the route grind and **must** hit the Mirage rehearsal window. If time pressure forces cuts before launch: cut 21's LLM path and all of 26 first; never cut 17.
 
