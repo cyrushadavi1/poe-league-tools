@@ -1,0 +1,1173 @@
+{
+  "patch": "3.29",
+  "items": [
+    {
+      "id": "mechanic-allflame-league",
+      "kind": "mechanic",
+      "change": "New league Curse of the Allflame: chart seafloor areas, run Voyages, split items into ghostly outcomes at the ship's heart, and spend Ducats to warp items.",
+      "direction": "neutral",
+      "quote": "connect them together to create a Voyage — one giant seafloor excursion",
+      "source": "The Curse of the Allflame Challenge League"
+    },
+    {
+      "id": "mechanic-party-league-interaction",
+      "kind": "mechanic",
+      "change": "In a party, any player can now interact with Expedition Detonators, Eldritch Altars, Harvest Plots, and Sentinels.",
+      "direction": "buff",
+      "quote": "any player is now able to interact with the Expedition Detonator, Eldritch Altars, Harvest Plots, and Sentinels",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "mechanic-mercenaries-core",
+      "kind": "mechanic",
+      "change": "Mercenaries of Trarthus goes core from Act 3 onwards, and a hired Mercenary no longer counts as a party member for monster life or item quantity/rarity.",
+      "direction": "buff",
+      "quote": "having a Mercenary does not count as a player party member",
+      "source": "Mercenaries of Trarthus as a Core League"
+    },
+    {
+      "id": "mechanic-luminary-ascendancy",
+      "kind": "mechanic",
+      "change": "New Scion Ascendancy class Luminary permanently hires up to 3 Mercenaries (1 active) with editable equipment.",
+      "direction": "neutral",
+      "quote": "Luminaries can have up to 3 permanently hired Mercenaries",
+      "source": "Mercenaries of Trarthus as a Core League"
+    },
+    {
+      "id": "mechanic-abyss-revamp",
+      "kind": "mechanic",
+      "change": "Abyss pits are pre-opened; killing subjugated enemies feeds the pit instead of chasing a moving crack.",
+      "direction": "buff",
+      "quote": "Abyssal Pits, and the cracks leading up to them, are now already opened before you approach",
+      "source": "Abyss Revamp"
+    },
+    {
+      "id": "mechanic-abyss-exclusive-drops",
+      "kind": "mechanic",
+      "change": "Abyssal Jewels and Stygian Vises now drop only from Abyss (rarely from Abyss biomes in Delve), concentrating their supply.",
+      "direction": "neutral",
+      "quote": "Abyss is now the exclusive source of Abyssal Jewels and Stygian Vises",
+      "source": "Abyss Revamp"
+    },
+    {
+      "id": "mechanic-abyss-pinnacle-boss",
+      "kind": "mechanic",
+      "change": "A new Abyss endgame Pinnacle Boss was added with its own new unique items.",
+      "direction": "neutral",
+      "quote": "a new Abyss Endgame Pinnacle Boss has been added, with its own set of brand new Unique items",
+      "source": "Abyss Revamp"
+    },
+    {
+      "id": "mechanic-abyssal-jewel-tiers",
+      "kind": "mechanic",
+      "change": "Many top-tier Abyssal Jewel modifiers were raised (ailment effect, added spell damage, recoup, minion speed); maximum Mana tier was lowered to +34.",
+      "direction": "buff",
+      "quote": "20% increased Effect of Cold Ailments (previously up to 15%)",
+      "source": "Abyss Revamp"
+    },
+    {
+      "id": "mechanic-abyssal-jewel-mods-removed",
+      "kind": "mechanic",
+      "change": "Abyssal Jewels lost their against-Abyssal-Monsters damage/mitigation rolls and the physical-damage-reduction-if-not-hit-recently roll.",
+      "direction": "nerf",
+      "quote": "Abyssal Jewels can no longer roll increased Damage with Hits and Ailments against Abyssal Monsters",
+      "source": "Abyss Revamp"
+    },
+    {
+      "id": "mechanic-abyssal-delirium-orbs-removed",
+      "kind": "mechanic",
+      "change": "Abyssal Delirium Orbs can no longer be obtained.",
+      "direction": "nerf",
+      "quote": "Abyssal Delirium Orbs can no longer be obtained",
+      "source": "Abyss Revamp"
+    },
+    {
+      "id": "mechanic-legion-enshrouding",
+      "kind": "mechanic",
+      "change": "Legion adds Crystals of Permutation and five Enshrouding Crystal currencies that transform a unique into another unique of the same item class with a Vestigial implicit.",
+      "direction": "neutral",
+      "quote": "Enshrouded items can be transformed to another Unique of the same item class",
+      "source": "Legion Revamp"
+    },
+    {
+      "id": "mechanic-legion-auto-breakout",
+      "kind": "mechanic",
+      "change": "Legion encounters auto-break-out all remaining monsters, chests, sergeants and generals once 90% of monsters are broken out.",
+      "direction": "buff",
+      "quote": "automatically break out all Monsters in the encounter if you have broken out 90% of the total Monsters",
+      "source": "Legion Revamp"
+    },
+    {
+      "id": "mechanic-incubators-removed",
+      "kind": "mechanic",
+      "change": "Incubators can no longer be obtained (existing ones in Standard unaffected); Rog and Heist sources also removed.",
+      "direction": "nerf",
+      "quote": "Incubators no longer be obtained",
+      "source": "Legion Revamp"
+    },
+    {
+      "id": "mechanic-unrelenting-emblems-removed",
+      "kind": "mechanic",
+      "change": "Unrelenting Timeless Emblems were removed (converted to regular Emblems) and Emblem modifiers were rebuilt around revive-count scaling with 10% experience and 20% reward progress.",
+      "direction": "neutral",
+      "quote": "Unrelenting Timeless Emblems have been removed",
+      "source": "Legion Revamp"
+    },
+    {
+      "id": "mechanic-timeless-splinter-drops",
+      "kind": "mechanic",
+      "change": "Timeless Splinters now come only from Generals (more on average), Sergeants and Chests (bigger stacks, lower chance); regular Legion monsters drop none.",
+      "direction": "neutral",
+      "quote": "Non-Sergeant, non-General Legion Monsters no longer drop Timeless Splinters",
+      "source": "Legion Revamp"
+    },
+    {
+      "id": "mechanic-socket-any-colour",
+      "kind": "mechanic",
+      "change": "Gems can be socketed into any socket regardless of colour, removing off-colour constraints entirely.",
+      "direction": "buff",
+      "quote": "Gems can now be Socketed into any Equipment Socket, even if the Gem Colour does not match the Socket Colour",
+      "source": "Gem Socket Changes"
+    },
+    {
+      "id": "mechanic-socket-quality-bonus",
+      "kind": "mechanic",
+      "change": "Matching gem colour to a Red/Green/Blue socket now grants +10% gem Quality.",
+      "direction": "buff",
+      "quote": "Socketed Gems now gain +10% to Quality in Red, Green, and Blue Sockets if the Gem colour matches",
+      "source": "Gem Socket Changes"
+    },
+    {
+      "id": "mechanic-white-sockets-default",
+      "kind": "mechanic",
+      "change": "Sockets are white by default with a small ilvl-scaled chance to roll coloured; added sockets from Jeweller's/bench are always white.",
+      "direction": "neutral",
+      "quote": "Item Sockets are now always White by default",
+      "source": "Gem Socket Changes"
+    },
+    {
+      "id": "mechanic-chromatic-orbs-rarer",
+      "kind": "mechanic",
+      "change": "Chromatic Orbs are rarer, no longer vendor-purchasable with Jeweller's Orbs, cost more gold on the Currency Exchange, and now force one non-white socket.",
+      "direction": "neutral",
+      "quote": "Chromatic Orbs are now rarer, and are no longer sold by vendors in towns in exchange for Jeweller's Orbs",
+      "source": "Gem Socket Changes"
+    },
+    {
+      "id": "mechanic-socket-colour-bench-crafts",
+      "kind": "mechanic",
+      "change": "New bench crafts guarantee at least two/three/four non-white sockets (5/20/75 Chromatics); the old single-colour bench crafts were removed.",
+      "direction": "neutral",
+      "quote": "At Least Two Non-White Sockets (cost 5 Chromatic Orbs)",
+      "source": "Gem Socket Changes"
+    },
+    {
+      "id": "mechanic-vaal-white-socket-removed",
+      "kind": "mechanic",
+      "change": "Vaal Orb and Locus of Corruption white-socket outcomes now turn white sockets non-white instead.",
+      "direction": "nerf",
+      "quote": "This outcome instead now turns a random White Socket on the item to be a Non-White Socket",
+      "source": "Gem Socket Changes"
+    },
+    {
+      "id": "mechanic-talisman-revamp",
+      "kind": "mechanic",
+      "change": "Talismans reworked: enchantment modifiers instead of implicits, not corrupted by default, drop from Red Beasts / Bestiary Bosses, cannot be anointed.",
+      "direction": "neutral",
+      "quote": "Talismans now have special Enchantment Modifiers, rather than special Implicit Modifiers, and are no longer Corrupted by default",
+      "source": "Talisman Revamp"
+    },
+    {
+      "id": "mechanic-bestiary-boss-scaling",
+      "kind": "mechanic",
+      "change": "Bestiary Boss areas match the Red Beast's level, bosses have much more life, and their specific unique body armours need area level 80+.",
+      "direction": "neutral",
+      "quote": "The specific Body Armour Unique items from each Bestiary Boss will now only drop if the area level is 80 or higher",
+      "source": "Talisman Revamp"
+    },
+    {
+      "id": "mechanic-catalysts-ultimatum-exclusive",
+      "kind": "mechanic",
+      "change": "Catalysts now come only from Ultimatum (removed from Heist, Expedition, Tujen, Ritual) and stack to 20.",
+      "direction": "neutral",
+      "quote": "Ultimatum is now the exclusive source of Catalysts",
+      "source": "League Changes"
+    },
+    {
+      "id": "mechanic-catalyst-stack-size",
+      "kind": "mechanic",
+      "change": "Catalysts stack to 20 (previously 10).",
+      "direction": "buff",
+      "quote": "Catalysts now have a maximum stack size of 20 (previously 10)",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "mechanic-sanctum-flask-refill",
+      "kind": "mechanic",
+      "change": "Sanctum restores flask charges between rooms (except Writhing Jar), and Volatile Vaal Orbs are added as Sanctum rewards.",
+      "direction": "buff",
+      "quote": "Flask Charges are now restored when you interact with the Sanctum Map between each room",
+      "source": "League Changes"
+    },
+    {
+      "id": "mechanic-ritual-altar-locusts",
+      "kind": "mechanic",
+      "change": "After a Ritual Altar, locusts point the way to the next Altar.",
+      "direction": "buff",
+      "quote": "locusts will now point the way to the next Altar",
+      "source": "League Changes"
+    },
+    {
+      "id": "mechanic-betrayal-scarab-chests",
+      "kind": "mechanic",
+      "change": "Scarab Chests in Betrayal Safehouses drop twice as many Scarabs on average.",
+      "direction": "buff",
+      "quote": "The average number of Scarabs dropped from Scarab Chests in Betrayal Safehouses has been doubled",
+      "source": "Betrayal"
+    },
+    {
+      "id": "mechanic-breach-density-nerf",
+      "kind": "mechanic",
+      "change": "Breach pack sizes reduced, Unstable Breach packs down 25% (progress per kill up 17%), max simultaneous Unstable Breaches now 2; Hiveblood/Wombgift amounts unchanged.",
+      "direction": "nerf",
+      "quote": "The number of Monster packs spawned in Unstable Breaches has been reduced by 25%",
+      "source": "Breach"
+    },
+    {
+      "id": "mechanic-genesis-tree-nerf",
+      "kind": "mechanic",
+      "change": "Genesis Tree equipment outcomes nerfed: lower modifier tier rating, fewer bonus items, max Equipment passive points 16 (from 20), key passives halved or reduced.",
+      "direction": "nerf",
+      "quote": "The maximum number of Equipment Genesis Tree Passive Points is now 16 (previously 20)",
+      "source": "Breach"
+    },
+    {
+      "id": "mechanic-atlas-anomalies",
+      "kind": "mechanic",
+      "change": "Atlas Anomalies are free-entry bonus areas that can appear after Voidstone-affected maps; Reflecting Mists and the Nameless Seer moved into them.",
+      "direction": "buff",
+      "quote": "Atlas Anomalies do not require a Map item to enter",
+      "source": "Endgame Changes"
+    },
+    {
+      "id": "mechanic-reflect-reworked-thorns",
+      "kind": "mechanic",
+      "change": "Reflect map mods replaced by Thorns: rare monsters reflect fixed damage (800 phys / 1500 ele in red maps) that is mitigable, ending build-disabling reflect.",
+      "direction": "buff",
+      "quote": "instead cause Rare Monsters to have Physical or Elemental Thorns",
+      "source": "Endgame Changes"
+    },
+    {
+      "id": "mechanic-map-pool-rotation",
+      "kind": "mechanic",
+      "change": "28 maps returned to the Atlas (Basilica, Colonnade, Plateau, Toxic Sewer, etc.) and 28 removed (Canyon, Dunes-era staples like Dig, Wharf, etc.).",
+      "direction": "neutral",
+      "quote": "The following Maps have been added back to the Atlas",
+      "source": "Endgame Changes"
+    },
+    {
+      "id": "mechanic-scrying-orb",
+      "kind": "mechanic",
+      "change": "New Scrying Orb currency (from the Altered Prophecy Atlas cluster) moves a stored map's Divination Card pool onto another map.",
+      "direction": "buff",
+      "quote": "allows you to Scry the Divination Cards of the Map area listed on the item to a Map on your Atlas",
+      "source": "Atlas Passive Tree Changes"
+    },
+    {
+      "id": "mechanic-voidstone-boss-access",
+      "kind": "mechanic",
+      "change": "The Decayed Voidstone socket now connects to all four Elder Guardian-style boss maps (Phoenix, Chimera, Hydra, Minotaur).",
+      "direction": "buff",
+      "quote": "now connects to the Forge of the Phoenix, Pit of the Chimera and Lair of the Hydra",
+      "source": "Endgame Changes"
+    },
+    {
+      "id": "mechanic-avoidance-additive",
+      "kind": "mechanic",
+      "change": "Avoid-all-damage-from-hits chance is now additive with type-specific avoidance, and a related bug fix caps avoidance sources at 75%.",
+      "direction": "buff",
+      "quote": "Sources of chance to Avoid all Damage from Hits are now additive with sources of Avoiding Damage of a specific Type",
+      "source": "Player Changes"
+    },
+    {
+      "id": "mechanic-minions-no-attack-pause",
+      "kind": "mechanic",
+      "change": "All non-Spectre minions no longer pause while attacking — a significant DPS gain for Dominating Blow, Zombies, Golems, SRS and Skeletons.",
+      "direction": "buff",
+      "quote": "All Non-Spectre Minions no longer pause while attacking",
+      "source": "Player Changes"
+    },
+    {
+      "id": "mechanic-spectre-life-nerf",
+      "kind": "mechanic",
+      "change": "Various high-life monsters were lowered when used as Spectres; no Spectre should exceed Meatsack life.",
+      "direction": "nerf",
+      "quote": "In general, no Spectre should have more life than a Meatsack",
+      "source": "Player Changes"
+    },
+    {
+      "id": "mechanic-arcane-might-keyword",
+      "kind": "mechanic",
+      "change": "Spell-damage-applies-to-attacks wording replaced by the Arcane Might keyword; purely descriptive.",
+      "direction": "neutral",
+      "quote": "have been replaced with the new Arcane Might Keyword",
+      "source": "Player Changes"
+    },
+    {
+      "id": "mechanic-spell-gem-level-growth",
+      "kind": "mechanic",
+      "change": "Spells with base damage increases also scale harder past level 20 (e.g. Divine Ire 37% more at level 30 vs 27% at 20).",
+      "direction": "buff",
+      "quote": "while Divine Ire deals 27% more damage at gem level 20, it now deals 37% more damage at gem level 30",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "mechanic-lightning-spells-cast-speed",
+      "kind": "mechanic",
+      "change": "Pure lightning spells generally cast faster but cost roughly 25% more mana.",
+      "direction": "neutral",
+      "quote": "Pure Lightning Spells generally have lower cast times, but the spells cost more mana",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "mechanic-fire-spells-cheaper",
+      "kind": "mechanic",
+      "change": "Pure fire spells generally cost around 20% less mana and gain higher added-damage effectiveness.",
+      "direction": "buff",
+      "quote": "Pure Fire Spells generally have lower mana costs and higher effectiveness of added damage",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "mechanic-cold-phys-spell-crit",
+      "kind": "mechanic",
+      "change": "Shadow-themed physical spells and pure cold hit spells got higher base crit; pure fire spells generally lower base crit.",
+      "direction": "buff",
+      "quote": "Shadow-themed Physical Spells and pure Cold Hit Spells have higher Critical Strike chances",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-pact-of-beidat",
+      "kind": "skill",
+      "change": "New Exceptional gem Pact of Beidat empowers projectile/area/beam spells for more damage and coverage at the cost of an Affliction.",
+      "direction": "neutral",
+      "quote": "Added a new Exceptional Skill Gem, Pact of Beidat",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "skill-pact-of-ghorr",
+      "kind": "skill",
+      "change": "New Exceptional gem Pact of Ghorr empowers damage-over-time spells and periodically triggers Fleshrend.",
+      "direction": "neutral",
+      "quote": "Added a new Exceptional Skill Gem, Pact of Ghorr",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "skill-pact-of-ktash",
+      "kind": "skill",
+      "change": "New Exceptional gem Pact of K'tash empowers damaging Vaal spells with more damage, less soul gain prevention, and soul refunds.",
+      "direction": "neutral",
+      "quote": "Added a new Exceptional Skill Gem, Pact of K'tash",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "skill-pact-of-lycia",
+      "kind": "skill",
+      "change": "New Exceptional gem Pact of Lycia empowers self-cast channelling spells and triggers lightning bolts while channelling.",
+      "direction": "neutral",
+      "quote": "Added a new Exceptional Skill Gem, Pact of Lycia",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "support-coursing-currents",
+      "kind": "support",
+      "change": "New Exceptional support Coursing Currents cross-applies chill and shock and increases their effect.",
+      "direction": "neutral",
+      "quote": "Added a new Exceptional Support Gem, Coursing Currents",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "support-crystalfall",
+      "kind": "support",
+      "change": "New Exceptional support Crystalfall triggers a Falling Crystal slam on hit for slam skills.",
+      "direction": "neutral",
+      "quote": "Added a new Exceptional Support Gem, Crystalfall",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "skill-mana-infused-staff",
+      "kind": "skill",
+      "change": "New Int/Str skill Mana-Infused Staff lowers mana costs, adds block chance, and releases an arcane wave on block; offered from Intruders in Black.",
+      "direction": "neutral",
+      "quote": "Added a new Intelligence/Strength Skill, Mana-Infused Staff",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "skill-arc",
+      "kind": "skill",
+      "change": "Arc (and its transfigured versions) casts faster at 0.6s but costs 25% more mana; Arc of Surging splits to more targets.",
+      "direction": "neutral",
+      "quote": "Now has a Cast time of 0.6 seconds (previously 0.7), and the base Mana Cost has been increased by 25%",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-spark",
+      "kind": "skill",
+      "change": "Spark casts slightly faster (0.6s) with 25% higher mana cost; Spark of the Nova fires fewer projectiles, Spark of Unpredictability fires more.",
+      "direction": "neutral",
+      "quote": "Now has a Cast time of 0.6 seconds (previously 0.65), and the base Mana Cost has been increased by 25%",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-fireball",
+      "kind": "skill",
+      "change": "Fireball gains a much larger radius, 480% added-damage effectiveness, higher base damage, and 20% cheaper mana, at slightly lower base crit.",
+      "direction": "buff",
+      "quote": "Now has 480% Effectiveness of Added Damage at gem level 20 (previously 370%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-freezing-pulse",
+      "kind": "skill",
+      "change": "Freezing Pulse now fires up to 5 projectiles with higher crit, effectiveness and damage.",
+      "direction": "buff",
+      "quote": "Now fires 1-5 Projectiles at gem levels 1-20 (previously 1 at all gem levels)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-winter-orb",
+      "kind": "skill",
+      "change": "Winter Orb fires 2-3 projectiles, gains 25% freeze chance and higher crit and damage.",
+      "direction": "buff",
+      "quote": "Now fires 2-3 Projectiles at gem levels 1-20 (previously 1 at all gem levels), has 25% chance to Freeze",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-ethereal-knives",
+      "kind": "skill",
+      "change": "Ethereal Knives fires up to 15 projectiles with 10% base crit and substantially higher damage.",
+      "direction": "buff",
+      "quote": "Now Fires 10-15 Projectiles (previously 10-13), and has a Critical Strike Chance of 10% (previously 6%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-blade-vortex",
+      "kind": "skill",
+      "change": "Blade Vortex gains 10% base crit but hit rate and more-damage per blade both drop from 35% to 30%; mixed overall.",
+      "direction": "neutral",
+      "quote": "Now has 30% increased Hit Rate for each blade (previously 35%), and 30% more Damage for each blade (previously 35%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-bladefall",
+      "kind": "skill",
+      "change": "Bladefall and its transfigured versions gain higher added-damage effectiveness and base damage; Impaling also gains 25% base crit.",
+      "direction": "buff",
+      "quote": "Now has 160% Effectiveness of Added Damage at gem level 20 (previously 140%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-blade-blast",
+      "kind": "skill",
+      "change": "Blade Blast versions gain larger radius and 10% base crit.",
+      "direction": "buff",
+      "quote": "a Critical Strike Chance of 10% (previously 6%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-divine-ire",
+      "kind": "skill",
+      "change": "Divine Ire and its transfigured versions gain higher added-damage effectiveness and base damage.",
+      "direction": "buff",
+      "quote": "Now has 75% Effectiveness of Added Damage at gem level 20 (previously 50%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-crackling-lance",
+      "kind": "skill",
+      "change": "Crackling Lance versions gain higher damage and much faster cast times, offset by 25% higher mana cost.",
+      "direction": "buff",
+      "quote": "Now has 190% Effectiveness of Added Damage at gem level 20 (previously 165%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-lightning-tendrils",
+      "kind": "skill",
+      "change": "Lightning Tendrils versions gain bigger radius, faster cast and much higher damage, offset by 25% higher mana cost.",
+      "direction": "buff",
+      "quote": "Now has 190% Effectiveness of Added Damage at gem level 20 (previously 130%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-galvanic-field",
+      "kind": "skill",
+      "change": "Galvanic Field targets faster, its buff shock chance jumps to 50%, and damage rises, offset by 25% higher mana cost.",
+      "direction": "buff",
+      "quote": "the Buff now grants 50% chance to Shock enemies (previously 20%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-hexblast",
+      "kind": "skill",
+      "change": "Hexblast cooldown halved to 1s, casts faster at 0.85s, and costs 15% less mana.",
+      "direction": "buff",
+      "quote": "Cooldown Time is now 1 second (previously 2 seconds), and the Cast time is now 0.85 seconds (previously 1)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-forbidden-rite",
+      "kind": "skill",
+      "change": "Forbidden Rite base damage raised to 14% of maximum life.",
+      "direction": "buff",
+      "quote": "Now deals 14% of your maximum Life as base Chaos Damage (previously 12%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-discharge",
+      "kind": "skill",
+      "change": "Discharge cooldown halved to 1 second with 15% higher damage per charge removed.",
+      "direction": "buff",
+      "quote": "Cooldown Time is now 1 second (previously 2 seconds). Now has 15% higher base Damage per Charge removed",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-frost-bomb",
+      "kind": "skill",
+      "change": "Frost Bomb versions gain 25% freeze chance, higher crit and substantially higher damage.",
+      "direction": "buff",
+      "quote": "Now has 25% chance to Freeze, and a Critical Strike Chance of 7.5% (previously 6%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-ice-nova",
+      "kind": "skill",
+      "change": "Ice Nova versions gain 25% freeze chance (Deep Freeze always freezes), higher crit and higher damage.",
+      "direction": "buff",
+      "quote": "Now has 25% chance to Freeze, and a Critical Strike Chance of 7.5% (previously 6%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-vortex",
+      "kind": "skill",
+      "change": "Vortex casts faster, gains crit and 25% freeze chance, and costs 20% less mana.",
+      "direction": "buff",
+      "quote": "Now has a Cast time of 0.6 seconds (previously 0.75), a Critical Strike Chance of 7.5% (previously 6%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-incinerate",
+      "kind": "skill",
+      "change": "Incinerate gains 10 max stages, higher effectiveness and damage, and a faster cast time.",
+      "direction": "buff",
+      "quote": "Now has 10 maximum Stages (previously 8)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-flameblast",
+      "kind": "skill",
+      "change": "Flameblast versions gain more radius per stage, higher damage and 20% cheaper mana.",
+      "direction": "buff",
+      "quote": "Now has +0.4 metres to radius per Stage (previously +0.3)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-essence-drain-wickedness",
+      "kind": "skill",
+      "change": "Essence Drain of Wickedness now fires 3-5 projectiles instead of 1.",
+      "direction": "buff",
+      "quote": "Now Fires 3-5 Projectiles (previously 1 at all gem levels)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-soulrend-reaping",
+      "kind": "skill",
+      "change": "Soulrend of Reaping fires 3-5 projectiles with 10% base crit.",
+      "direction": "buff",
+      "quote": "Now Fires 3-5 Projectiles at gem levels 1-20 (previously 1 at all gem levels)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-voltaxic-burst",
+      "kind": "skill",
+      "change": "Voltaxic Burst gains 10% crit, 60% lightning-to-chaos conversion, and stronger corpse explosions and damage.",
+      "direction": "buff",
+      "quote": "has 60% of Lightning Damage Converted to Chaos Damage (previously 40%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-elemental-hit",
+      "kind": "skill",
+      "change": "Elemental Hit added damage lowered 17% at all levels (Spectrum unaffected); a separate bug fix removes its double-dipped AoE modifiers.",
+      "direction": "nerf",
+      "quote": "Lowered the Added Fire, Cold and Lightning Damage by 17% at all gem levels",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-kinetic-blast",
+      "kind": "skill",
+      "change": "Kinetic Blast loses Arcane Might (200% to 150%) and takes a bigger less-area-damage penalty.",
+      "direction": "nerf",
+      "quote": "Now has 150% Arcane Might (previously 200%), and 40% less Area Damage (previously 35%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-kinetic-rain",
+      "kind": "skill",
+      "change": "Kinetic Rain versions gain Arcane Might 200% (from 150%).",
+      "direction": "buff",
+      "quote": "Now has 200% Arcane Might (previously 150%)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-generals-cry",
+      "kind": "skill",
+      "change": "General's Cry can no longer support skills with cooldowns.",
+      "direction": "nerf",
+      "quote": "The support effect can no longer support Skills with Cooldowns",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-dark-pact-renamed",
+      "kind": "skill",
+      "change": "Dark Pact renamed to Dark Bargain, with higher base crit; the Trarthus version sacrifices for 600% of sacrificed life.",
+      "direction": "buff",
+      "quote": "Has been renamed to Dark Bargain",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-barrage",
+      "kind": "skill",
+      "change": "Barrage (the skill) fires 6 projectiles, up from 5.",
+      "direction": "buff",
+      "quote": "Now fires 6 Projectiles (previously 5)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-quickstep",
+      "kind": "skill",
+      "change": "Quickstep can now dash over terrain (still not through enemies).",
+      "direction": "buff",
+      "quote": "Is now able to dash over terrain",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "skill-ball-lightning",
+      "kind": "skill",
+      "change": "Ball Lightning versions gain radius and/or cast speed at 25% higher mana cost.",
+      "direction": "neutral",
+      "quote": "Now has a Base radius of 2 metres (previously 1.8), and a Cast time of 0.6 seconds (previously 0.7)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "support-archmage",
+      "kind": "support",
+      "change": "Archmage added lightning damage reduced to 8-14% of unreserved maximum mana.",
+      "direction": "nerf",
+      "quote": "Supported Skills gain Added Lightning Damage equal to 8-14% of Unreserved Maximum Mana at gem levels 1-20 (previously 10-16%)",
+      "source": "Support Gem Changes"
+    },
+    {
+      "id": "support-spell-totem",
+      "kind": "support",
+      "change": "Spell Totem less-damage penalty deepened to 55-50%.",
+      "direction": "nerf",
+      "quote": "Supported Skills now deal 55-50% less Damage at gem levels 1-20 (previously 49-40%)",
+      "source": "Support Gem Changes"
+    },
+    {
+      "id": "support-ballista-totem",
+      "kind": "support",
+      "change": "Ballista Totem less-damage penalty deepened to 36-30%.",
+      "direction": "nerf",
+      "quote": "Supported Skills now deal 36-30% less Damage at gem levels 1-20 (previously 32-24%)",
+      "source": "Support Gem Changes"
+    },
+    {
+      "id": "support-barrage-support",
+      "kind": "support",
+      "change": "Barrage Support penalty softened hugely (50-44% less from 68-62%) and adds 4 projectiles, but attack time per projectile doubles and multiplier rises to 200%.",
+      "direction": "neutral",
+      "quote": "Supported Skills now deal 50-44% less Damage at gem levels 1-20 (previously 68-62%)",
+      "source": "Support Gem Changes"
+    },
+    {
+      "id": "support-mine-supports",
+      "kind": "support",
+      "change": "Blastchain and High-Impact Mine supports deal slightly less damage and their cost multiplier rises to 65% from 50%.",
+      "direction": "nerf",
+      "quote": "Now has a Cost & Reservation Multiplier of 65% (previously 50%)",
+      "source": "Support Gem Changes"
+    },
+    {
+      "id": "support-charged-mines",
+      "kind": "support",
+      "change": "Charged Mines gives less throw speed and crit per charge and costs more (140% multiplier).",
+      "direction": "nerf",
+      "quote": "Supported Skills now have 8% increased Mine Throwing Speed per Frenzy Charge (previously 10%)",
+      "source": "Support Gem Changes"
+    },
+    {
+      "id": "support-cast-while-channelling",
+      "kind": "support",
+      "change": "Cast while Channelling triggers faster and its damage penalty drops to 20% less.",
+      "direction": "buff",
+      "quote": "Triggers a Supported Spell every 0.4-0.32 seconds while Channelling Supported Skills at gem levels 1-20 (previously 0.45-0.35)",
+      "source": "Support Gem Changes"
+    },
+    {
+      "id": "support-unleash",
+      "kind": "support",
+      "change": "Unleash reoccurrence penalty improves with gem level down to 26% less; Greater Unleash improves to 25-23%.",
+      "direction": "buff",
+      "quote": "Supported Skills now deal 45-26% less Damage when Reoccurring at gem levels 1-20 (previously 45-36%)",
+      "source": "Support Gem Changes"
+    },
+    {
+      "id": "support-communion",
+      "kind": "support",
+      "change": "Minion Pact reworked into Communion Support: adds physical damage to your spells per permanent minion, no longer modifies minion skills.",
+      "direction": "neutral",
+      "quote": "Has been reworked, and is now called Communion Support",
+      "source": "Support Gem Changes"
+    },
+    {
+      "id": "support-companionship",
+      "kind": "support",
+      "change": "Companionship swaps its only-minion more-life bonus for 24-28% less damage taken.",
+      "direction": "neutral",
+      "quote": "Now has Minions from Supported Skills take 24-28% less Damage if they are your only Minion",
+      "source": "Support Gem Changes"
+    },
+    {
+      "id": "support-cast-on-ward-break",
+      "kind": "support",
+      "change": "Cast on Ward Break cooldown recovery per Ward is now capped at 400%.",
+      "direction": "nerf",
+      "quote": "5% increased Cooldown Recovery Rate per 100 Ward, up to 400% (previously uncapped)",
+      "source": "Support Gem Changes"
+    },
+    {
+      "id": "keystone-deathmarked",
+      "kind": "keystone",
+      "change": "Assassin's Deathmarked loses cannot-evade on marked enemies, gaining mark effect and instant leech per maximum Power Charge.",
+      "direction": "neutral",
+      "quote": "10% increased Effect of your Marks per maximum Power Charge, and 3% of Leech is Instant per maximum Power Charge",
+      "source": "Ascendancy Changes"
+    },
+    {
+      "id": "keystone-mystical-infusion",
+      "kind": "keystone",
+      "change": "Assassin's Mystical Infusion now grants bifurcating spell crit (rolled twice, doubled crit bonus on double success) with 50% less spell crit chance.",
+      "direction": "neutral",
+      "quote": "It now grants Spell Critical Strike Chance Bifurcates, and 50% less Spell Critical Strike Chance",
+      "source": "Ascendancy Changes"
+    },
+    {
+      "id": "keystone-instruments-of-justice",
+      "kind": "keystone",
+      "change": "New Inquisitor notable Instruments of Justice gives spells the main-hand weapon's base crit chance.",
+      "direction": "buff",
+      "quote": "This Notable grants Base Spell Critical Strike Chance of Spells is equal to that of Main Hand Weapon",
+      "source": "Ascendancy Changes"
+    },
+    {
+      "id": "keystone-instruments-of-zeal",
+      "kind": "keystone",
+      "change": "Inquisitor's Instruments of Zeal: max Fanatic Charges down to +3, but Fanaticism lasts 5s and its cost reduction becomes 75% LESS cost of self-cast spells.",
+      "direction": "buff",
+      "quote": "now grants 75% less Cost of Spells you cast yourself (previously 75% reduced)",
+      "source": "Ascendancy Changes"
+    },
+    {
+      "id": "keystone-ritual-of-awakening",
+      "kind": "keystone",
+      "change": "Hierophant's Ritual of Awakening reduced to 3% more damage per summoned totem.",
+      "direction": "nerf",
+      "quote": "now has 3% more Damage per Summoned Totem (preivously 5%)",
+      "source": "Ascendancy Changes"
+    },
+    {
+      "id": "keystone-unhallowed-rite",
+      "kind": "keystone",
+      "change": "New Occultist notable Unhallowed Rite stacks Spirit Infusion while channelling: up to 50% more channelling spell damage, faster ES recharge start, higher cost.",
+      "direction": "buff",
+      "quote": "Unhallowed Rite causes you to gain Spirit Infusion every second while Channelling a Spell",
+      "source": "Ascendancy Changes"
+    },
+    {
+      "id": "keystone-arcane-conservation",
+      "kind": "keystone",
+      "change": "New Witch-area Arcane Conservation cluster: 10% cast speed, 20% mana cost efficiency of spells, 3% intelligence.",
+      "direction": "buff",
+      "quote": "10% increased Cast Speed, 20% increased Mana Cost Efficiency of Spells, and 3% increased Intelligence",
+      "source": "Passive Skill Tree Changes"
+    },
+    {
+      "id": "keystone-contemplative-meditation",
+      "kind": "keystone",
+      "change": "New Templar-area Contemplative Meditation cluster: 8% spell reservation efficiency and 20% cost efficiency.",
+      "direction": "buff",
+      "quote": "8% increased Reservation Efficiency of Spells, and 20% increased Cost Efficiency",
+      "source": "Passive Skill Tree Changes"
+    },
+    {
+      "id": "mechanic-cost-efficiency-conversion",
+      "kind": "mechanic",
+      "change": "All reduced-cost-of-skills sources on the tree converted to Cost Efficiency; rings/helmets get efficiency mods instead of reduced mana cost, plus a new 10-15% jewel mod.",
+      "direction": "neutral",
+      "quote": "All sources of reduced Cost of Skills on the Passive Skill Tree have been converted to Cost Efficiency",
+      "source": "Passive Skill Tree Changes"
+    },
+    {
+      "id": "keystone-totem-crit-nerfs",
+      "kind": "keystone",
+      "change": "Totem crit sources trimmed: Shaman's Dominion 50% crit (from 60%), mastery 40% (from 60%), small passives 16% multi (from 20%).",
+      "direction": "nerf",
+      "quote": "now grants 50% increased Critical Strike Chance with Totem Skills (previously 60%)",
+      "source": "Passive Skill Tree Changes"
+    },
+    {
+      "id": "unique-void-battery",
+      "kind": "unique",
+      "change": "Void Battery reworked: 10-15% spell damage per Power Charge (from 25%), only 50% reduced spell damage (from 80%), +100-120 mana — weaker at high charge counts.",
+      "direction": "nerf",
+      "quote": "now has 10-15% increased Spell Damage per Power Charge (previously 25%), 50% reduced Spell Damage (previously 80% reduced)",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-taryns-shiver",
+      "kind": "unique",
+      "change": "Taryn's Shiver massively buffed: +2-4 to cold spell gems, 80-140% cold damage, 25-50% freeze chance.",
+      "direction": "buff",
+      "quote": "+2-4 to Level of all Cold Spell Skill Gems (previously +2), 80-140% increased Cold Damage (previously 40-50%)",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-atziris-rule",
+      "kind": "unique",
+      "change": "Atziri's Rule gains 100-300% increased spell crit chance.",
+      "direction": "buff",
+      "quote": "now has 100-300% increased Spell Critical Strike Chance",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-the-pariah",
+      "kind": "unique",
+      "change": "The Pariah now rolls +100-200 (from flat 100) life/mana/ES per socket colour.",
+      "direction": "buff",
+      "quote": "+100-200 to Maximum Life per Red Socket",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-prismatic-eclipse",
+      "kind": "unique",
+      "change": "Prismatic Eclipse buffed across all per-socket rolls, with global physical damage per red socket.",
+      "direction": "buff",
+      "quote": "25-35% increased Global Physical Damage per Red Socket",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-doryanis-delusion",
+      "kind": "unique",
+      "change": "Doryani's Delusion moves to new bases, always drops corrupted, and rolls up to level 30 purities, +100 life, 40% movement speed, 200% defences.",
+      "direction": "buff",
+      "quote": "These Boots are now always found Corrupted with a Corruption Implicit Modifier",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-rathpith-globe",
+      "kind": "unique",
+      "change": "Rathpith Globe (and Foulborn) nerfed to 3% spell crit/spell damage (or DoT) per 100 player maximum life.",
+      "direction": "nerf",
+      "quote": "3% increased Spell Critical Strike Chance per 100 Player Maximum Life, and 3% increased Spell Damage per 100 Player Maximum Life",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-shimmeron",
+      "kind": "unique",
+      "change": "Shimmeron reworked around Power Charges: added lightning per charge and +1 max charge, but 300 lightning degen per charge after crits.",
+      "direction": "neutral",
+      "quote": "It now Adds 3 to 15-25 Lightning Damage to Spells per Power Charge (previously 3 to 9)",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-emberwake",
+      "kind": "unique",
+      "change": "Emberwake and Replica gain double cast speed rolls and softer burning penalties.",
+      "direction": "buff",
+      "quote": "now has 10-20% increased Cast Speed (previously 5-10%), and 35% less Burning Damage (previously 40%)",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-white-socket-lockout",
+      "kind": "unique",
+      "change": "Dialla's Malefaction, Skin of the Lords and Skin of the Loyal can no longer have white sockets; Dialla's green-socket quality bonus drops to +20%.",
+      "direction": "nerf",
+      "quote": "preventing them from having White Sockets: Dialla's Malefaction, Skin of the Lords, and Skin of the Loyal",
+      "source": "Gem Socket Changes"
+    },
+    {
+      "id": "unique-untouched-soul",
+      "kind": "unique",
+      "change": "Untouched Soul nerfed to +12% all elemental resistances per empty white socket.",
+      "direction": "nerf",
+      "quote": "+12% to all Elemental Resistances for each Empty White Socket on any Equipped Item (previously +18%)",
+      "source": "Gem Socket Changes"
+    },
+    {
+      "id": "unique-triad-grip",
+      "kind": "unique",
+      "change": "Triad Grip conversion now keys off socketed gem colour (empty socket = chaos) instead of socket colour, adapting it to white-socket defaults.",
+      "direction": "neutral",
+      "quote": "Minions convert 25% of Physical Damage to Fire Damage per Socketed Red Gem (previously per Red Socket)",
+      "source": "Gem Socket Changes"
+    },
+    {
+      "id": "unique-voidfletcher",
+      "kind": "unique",
+      "change": "Voidfletcher moves to Ornate Quiver with 2 sockets but gains Void Charges half as fast and loses mana-on-kill and projectile speed.",
+      "direction": "nerf",
+      "quote": "It also now gains a Void Charge every second (previously 0.5 seconds)",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-lioneyes-remorse",
+      "kind": "unique",
+      "change": "Lioneye's Remorse now grants -150 physical damage taken from projectile attacks.",
+      "direction": "buff",
+      "quote": "-150 Physical Damage taken from Projectile Attacks (previously -25)",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-grey-spire",
+      "kind": "unique",
+      "change": "The Grey Spire gains doubled implicits, 300-400% global damage, and up to +5% all max resistances.",
+      "direction": "buff",
+      "quote": "Implicit Modifier Magnitudes are Doubled, 300-400% increased Global Damage (previously 250-300%)",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-eyes-of-the-greatwolf",
+      "kind": "unique",
+      "change": "Eyes of the Greatwolf now rolls two random Enchantments from other Talisman bases with 50-100% increased enchantment magnitudes.",
+      "direction": "neutral",
+      "quote": "now generates with two random Enchantment Modifiers from other Talisman base types",
+      "source": "Talisman Revamp"
+    },
+    {
+      "id": "unique-natural-hierarchy",
+      "kind": "unique",
+      "change": "The Natural Hierarchy reworked into a chained gain-as-extra talisman ending in 25-30% fire as extra chaos.",
+      "direction": "buff",
+      "quote": "Gain 25-30% of Fire Damage as Extra Chaos Damage",
+      "source": "Talisman Revamp"
+    },
+    {
+      "id": "unique-mercenary-exclusives",
+      "kind": "unique",
+      "change": "Azadi Crest, Binds of Bloody Vengeance, The Ghastly Theatre, Hand of Heresy, Howlcrack and Scornflux move from the core pool to Mercenary encounters.",
+      "direction": "neutral",
+      "quote": "now once again obtained through Mercenary encounters, and have been removed from the core drop pool",
+      "source": "Mercenaries of Trarthus as a Core League"
+    },
+    {
+      "id": "unique-whispering-ice",
+      "kind": "unique",
+      "change": "Whispering Ice's Icestorm cap raised to 8 storms.",
+      "direction": "buff",
+      "quote": "Now has a maximum of 8 Icestorms (previously 5)",
+      "source": "Skill Gem Changes"
+    },
+    {
+      "id": "unique-the-vertex",
+      "kind": "unique",
+      "change": "The Vertex now gives socketed gems 50% LESS mana cost (from 50% reduced), affecting existing items.",
+      "direction": "buff",
+      "quote": "Socketed Gems have 50% less Mana Cost (previously 50% reduced)",
+      "source": "Unique Item Changes"
+    },
+    {
+      "id": "unique-new-uniques",
+      "kind": "unique",
+      "change": "15 new unique items and 3 new divination cards added.",
+      "direction": "neutral",
+      "quote": "Added 15 new Unique Items",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "base-pearlescent-amulet",
+      "kind": "base",
+      "change": "New Pearlescent Amulet base with an all-elemental-resistances implicit.",
+      "direction": "neutral",
+      "quote": "Added the new Pearlescent Amulet base item type which has an all Elemental Resistances Implicit Modifier",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "base-moonstone-ring",
+      "kind": "base",
+      "change": "Moonstone Ring implicit becomes 7-10% increased cast speed (new items only).",
+      "direction": "neutral",
+      "quote": "The Implicit Modifier on Moonstone Ring is now 7-10% increased Cast Speed (previously Maximum Energy Shield)",
+      "source": "Item Changes"
+    },
+    {
+      "id": "base-caster-wand-implicits",
+      "kind": "base",
+      "change": "Demon's Horn, Opal Wand and Tornado Wand implicits become increased spell damage instead of added damage.",
+      "direction": "buff",
+      "quote": "now have increased Spell Damage Implicit Modifiers, instead of added Damage",
+      "source": "Item Changes"
+    },
+    {
+      "id": "base-dagger-crit-implicits",
+      "kind": "base",
+      "change": "Dagger global crit implicits raised roughly 10-15 percentage points per tier; Blessed Orb updates existing items.",
+      "direction": "buff",
+      "quote": "Dagger Base Types with 30% increased Global Critical Strike Chance Implicit modifiers now have values of 40-45%",
+      "source": "Item Changes"
+    },
+    {
+      "id": "base-staff-caster-mods",
+      "kind": "base",
+      "change": "Staff caster prefixes buffed heavily: spell/elemental damage up to 200%, gem-level mods up to +4 with an extra earlier tier, bigger added-damage and spell-crit rolls.",
+      "direction": "buff",
+      "quote": "up to 200% increased at the Maximum tiers (previously 164%)",
+      "source": "Item Changes"
+    },
+    {
+      "id": "base-caster-added-damage-mods",
+      "kind": "base",
+      "change": "Added-damage-to-spells prefixes buffed on all caster weapons, largest on staves (up to 140-246 fire).",
+      "direction": "buff",
+      "quote": "The highest tier Modifier on Staves now adds up to 140 to 246 Fire Damage to Spells (from 88-155)",
+      "source": "Item Changes"
+    },
+    {
+      "id": "base-caster-suffix-removed",
+      "kind": "base",
+      "change": "Caster weapons no longer roll (or bench-craft) increased fire/cold/lightning damage suffixes.",
+      "direction": "nerf",
+      "quote": "Caster weapons no longer roll increased Fire, Cold and Lightning Damage Suffix Modifiers",
+      "source": "Item Changes"
+    },
+    {
+      "id": "base-staff-block-mods",
+      "kind": "base",
+      "change": "Attack and spell block chance mods (and bench crafts) can now roll on staves.",
+      "direction": "buff",
+      "quote": "Chance to Block Attack Damage and Chance to Block Spell Damage Modifiers can now roll on Staves",
+      "source": "Item Changes"
+    },
+    {
+      "id": "base-new-corruption-implicits",
+      "kind": "base",
+      "change": "Large set of new corruption implicits added (max res, charges, block, gem levels, explode chance, cast speed, action speed); several defensive ones removed.",
+      "direction": "buff",
+      "quote": "Added the following new Corruption Implicit Modifiers",
+      "source": "Item Changes"
+    },
+    {
+      "id": "mechanic-synthesised-items-removed",
+      "kind": "mechanic",
+      "change": "Non-unique Synthesised items can no longer be obtained; the Harvest synthesise craft is gone.",
+      "direction": "nerf",
+      "quote": "Non-Unique Synthesised Items can no longer be obtained, except through Corrupting Synthesis Unique Items to be Rare items",
+      "source": "Item Changes"
+    },
+    {
+      "id": "mechanic-fractured-fossils-random",
+      "kind": "mechanic",
+      "change": "Fractured Fossils now fracture a RANDOM modifier and can't touch fractured or influenced items.",
+      "direction": "nerf",
+      "quote": "Fractured Fossils now Fracture a random Modifier, and cannot be used on Fractured and Influenced items",
+      "source": "Item Changes"
+    },
+    {
+      "id": "mechanic-beast-split-removed",
+      "kind": "mechanic",
+      "change": "Beastcraft item-splitting (into two or three) is removed, replaced with Talisman fracture crafts.",
+      "direction": "nerf",
+      "quote": "The Beastcrafting option to Split an item into two has been replaced",
+      "source": "Item Changes"
+    },
+    {
+      "id": "mechanic-div-cards-disabled",
+      "kind": "mechanic",
+      "change": "Broken Promises, Imperfect Memories, Magnum Opus and Parasitic Passengers are temporarily disabled and cannot be turned in.",
+      "direction": "nerf",
+      "quote": "temporarily disabled: Broken Promises, Imperfect Memories, Magnum Opus, and Parasitic Passengers",
+      "source": "Divination Card Changes"
+    },
+    {
+      "id": "mechanic-quest-reward-supports",
+      "kind": "mechanic",
+      "change": "All classes can buy Faster Attacks from Nessa after The Caged Brute and Faster Casting from Yeena after Sharp and Cruel.",
+      "direction": "buff",
+      "quote": "All classes are now able to purchase Faster Attacks from Nessa upon completing The Caged Brute",
+      "source": "Quest Reward Changes"
+    },
+    {
+      "id": "mechanic-crafting-bench-every-town",
+      "kind": "mechanic",
+      "change": "A Crafting Bench is available in every town from Act 2 onwards.",
+      "direction": "buff",
+      "quote": "There is now a Crafting Bench available in every Town from Act 2 onwards",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "mechanic-reroll-bench-crafts",
+      "kind": "mechanic",
+      "change": "New default bench crafts: reroll 3 modifiers on a rare for 3 Chaos, or reroll one modifier for 8 Chaos.",
+      "direction": "buff",
+      "quote": "Reroll 3 Modifiers on a Rare Item for a cost of 3 Chaos Orbs",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "mechanic-npc-identify",
+      "kind": "mechanic",
+      "change": "Isla, Niko and Einhar can identify items for you.",
+      "direction": "buff",
+      "quote": "Isla in Kingsmarch, Niko in the Mine Encampment and Einhar in the Menagerie are now all able to identify items",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "mechanic-stack-size-10000",
+      "kind": "mechanic",
+      "change": "Most stackable items now stack to 10,000 in their stash tabs, and repeat-applying currency drains stacks fully in reverse insertion order.",
+      "direction": "buff",
+      "quote": "will now stack up to 10,000 in their respective Stash Tab types, instead of 5,000",
+      "source": "User Interface and Quality of Life Changes"
+    },
+    {
+      "id": "mechanic-item-copy-advanced-format",
+      "kind": "mechanic",
+      "change": "Copying an item's text now ALWAYS uses the advanced description format, and in-game search matches it.",
+      "direction": "neutral",
+      "quote": "Copying an item's text now always copies the advanced description format",
+      "source": "User Interface and Quality of Life Changes"
+    },
+    {
+      "id": "mechanic-keywording-popups",
+      "kind": "mechanic",
+      "change": "PoE 2's keywording and popup pinning system was added for inspecting terms in-game.",
+      "direction": "buff",
+      "quote": "Added the keywording and popup pinning system used in Path of Exile 2",
+      "source": "New Content and Features"
+    },
+    {
+      "id": "skill-snipe-fix",
+      "kind": "skill",
+      "change": "Bug fix removes Snipe Support's unintended 2 additional arrows on triggered skills (a 3.27 regression).",
+      "direction": "nerf",
+      "quote": "Fixed a bug introduced in 3.27.0 where Snipe Support would grant Triggered Skills 2 additional arrows",
+      "source": "Bug Fixes"
+    },
+    {
+      "id": "mechanic-avoid-cap-fix",
+      "kind": "mechanic",
+      "change": "Bug fix: all chance-to-avoid-damage-from-hits sources are now capped at 75%.",
+      "direction": "nerf",
+      "quote": "Fixed a bug where some sources of chance to Avoid Damage from Hits were not capped at 75%",
+      "source": "Bug Fixes"
+    }
+  ]
+}

@@ -18,7 +18,7 @@ overlay/ui_state.json
 overlay/assets/
 llm_usage.jsonl
 data/wiki_cache/
-data/3.29/
+data/3.29/patchnotes.txt
 verify_act*.json
 exposure_*.md
 market/market.db
