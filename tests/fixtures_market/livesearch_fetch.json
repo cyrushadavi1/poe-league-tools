@@ -1,0 +1,38 @@
+{
+  "result": [
+    {
+      "id": "abc123def456",
+      "listing": {
+        "method": "psapi",
+        "indexed": "2026-07-16T04:00:00Z",
+        "stash": {"name": "~b/o", "x": 3, "y": 7},
+        "whisper": "@SnipeTarget Hi, I would like to buy your Taryn's Shiver Maelström Staff listed for 2 chaos in Curse of the Allflame (stash tab \"~b/o\"; position: left 4, top 8)",
+        "account": {
+          "name": "seller_account#1234",
+          "lastCharacterName": "SnipeTarget",
+          "online": {"league": "Curse of the Allflame"}
+        },
+        "price": {"type": "~b/o", "amount": 2, "currency": "chaos"}
+      },
+      "item": {
+        "name": "Taryn's Shiver",
+        "typeLine": "Maelström Staff",
+        "baseType": "Maelström Staff",
+        "ilvl": 68,
+        "corrupted": false
+      }
+    },
+    {
+      "id": "fff000fff000",
+      "listing": {
+        "indexed": "2026-07-16T04:00:02Z",
+        "account": {"name": "quiet_seller#5678"},
+        "price": null
+      },
+      "item": {"typeLine": "Pearlescent Amulet", "ilvl": 84}
+    },
+    {
+      "id": "bad-entry-tolerated"
+    }
+  ]
+}

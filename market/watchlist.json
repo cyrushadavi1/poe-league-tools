@@ -1,0 +1,80 @@
+[
+  {
+    "item": "Chromatic Orb",
+    "reason": "Now rarer, no longer vendor-purchasable with Jeweller's Orbs, and the new non-white-socket bench crafts consume 5/20/75 of them, so both supply drops and a new sink appears at once.",
+    "source": "mechanic-chromatic-orbs-rarer",
+    "expected_window": "day 1-3"
+  },
+  {
+    "item": "Chaos Orb",
+    "reason": "The new default bench crafts burn 3 or 8 Chaos Orbs per reroll, adding a large early-league raw-chaos sink that props up chaos value against other currency.",
+    "source": "mechanic-reroll-bench-crafts",
+    "expected_window": "day 1-7"
+  },
+  {
+    "item": "Catalysts (all types)",
+    "reason": "Ultimatum becomes the only source, so supply collapses unless players spec into it while ring/amulet crafters still need them; the stack-to-20 change also makes bulk lots easier to move.",
+    "source": "mechanic-catalysts-ultimatum-exclusive",
+    "expected_window": "week 1"
+  },
+  {
+    "item": "Stygian Vise",
+    "reason": "Now drops only from Abyss content, so belt supply is gated behind one mechanic while abyss-jewel builds still want them.",
+    "source": "mechanic-abyss-exclusive-drops",
+    "expected_window": "week 1"
+  },
+  {
+    "item": "Abyssal Jewels (added spell damage / ailment effect rolls)",
+    "reason": "Top-tier rolls were buffed (e.g. spell added damage and 20% ailment effect) at the same time supply became Abyss-exclusive, so well-rolled jewels should command a premium.",
+    "source": "mechanic-abyssal-jewel-tiers",
+    "expected_window": "week 1-2"
+  },
+  {
+    "item": "Taryn's Shiver",
+    "reason": "Massive buff (+2-4 cold gem levels, 80-140% cold damage, up to 50% freeze) lands in the same patch that buffs Freezing Pulse, Winter Orb and cold crit, making it the obvious budget cold-caster stick.",
+    "source": "unique-taryns-shiver",
+    "expected_window": "day 1-3"
+  },
+  {
+    "item": "Doryani's Delusion",
+    "reason": "Rerolled onto new bases with level 30 purities, up to +100 life and 40% movement speed, but always corrupted — high rolls can't be re-divined into existence, so good corruption outcomes stay scarce.",
+    "source": "unique-doryanis-delusion",
+    "expected_window": "week 1-2"
+  },
+  {
+    "item": "Pearlescent Amulet (high item level)",
+    "reason": "Brand-new base with an all-elemental-resistances implicit; res-starved league-start rares and later crafts want it before supply of high-ilvl bases builds up.",
+    "source": "base-pearlescent-amulet",
+    "expected_window": "day 1-7"
+  },
+  {
+    "item": "High-ilvl caster staff bases (Imbued Wand class excluded; e.g. Judgement/Eclipse Staff)",
+    "reason": "Staff caster prefixes were buffed to 200% spell damage, +4 gem-level mods and bigger added damage, so crafted caster staves and their fracture bases become a crafting target.",
+    "source": "base-staff-caster-mods",
+    "expected_window": "week 1-2"
+  },
+  {
+    "item": "Scrying Orb",
+    "reason": "New currency that moves a stored map's divination card pool onto another map; card-farming strategies will chase it during price discovery before supply from the new Atlas cluster ramps.",
+    "source": "mechanic-scrying-orb",
+    "expected_window": "day 1-7"
+  },
+  {
+    "item": "Enshrouding Crystals (Karui/Imperial/Maraketh/Templar/Vaal)",
+    "reason": "New Legion-general drops that gamble a unique into another unique of the same class with a bonus implicit; gamblers and flippers will trade these heavily while odds are unknown.",
+    "source": "mechanic-legion-enshrouding",
+    "expected_window": "week 1-2"
+  },
+  {
+    "item": "Void Battery",
+    "reason": "Per-power-charge spell damage cut from 25% to 10-15% makes it far weaker on the charge-stacking builds that drove its price — expect demand and price to fall, do not stock.",
+    "source": "unique-void-battery",
+    "expected_window": "day 1-7"
+  },
+  {
+    "item": "The Black Mórrigan (beast)",
+    "reason": "The reworked unique-talisman beastcraft requires this specific beast, making it the bottleneck item for everyone chasing the new enchanted unique talismans.",
+    "source": "assumption",
+    "expected_window": "week 1-2"
+  }
+]

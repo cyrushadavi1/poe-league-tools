@@ -1,6 +1,10 @@
 # poe-league-tools — Python 3.10+. Everything is stdlib except:
 PyQt6           # the overlay UI (overlay/main.py); nothing else needs it
 
+# Optional live-search extra — tools/snipe.py degrades without it with
+# install instructions; nothing else needs it:
+# websocket-client
+
 # Optional LLM extra — all LLM features degrade gracefully without it:
 #     pip install anthropic
 # then set ANTHROPIC_API_KEY. Enables: advisor/, market/brief.py,

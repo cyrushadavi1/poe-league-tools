@@ -274,10 +274,36 @@ DECISIONS.md convention). Newest at the bottom.
    `tests/fixtures_items/` (replacing authored ones); die once on purpose
    and confirm the "has been slain" line matches the watcher; tune the
    price-fixing filter constants.
+   *Added 2026-07-16 — live-search monitor rehearsal:* run
+   `tools/snipe.py --probe` with a real POESESSID against a Mirage
+   search, then a short armed session, and resolve the VERIFY notes in
+   `market/livesearch.py` (WS message shapes, ping cadence, Merchant's
+   Tab buyout marker in fetch responses, live rate-limit headers).
+   Context: PoE1 has had async buyout via Merchant's Tabs since 3.27 —
+   mispriced buyout listings are real opportunities far more often than
+   whisper-era price fixing; re-check the price-fixing filter split
+   (buyout vs whisper listings) accordingly. Design decision: the
+   monitor alerts and (optionally) opens the results page / copies the
+   whisper — the buy click or whisper send is ALWAYS the human. Needs
+   optional `websocket-client` (commented in requirements.txt) and the
+   POESESSID env var; both degrade with instructions.
 4. **July 16 (GGG Live):** paste the 3.29 patch notes through
    `advisor/summarize.py` → `data/3.29/summary.json`, then run
    `advisor/advise.py` + `advisor/exposure.py` on the party's PoBs and
    `market/brief.py watchlist`.
+   *2026-07-16 status:* raw notes saved to `data/3.29/patchnotes.txt`;
+   `summary.json` (146 items, quotes verified verbatim) and
+   `market/watchlist.json` (13 entries, citations validated) were authored
+   directly by Claude because no `ANTHROPIC_API_KEY` is set on this machine —
+   re-running `advisor/summarize.py` with a key is optional, not required.
+   `advise.py`/`exposure.py` still pending: blocked on real party PoBs (item 2).
+   League name is **Curse of the Allflame**.
+   ⚠ 3.29 makes Ctrl+C ALWAYS copy the advanced description format
+   ("Copying an item's text now always copies the advanced description
+   format") — Mirage-rehearsal fixtures (item 3) must be captured with
+   Ctrl+Alt+C (advanced copy) so they match post-patch clipboard output;
+   `overlay/itemtext.py` already skips `{`/`(` info lines but re-verify
+   verdicts against advanced-format samples at launch.
 5. **At launch (Jul 24):** set the 3.29 league name in `market/config.json`,
    re-verify poe.ninja endpoints and `tools/meta.py` protobuf schema, and
    rerun `tools/refresh_repoe.py` once the fork publishes 3.29 data (check

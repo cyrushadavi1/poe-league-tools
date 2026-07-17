@@ -198,6 +198,27 @@ CLI: `tools/craft_check.py`. Recipes: `data/craft_recipes.json`
 per mod line ("implicit", "crafted", "fractured", ...; "" = explicit),
 aligned with `mods`. Existing consumers of `mods` are unaffected.
 
+### Live-search monitor (market/livesearch.py + tools/snipe.py)
+
+Official trade-site live search -> Alert objects -> human action. NEVER
+buys, whispers, or touches the game client (invariant: every trade is a
+human action; with Merchant's Tabs the human step is one buy click).
+`SearchSpec(search_id, label)`; `LiveSearchMonitor(specs, league,
+session_id, on_alert, connector=None, fetcher=None, sleep=...)` — one
+thread per search, reconnect with 2→60 s doubling backoff, per-search
+dedupe (bounded 4096 ids), fetches share a global 1 s floor and honor
+Retry-After / X-Rate-Limit-* (market/ratelimit.py). `create_search(query,
+league) -> id` (unauthenticated POST, same endpoint as tradeq --post).
+Auth: POESESSID env var only, never persisted. Transport: optional
+`websocket-client`; without it (or without POESESSID) everything raises
+`LiveSearchUnavailable` with instructions — callers degrade. CLI:
+`tools/snipe.py --search-id ID | --query file.json [--open]
+[--copy-whisper] [--log x.jsonl] [--probe]`; --probe prints the first raw
+WS frame per search (rehearsal verification). VERIFY at rehearsal: WS
+message shapes, ping cadence, fetch-response Merchant's-Tab/buyout
+marker, live rate-limit headers. Tests inject connector/fetcher/urlopen;
+offline always.
+
 ### Watchlist (market/watchlist.json)
 
 `[{"item": "...", "reason": "...", "source": "...", "expected_window": "..."}]`
