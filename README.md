@@ -53,7 +53,10 @@ line.
    (~92 MB): the whole toolkit **with a private Windows Python and PyQt6
    inside** — friends install nothing. Built from the Mac; needs network
    the first time (python.org + PyPI, cached in `dist/cache/`).
-4. Ship that zip plus `FRIENDS.md` as the cover note. On each PC,
+4. Ship that zip plus `FRIENDS.md` as the cover note
+   (`START_HERE_EASY.md` is the zero-assumed-knowledge setup version,
+   and `BEGINNER_LEVELING.md` the from-zero leveling companion, for
+   the least experienced player). On each PC,
    `setup_pc.bat` finds Client.txt, asks "who are you?" and writes that
    machine's `overlay/config.json` — nobody installs or edits anything.
    (Skipped step 3? The zip-the-folder flow still works — `builds/` is

@@ -1,5 +1,9 @@
 # Joining the party — PC setup (~5 minutes)
 
+> Not comfortable with this kind of thing, or new to the game?
+> Read **`START_HERE_EASY.md`** instead — same setup, explained
+> one click at a time.
+
 You got this folder from whoever runs the builds. It gives you an
 in-game-overlay leveling guide for the whole 10-act campaign, a party
 row that tracks the others' levels/deaths, split timers, and instant
@@ -43,6 +47,9 @@ answers and settings.
 
 Your printable leveling sheet is `builds\<YourChar>_plan.md`, and
 `builds\party_summary.md` shows everyone's gem links per act.
+New to the game entirely? `BEGINNER_LEVELING.md` is the from-zero
+companion: game basics plus an act-by-act walkthrough that matches
+this route.
 
 ## If something looks wrong
 
