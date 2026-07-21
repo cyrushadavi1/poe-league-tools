@@ -1,5 +1,9 @@
 # PoE League Tools
 
+A game assistant built entirely from the one file the developer allows you
+to read: no memory access, no injection, no simulated input, just
+`Client.txt`. **[Design writeup → kuros.io/work/poe-league-tools](https://kuros.io/work/poe-league-tools/)**
+
 Toolkit for Path of Exile league starts (built for 3.29 *Curse of the
 Allflame*, July 24 2026 — the campaign route itself is league-agnostic).
 Designed for a **party of 2–3**: paste in everyone's PoB, get per-player
