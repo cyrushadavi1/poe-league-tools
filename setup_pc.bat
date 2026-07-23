@@ -46,8 +46,14 @@ set "PY=.venv\Scripts\python.exe"
 
 :wizard
 echo.
-echo == First-run setup (finds Client.txt, asks who you are) ==
-%PY% tools\join_party.py
+echo == First-run setup (pick your PoB in the app) ==
+%PY% tools\setup_gui.py
+if errorlevel 1 (
+    echo Setup was cancelled or could not be saved.
+    echo Re-run this file when you are ready.
+    pause
+    exit /b 1
+)
 echo.
 echo == Zone-layout images (optional, ~15 MB, safe to skip) ==
 %PY% tools\fetch_layouts.py

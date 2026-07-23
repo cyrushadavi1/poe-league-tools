@@ -45,13 +45,16 @@ try:
 
     # ----------------------------------------------- bundle (producer)
     members = []
-    for name, cls, asc, me in [("CyrusChar", "Duelist", "Slayer", True),
-                               ("FriendA", "Ranger", "Deadeye", False),
-                               ("FriendB", "Witch", "Necromancer", False)]:
+    for name, role, cls, asc, me in [
+            ("CyrusChar", "Carry", "Duelist", "Slayer", True),
+            ("FriendA", "Aura support", "Ranger", "Deadeye", False),
+            ("FriendB", "Curse support", "Witch", "Necromancer", False)]:
         notes_path = os.path.join(builds_dir, f"{name}_notes.json")
         with open(notes_path, "w", encoding="utf-8") as f:
             json.dump([{"act": 1, "text": f"{name} gems"}], f)
-        members.append({"player": name, "me": me, "class": cls,
+        members.append({"player": name, "role": role,
+                        "pob": f"https://pobb.in/{name}",
+                        "me": me, "class": cls,
                         "ascendancy": asc, "notes_path": notes_path,
                         "plan_path": os.path.join(builds_dir,
                                                   f"{name}_plan.md")})
@@ -61,6 +64,8 @@ try:
         ["CyrusChar", "FriendA", "FriendB"]
     assert bundle["members"][0]["me"] is True
     assert bundle["members"][1]["notes"] == "FriendA_notes.json"  # basename
+    assert bundle["members"][1]["role"] == "Aura support"
+    assert bundle["members"][1]["pob"] == "https://pobb.in/FriendA"
     with open(bundle_path, encoding="utf-8") as f:
         assert json.load(f) == bundle              # round-trips
 

@@ -60,6 +60,8 @@ _RES_DUAL_RE = re.compile(
     r"^\+(\d+)% to (Fire|Cold|Lightning|Chaos) and "
     r"(Fire|Cold|Lightning|Chaos) Resistances$")
 _ALL_RES_RE = re.compile(r"^\+(\d+)% to all Elemental Resistances$")
+_DAMAGE_RANGE_RE = re.compile(r"(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)")
+_APS_RE = re.compile(r"^Attacks per Second: ([\d.]+)")
 
 
 def _split_blocks(text: str) -> list[list[str]]:
@@ -102,6 +104,27 @@ def _parse_sockets(value: str) -> tuple[int, int]:
         total += len(socks)
         links = max(links, len(socks))
     return total, links
+
+
+def _socket_details(value: str) -> tuple[dict[str, int], list[str]]:
+    """Return colour counts and linked groups from a Sockets property."""
+    colors = {"R": 0, "G": 0, "B": 0, "W": 0, "A": 0}
+    groups = []
+    for raw_group in value.split():
+        socks = [s for s in raw_group.split("-") if s]
+        if not socks:
+            continue
+        groups.append("".join(socks))
+        for socket in socks:
+            if socket in colors:
+                colors[socket] += 1
+    return colors, groups
+
+
+def _average_damage(value: str) -> float:
+    """Sum average damage for one or more ``min-max`` ranges."""
+    return sum((float(lo) + float(hi)) / 2
+               for lo, hi in _DAMAGE_RANGE_RE.findall(value))
 
 
 def _clean_mod(line: str) -> str:
@@ -194,6 +217,9 @@ def parse(text) -> dict | None:
         "quality": 0,
         "sockets": 0,
         "links": 0,
+        "socket_colors": {"R": 0, "G": 0, "B": 0, "W": 0, "A": 0},
+        "link_groups": [],
+        "weapon_dps": {"physical": 0.0, "elemental": 0.0, "total": 0.0},
         "stack_size": None,
         "corrupted": False,
         "mods": [],
@@ -204,6 +230,9 @@ def parse(text) -> dict | None:
     }
 
     anchor = 0  # mods live in blocks after the Item Level block
+    physical_average = 0.0
+    elemental_average = 0.0
+    attacks_per_second = 0.0
     for i, block in enumerate(blocks[1:], start=1):
         first = block[0]
         if first == "Requirements:":
@@ -217,8 +246,20 @@ def parse(text) -> dict | None:
             continue
         for line in block:
             if line.startswith("Sockets: "):
-                total, links = _parse_sockets(line[len("Sockets: "):])
+                socket_text = line[len("Sockets: "):]
+                total, links = _parse_sockets(socket_text)
                 parsed["sockets"], parsed["links"] = total, links
+                colors, groups = _socket_details(socket_text)
+                parsed["socket_colors"] = colors
+                parsed["link_groups"] = groups
+            elif line.startswith("Physical Damage: "):
+                physical_average = _average_damage(
+                    line[len("Physical Damage: "):])
+            elif line.startswith("Elemental Damage: "):
+                elemental_average = _average_damage(
+                    line[len("Elemental Damage: "):])
+            elif (m := _APS_RE.match(line)):
+                attacks_per_second = float(m.group(1))
             elif line.startswith("Item Level: "):
                 m = re.match(r"(\d+)", line[len("Item Level: "):])
                 if m:
@@ -242,4 +283,12 @@ def parse(text) -> dict | None:
                     parsed["mod_tags"].append(tag.group(1) if tag else "")
 
     parsed["props"] = _derive_props(parsed["mods"])
+    if attacks_per_second:
+        pdps = physical_average * attacks_per_second
+        edps = elemental_average * attacks_per_second
+        parsed["weapon_dps"] = {
+            "physical": round(pdps, 1),
+            "elemental": round(edps, 1),
+            "total": round(pdps + edps, 1),
+        }
     return parsed

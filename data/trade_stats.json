@@ -222,6 +222,31 @@
       "id": "explicit.stat_124131830",
       "text": "+# to Level of all Spell Skill Gems",
       "type": "explicit"
+    },
+    {
+      "id": "fractured.stat_3885405204",
+      "text": "Bow Attacks fire # additional Arrows",
+      "type": "fractured"
+    },
+    {
+      "id": "fractured.stat_3680664274",
+      "text": "+#% chance to Suppress Spell Damage",
+      "type": "fractured"
+    },
+    {
+      "id": "fractured.stat_2618549697",
+      "text": "Added Small Passive Skills have #% increased Effect",
+      "type": "fractured"
+    },
+    {
+      "id": "enchant.stat_3086156145",
+      "text": "Adds # Passive Skills",
+      "type": "enchant"
+    },
+    {
+      "id": "enchant.stat_3948993189",
+      "text": "Added Small Passive Skills grant: #",
+      "type": "enchant"
     }
   ]
 }

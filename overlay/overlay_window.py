@@ -9,6 +9,7 @@ import html
 from PyQt6.QtCore import Qt, QTimer
 from PyQt6.QtWidgets import QFrame, QLabel, QVBoxLayout, QWidget
 
+from build_notes import select_note
 from ui_state import clamp_scale
 
 KIND_COLORS = {"kill": "#e46a6a", "town": "#6ab0e4",
@@ -24,7 +25,7 @@ class OverlayWindow(QWidget):
         self._drag = None
         self._dragged = False
         self.level = 1
-        self.notes = {}                      # act -> gem note text
+        self.notes = {}                      # act -> str or milestone rows
         self._party_text = ""
         self._flashing = False
         self._meta_bits = []                 # current step's meta lines
@@ -117,8 +118,9 @@ class OverlayWindow(QWidget):
             bits.append(f"◆ {step['layout']}")
         if step.get("tip"):
             bits.append(f"✦ {step['tip']}")
-        if act in self.notes:
-            bits.append(f"⚙ {self.notes[act]}")
+        note = select_note(self.notes.get(act), self.level)
+        if note:
+            bits.append(f"⚙ {note}")
         self._meta_bits = bits
         self._render_meta()
         self.nxt.setText(f"next: {peek['zone']}" if peek else "— end of route —")

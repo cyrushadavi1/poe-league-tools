@@ -1,0 +1,223 @@
+{
+  "source": "League Start Wealth Plan: A Guide for Profit Crafting & Investing (3.29 Update)",
+  "rules": [
+    "Recalculate the full input cost, realistic sale price, and sale depth before starting a batch.",
+    "Use live completed-item listings and several comparable items; never price from the cheapest listing alone.",
+    "Set a maximum loss per attempt and keep the operating bankroll outside the craft.",
+    "List partial successes and useful misses instead of treating every non-perfect outcome as zero.",
+    "Do one proof craft before buying a large batch of bases or materials.",
+    "All searches, purchases, crafts, listings, whispers, and trades are manual."
+  ],
+  "guides": [
+    {
+      "id": "focused_plus4_amulet",
+      "name": "Focused +4 spell amulet",
+      "market": "Premium caster amulets",
+      "risk": "extreme",
+      "capital": "Very high; the +2 all-spell roll is approximately 1/900 and the elemental augment can brick.",
+      "roi_thesis": "Focused Amulet magnifies a small number of affixes, so +2 all spells plus a matching elemental gem-level prefix creates a scarce +4-style end product with premium caster suffixes.",
+      "base_searches": ["focused_amulet_i84"],
+      "requirements": [
+        "Uninfluenced Focused Amulet, item level 84+.",
+        "Enough liquid currency to survive the alteration/chaos or essence variance.",
+        "Access to cannot roll attack modifiers, Harvest augment, prefixes cannot be changed, and the chosen suffix finish."
+      ],
+      "steps": [
+        {
+          "n": 1,
+          "action": "Use Chaos Orbs or a cheap Screaming Essence that supplies a useful suffix until +2 to Level of all Spell Skill Gems appears.",
+          "checkpoint": "The guide estimates roughly 1/900 attempts; re-price the method before starting."
+        },
+        {
+          "n": 2,
+          "action": "Annul until +2 all Spell Skill Gems is the only remaining affix.",
+          "checkpoint": "If the +2 mod is removed, stop and restart from the base-roll step."
+        },
+        {
+          "n": 3,
+          "action": "Craft Cannot roll Attack Modifiers, then Harvest augment the desired element.",
+          "checkpoint": "The guide describes this as a 50/50 brick point. Do not proceed unless the expected finished value covers failed attempts."
+        },
+        {
+          "n": 4,
+          "action": "Craft Prefixes Cannot Be Changed and finish suffixes with reforge Critical for critical multiplier or reforge Caster for cast speed.",
+          "checkpoint": "The guide estimates 1/12 for T1 critical multiplier or about 1/2 for T2+ cast speed."
+        },
+        {
+          "n": 5,
+          "action": "Finish only after checking the exact buyer archetype; an optional reflecting-mist finish belongs in a separate, capped-risk batch.",
+          "checkpoint": "Price the deterministic amulet and the mist outcome separately."
+        }
+      ],
+      "selloffs": [
+        "A clean +2 all-spell Focused Amulet can be sold rather than risked.",
+        "A successful matching-element prefix with a non-perfect suffix may still be a premium sale.",
+        "Do not continue metacrafting a suffix combination with no current ladder buyer."
+      ],
+      "stop_loss": "Cap attempts before rolling. Stop the batch if the observed base-roll cost or clean +2 resale price no longer supports the 50/50 augment risk."
+    },
+    {
+      "id": "helical_attribute_ring",
+      "name": "Helical attribute/crit ring",
+      "market": "Attribute stackers and premium crit jewellery",
+      "risk": "high",
+      "capital": "High; bases and repeated Deafening Essences are expensive.",
+      "roi_thesis": "Helical Ring amplifies a compact affix set. Critical multiplier plus T1 attributes, chaos resistance, and crafted all attributes sells into multiple high-budget stacker archetypes.",
+      "base_searches": ["helical_ring_i84"],
+      "requirements": [
+        "Helical Ring, item level 84+.",
+        "Deafening Essence of Scorn or the currently valuable alternative essence.",
+        "Access to suffix protection and the 3.29 attribute-reroll/ghost craft if using that branch."
+      ],
+      "steps": [
+        {
+          "n": 1,
+          "action": "Essence of Scorn for critical strike multiplier until a T1 Strength, Dexterity, or Intelligence roll appears.",
+          "checkpoint": "Double-attribute outcomes are premium; price every good attribute combination before rerolling."
+        },
+        {
+          "n": 2,
+          "action": "If the 3.29 ghost craft can economically change the attribute to the demanded one, compare that cost with continuing the essence roll.",
+          "checkpoint": "Verify the live 3.29 ghost-crafting behavior and price before using it."
+        },
+        {
+          "n": 3,
+          "action": "If the remaining suffix is already useful, finish with the all-attributes craft.",
+          "checkpoint": "Leave the required suffix open; do not fill it accidentally."
+        },
+        {
+          "n": 4,
+          "action": "For a weak remaining suffix, clean the prefixes as required, craft Suffixes Cannot Be Changed, and use add/remove Chaos toward chaos resistance.",
+          "checkpoint": "Repeat only while the protected suffix value exceeds the metacraft and Harvest spend."
+        }
+      ],
+      "selloffs": [
+        "Critical multiplier plus one T1 attribute is a sellable intermediate.",
+        "Unexpected double-attribute outcomes should be price-checked before further crafting.",
+        "A lower chaos-resistance tier can be the correct stop if another attempt has poor expected value."
+      ],
+      "stop_loss": "Stop essence rolling at the pre-declared spend or when a sellable attribute combination appears. Never expose the premium suffixes without protection."
+    },
+    {
+      "id": "fractured_35_large_cluster",
+      "name": "Fractured 35%-effect 12-passive large cluster",
+      "market": "High-budget aura, minion, bow, shield, and spell cluster jewels",
+      "risk": "high",
+      "capital": "High; item-level 84 bases and fracture attempts are expensive.",
+      "roi_thesis": "A fractured 35% increased effect modifier is the universal premium starting point for 12-passive clusters. The finishing method can rotate with the highest-value small-passive family.",
+      "base_searches": [
+        "cluster_spell_12_fractured_35",
+        "cluster_minion_12_fractured_35",
+        "cluster_bow_12_fractured_35",
+        "cluster_shield_12_fractured_35"
+      ],
+      "requirements": [
+        "Item-level 84+ Large Cluster Jewel with exactly 12 passives.",
+        "The correct small-passive family for the target market.",
+        "Either a fractured 35% effect base or a separately costed plan to create one."
+      ],
+      "steps": [
+        {
+          "n": 1,
+          "action": "Choose the target family from current ladder demand: minion, bow, attack damage while holding a shield, or spell damage.",
+          "checkpoint": "Do not treat all 12-passive bases as interchangeable; the enchant family determines the buyer."
+        },
+        {
+          "n": 2,
+          "action": "Acquire 35% increased effect already fractured, or alteration-roll 35% effect and fracture only when the live fracture math is favorable.",
+          "checkpoint": "3.29 removed beast splitting and changed fracture access. Verify the current fracture method before risking the base."
+        },
+        {
+          "n": 3,
+          "action": "For bow or shield families, reforge Speed toward 3% attack speed. For minion, use the guide's caster/speed finish toward 3% minion attack and cast speed. For spell damage, use a defence finish toward Energy Shield with Intelligence as the premium third stat.",
+          "checkpoint": "Price two-stat and three-stat results separately before rerolling."
+        },
+        {
+          "n": 4,
+          "action": "Divine only when the roll ranges materially change the sale bracket.",
+          "checkpoint": "Do not spend divines polishing a cluster whose secondary stats miss the meta."
+        }
+      ],
+      "selloffs": [
+        "Fractured 35% effect by itself is a liquid premium base.",
+        "35% effect plus one T1 speed/defence stat is often sellable.",
+        "Unexpected high Energy Shield, Intelligence, attributes, or life rolls may fit a different buyer."
+      ],
+      "stop_loss": "Keep fracture creation and finishing as separate P&L decisions. Sell the clean fractured base if the finish no longer offers sufficient margin."
+    },
+    {
+      "id": "plus2_arrow_spine_bow",
+      "name": "Item-level 86 +2-arrow Spine Bow base",
+      "market": "Premium bow fracture and mirror-tier crafting inputs",
+      "risk": "medium",
+      "capital": "Medium to high depending on base quality and fracture choice.",
+      "roi_thesis": "The shared guide estimates +2 arrows at roughly 1/591 alterations on an item-level 86 Spine Bow. Clean magic hits and fractured hits are valuable inputs for expensive bow projects.",
+      "base_searches": ["spine_bow_i86_fractured_plus2"],
+      "requirements": [
+        "Item-level 86+ Spine Bow; overquality has a separate premium.",
+        "Alteration/Augmentation budget and a plan to sell the clean magic hit.",
+        "A separately calculated fracture budget if attempting to upgrade the base."
+      ],
+      "steps": [
+        {
+          "n": 1,
+          "action": "Roll a clean item-level 86 Spine Bow with alterations until Bow Attacks fire 2 additional Arrows.",
+          "checkpoint": "The guide estimates approximately 1/591 alterations. Track the actual batch cost."
+        },
+        {
+          "n": 2,
+          "action": "List the clean magic +2-arrow base, or compare its value with the expected cost and outcome value of the current fracture method.",
+          "checkpoint": "Selling the magic base is the low-variance branch; fracture creation is a new investment decision."
+        },
+        {
+          "n": 3,
+          "action": "If buying instead of rolling, use the live filter for already-fractured +2-arrow Spine Bows and verify quality, item level, and remaining mod state.",
+          "checkpoint": "Do not pay for irrelevant extra affixes that make the continuation harder."
+        }
+      ],
+      "selloffs": [
+        "Clean magic +2-arrow item-level 86 Spine Bow.",
+        "Overquality +2-arrow base.",
+        "Already-fractured +2-arrow base when the spread to completed bows narrows."
+      ],
+      "stop_loss": "Stop at the alteration budget. Treat a fracture attempt as a separate capped bet rather than 'finishing' the alteration batch."
+    },
+    {
+      "id": "t1_suppress_necrotic",
+      "name": "T1 suppression Necrotic Armour base",
+      "market": "Premium suppression/energy-shield body armour inputs",
+      "risk": "medium",
+      "capital": "Medium for alteration production; high for a fractured purchase.",
+      "roi_thesis": "The shared guide identifies item-level 86 Necrotic Armour with 22% spell suppression as a high-value fracture input, with the T1 roll estimated near 1/150 alterations.",
+      "base_searches": ["necrotic_i86_fractured_t1_suppress"],
+      "requirements": [
+        "Item-level 86+ Necrotic Armour.",
+        "Alteration budget or enough capital to buy the fractured T1 base.",
+        "A current buyer archetype that values both the base defences and suppression."
+      ],
+      "steps": [
+        {
+          "n": 1,
+          "action": "Alteration-roll an item-level 86 Necrotic Armour until 22% chance to Suppress Spell Damage appears.",
+          "checkpoint": "The guide estimates approximately 1/150 alterations; verify that the magic hit still sells."
+        },
+        {
+          "n": 2,
+          "action": "Sell the clean T1-suppression magic base or separately price the current fracture route.",
+          "checkpoint": "Do not consume a profitable clean base in an underpriced fracture attempt."
+        },
+        {
+          "n": 3,
+          "action": "Use the fractured-base live search to buy mispriced inputs for a later Energy Shield or hybrid defence craft.",
+          "checkpoint": "Confirm the suppression value is 22% and fractured, not merely an ordinary explicit modifier."
+        }
+      ],
+      "selloffs": [
+        "Clean magic T1-suppression Necrotic Armour.",
+        "Fractured 22% suppression base.",
+        "High-quality or well-rolled defence bases can command a separate premium."
+      ],
+      "stop_loss": "Stop at the alteration budget or sell the clean hit. Only fracture when the expected fractured-base value exceeds the full failure-adjusted cost."
+    }
+  ]
+}

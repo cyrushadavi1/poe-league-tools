@@ -1,0 +1,25 @@
+{
+  "league": "3.29",
+  "members": [
+    {
+      "player": "Carry",
+      "role": "Spark carry",
+      "pob": "https://pobb.in/S-cCpRbx81xb"
+    },
+    {
+      "player": "Aurabot",
+      "role": "Aura support",
+      "pob": "https://pobb.in/sMefXcEkDcIW"
+    },
+    {
+      "player": "Banner",
+      "role": "Banner support",
+      "pob": "https://poe.ninja/poe1/pob/92b13"
+    },
+    {
+      "player": "Drugger",
+      "role": "Warcry/flask support",
+      "pob": "https://pobb.in/7n_38SqAmipa"
+    }
+  ]
+}

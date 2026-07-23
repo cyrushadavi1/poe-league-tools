@@ -6,7 +6,7 @@ to read: no memory access, no injection, no simulated input, just
 
 Toolkit for Path of Exile league starts (built for 3.29 *Curse of the
 Allflame*, July 24 2026 — the campaign route itself is league-agnostic).
-Designed for a **party of 2–3**: paste in everyone's PoB, get per-player
+Designed for a **party of 2–6**: paste in everyone's PoB, get per-player
 leveling kits, and the overlay guides you through all ten acts while
 tracking your mates, your splits, and the loot on your clipboard.
 
@@ -43,16 +43,27 @@ line.
 
 ## Party setup (start here)
 
-1. Copy `buildgen/party.example.json` to `party.json`, paste each member's
-   PoB code, mark yours with `"me": true`.
-2. `python buildgen/party.py party.json --out-dir builds` → per-player
+The four reviewed 3.29 PoBs are already prepared. On each PC, double-click
+`setup_pc.bat`; a graphical dropdown lets that player choose **Carry,
+Aurabot, Banner, or Drugger**, enter their real in-game character name,
+and save. No CLI or JSON editing is required. Press **F10** while the
+overlay is open—or double-click `choose_build.bat`—to change the selection.
+
+To replace or add PoBs later, `python buildgen/party.py --init` remains the
+authoring workflow: paste a pobb.in / pastebin / poe.ninja / maxroll link,
+then it writes `party.json` and generates per-player
    `<name>_plan.md` + `<name>_notes.json`, `party_summary.md` with
    everyone's gem links per act and a uniques wishlist, and
    `party_bundle.json` — the manifest each PC sets itself up from.
-   PoBs with act-tagged skill sets ("Act 1 …", "Act 3-5 …") get
-   build-specific gem notes; a bare endgame-only PoB falls back to the
-   generic per-class plan in `data/leveling_defaults.json` (edit it to
-   taste) — labelled as generic in plan.md and by the doctor.
+   PoBs with act-tagged or level-staged skill sets get build-specific gem
+   notes. Known guide PoBs can also match reviewed campaign adapters in
+   `data/pob_leveling_adapters.json`; those reminders advance at character
+   level milestones. Matched plans include an exact TAKE/BUY/SWAP gem table
+   and a build-specific item pickup guide; the generated notes file also
+   selects that profile for live Ctrl+C item verdicts. An unknown
+   endgame-only PoB falls back to the generic per-class plan in
+   `data/leveling_defaults.json` — labelled as generic in plan.md and by the
+   doctor.
 3. `python tools/make_portable.py` → `dist/poe-league-tools-pc.zip`
    (~92 MB): the whole toolkit **with a private Windows Python and PyQt6
    inside** — friends install nothing. Built from the Mac; needs network
@@ -67,7 +78,22 @@ line.
    gitignored so zip beats clone — friends then need Python 3.10+ and
    `setup_pc.bat` pip-installs the rest.)
 
-Solo works too: `python buildgen/pob.py plan <code>`, empty party config.
+Solo works too: `python buildgen/pob.py plan <code-or-link>`, empty
+party config.
+
+The four supplied 3.29 party builds are already collected in
+`buildgen/party.allflame.json`. Generate their current plans and overlay
+files with:
+
+```
+python buildgen/party.py buildgen/party.allflame.json --out-dir builds/allflame
+```
+
+The pickup profiles use the 3.29 socket rules: every gem can be placed in
+every socket colour. A matching red/green/blue socket is treated as a
+`+10%` gem-quality upgrade, never as a compatibility gate. The Act 1
+checklists also use the expanded vendor access to Faster Attacks after
+The Caged Brute.
 
 ## Overlay quickstart (gaming PC)
 
@@ -92,8 +118,11 @@ Point them at `FRIENDS.md`.
 
 Hotkeys (global on
 Windows): **F2/F3** prev/next step · **F4** hide · **F6** click-through,
-card and layouts panel together · **F7** layouts panel hide/show
-(F6 is Windows-only — the non-Windows fallback shortcuts could not undo it).
+card and layouts panel together · **F7** layouts panel hide/show ·
+**F8** speak the current step · **F9** narration mute ·
+**F10** choose another prepared PoB
+(F6 is Windows-only — the non-Windows fallback shortcuts could not undo it;
+F8/F9 exist only when narration is enabled).
 
 Getting in the way of clicking? **Mouse-wheel** over the card (or the
 layouts panel) resizes it, **double-click** collapses the card to just
@@ -107,6 +136,15 @@ red flash when someone dies); `⏱ A3 41:22 (-2:10 PB) ⚠ XP -38%` timer/XP
 row; and a 6-second color-coded verdict when you Ctrl+C an item in game
 (pure local parsing — nothing leaves your machine). Feature flags in
 config: `timer`, `item_eval`, `links_best`, `runs_dir`.
+
+**Spoken narration** (off by default — for anyone who finds reading the
+card mid-fight hard): set `narration.enabled: true` in
+`overlay/config.json` and the overlay **reads each step aloud** as you
+enter the zone, using the voice built into Windows (macOS `say` when
+developing) — no extra installs, no screenshots, same Client.txt-only
+ToS story. It also announces deaths. **F8** repeats the current step,
+**F9** mutes. Config knobs: `rate` (-10..10), `volume` (0-100), `tips`
+and `layout` (include the tip / layout-hint lines when speaking).
 
 Starting the overlay mid-campaign (or restarting it)? It reads the log
 tail and **fast-forwards to where you already are** — zone history plus
@@ -202,12 +240,30 @@ numbers. You execute every step by hand in game, as always.
 League-start crafting principles + verified vendor recipes:
 `docs/CRAFTING_GUIDELINES.md`.
 
+**High-ticket crafting:** the curated premium-market guides cover Focused
++4 amulets, Helical attribute rings, fractured 35%-effect 12-passive
+clusters, +2-arrow Spine Bow inputs, and T1-suppression Necrotic Armour:
+
+```
+python -m craft.guides list
+python -m craft.guides show focused_plus4_amulet
+python -m craft.guides bundle --out high_end_crafting.md
+python -m market.base_filters --bankroll-div 100 --out-dir searches
+```
+
+The final command writes bankroll-capped, `tools/snipe.py`-compatible
+official trade-query JSON for the exact premium bases. Review the generated
+`searches/README.md` before arming them; the cap is a risk guard, not a
+valuation.
+
 ## Market stack
 
 ```
 python market/daemon.py            # poll poe.ninja → market/market.db
 python market/console.py           # ranked opportunities; r/c/j/x/? commands
 python market/brief.py daily       # one-page LLM brief (optional)
+python -m market.wealth --day 1 --bankroll-c 150 --risk low
+                                    # staged craft/flip/investment plan
 python tools/pnl.py                # realized vs expected — tune the haircut
 python tools/meta.py               # ladder meta ranker (ascendancies/skills)
 ```
@@ -217,6 +273,14 @@ latest snapshots, filters price-fixed quotes, and sizes by liquidity and
 bankroll (`market/config.json`; league is `Mirage` until 3.29 launches).
 `c <row>` copies the next leg's whisper to your clipboard — sending it is
 always your keypress in game.
+
+The deterministic [league-start wealth planner](docs/WEALTH_PLAYBOOK.md)
+turns league day, bankroll, and risk tolerance into a ranked mix of craft
+inventory, targeted crafts, arbitrage, flips, and investments. Every play
+includes a live-price check and a stop-loss; it never performs an action.
+Its 3.29 plays now include selling double-corruption temples and capped
+batches targeting the new charge, reservation, action-speed, maximum-
+resistance, gem-level, cast-speed, and explode corruption implicits.
 
 ## Developing on a Mac (playing on a PC)
 

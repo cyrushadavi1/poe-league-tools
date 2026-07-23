@@ -1,0 +1,378 @@
+{
+  "_comment": "Reviewed campaign adapters for the four 3.29 party PoBs. Matchers use PoB structure, not share-link slugs. Milestone 'level' drives the overlay's level-aware reminder selection.",
+  "version": 1,
+  "review_sources": [
+    "https://www.pathofexile.com/forum/view-thread/3985332",
+    "https://www.youtube.com/watch?v=MiLMOmhLNS0",
+    "https://www.youtube.com/watch?v=rugOaj5h9sg",
+    "https://www.youtube.com/watch?v=-_7xMdriFgE",
+    "https://www.youtube.com/watch?v=kBlt7he5x7o",
+    "https://www.youtube.com/watch?v=nPZqsG9Yn2s"
+  ],
+  "adapters": [
+    {
+      "id": "allflame-carry-inquisitor",
+      "label": "3.29 Spark carry — Inquisitor",
+      "match": {
+        "class": "Templar",
+        "ascendancy": "Inquisitor",
+        "skill_sets": ["Leveling", "Early Maps", "Early Game Jiquani"],
+        "tree_specs": ["Leveling 1-16", "Leveling 16-28", "Leveling 28-38"],
+        "gems": ["Rolling Magma", "Armageddon Brand", "Cremation"]
+      },
+      "sources": [
+        "https://pobb.in/S-cCpRbx81xb",
+        "https://maxroll.gg/poe/build-guides/templar-leveling-build-guide"
+      ],
+      "warnings": [
+        "Campaign steps come from Havoc616's notes embedded in the PoB.",
+        "Do not make the Spark/Energy Blade map swap early; use the PoB's Early Maps tree, items, and skill set together.",
+        "In 3.29, map reflect is replaced by flat thorns. Spark's high hit rate can trigger thorns at the 0.1-second cap, and even a tiny off-element hit can trigger the full matching thorn; block and mitigation still apply."
+      ],
+      "gem_checklist": [
+        {"act": 1, "level": 2, "action": "TAKE", "when": "Hillock reward", "items": ["Rolling Magma"]},
+        {"act": 1, "level": 4, "action": "TAKE + BUY", "when": "After Hailrake", "items": ["Elemental Proliferation", "Holy Flame Totem", "Flame Wall", "Frostblink", "Arcane Surge"], "instruction": "Take Elemental Proliferation; buy Holy Flame Totem, Flame Wall, Frostblink, and Arcane Surge."},
+        {"act": 1, "level": 8, "action": "BUY", "when": "Lower Prison/Dweller complete", "items": ["Combustion"]},
+        {"act": 1, "level": 10, "action": "TAKE + BUY", "when": "After Brutus", "items": ["Shield Charge", "Faster Attacks", "Momentum"], "instruction": "Take Shield Charge; buy Faster Attacks and Momentum from Nessa."},
+        {"act": 2, "level": 16, "action": "TAKE", "when": "After Fidelitas", "items": ["Herald of Thunder"]},
+        {"act": 2, "level": 18, "action": "TAKE + BUY", "when": "After Weaver", "items": ["Cruelty", "Elemental Focus", "Wave of Conviction", "Desecrate", "Concentrated Effect"], "instruction": "Take Cruelty; buy Elemental Focus, Wave of Conviction, Desecrate, and Concentrated Effect."},
+        {"act": 3, "level": 24, "action": "TAKE + BUY", "when": "After Tolman", "items": ["Flammability", "Anger"], "instruction": "Take Flammability; buy Anger."},
+        {"act": 3, "level": 28, "action": "TAKE + BUY", "when": "After Gravicius", "items": ["Armageddon Brand", "Cremation"], "instruction": "Take Armageddon Brand; buy Cremation."},
+        {"act": 4, "level": 38, "action": "TAKE + BUY", "when": "After Malachai", "items": ["Ignite Proliferation", "Immolate"], "instruction": "Take Ignite Proliferation; buy Immolate."},
+        {"act": 6, "level": 45, "action": "BUY", "when": "Lily Roth", "items": ["Haste", "Blood Rage"]}
+      ],
+      "item_guide": {
+        "summary": "Caster damage comes from the correct sceptre mods and enough linked sockets; matching blue sockets add gem quality in 3.29 but are never required. After level 10 use one sceptre plus a shield.",
+        "always_pick": [
+          "Any currency, useful quality gems, and an upgrade to your best linked item.",
+          "Act 1–2: any linked 3-socket item. Act 3 onward: any linked 4-socket item for Brand/Cremation; blue sockets are the premium +quality version.",
+          "Goat's Horn sceptres through Act 3, especially with spell damage, fire spell damage, +fire gems, or added fire damage to spells.",
+          "Rare jewellery with added fire damage to spells, life, or enough resistance to maintain the cap."
+        ],
+        "check": [
+          "Shields after level 10 with life/resistance and enough sockets; blue sockets add quality but off-colours still work.",
+          "Caster sceptres that match the preferred mods; compare against the flat-fire bench craft before replacing.",
+          "Ghostwrithe, Crown of the Inward Eye, Karui Ward, Valako's Sign, and Bated Breath for campaign/map transitions."
+        ],
+        "skip": [
+          "Attack weapons, bows, and physical-DPS rares; the build does not scale their weapon damage.",
+          "Unlinked normal armour with no defensive upgrade; do not reject a linked upgrade because its colours are wrong.",
+          "Energy Blade/Spark gear before the full post-campaign tree and skill swap is ready."
+        ],
+        "socket_targets": [
+          {"act_min": 1, "act_max": 2, "links": 3, "colors": {"B": 3}, "reason": "Linked 3-socket caster setup with three matching blue quality bonuses"},
+          {"act_min": 3, "act_max": 10, "links": 4, "colors": {"B": 4}, "reason": "Linked 4-socket Brand/Cremation setup with four matching blue quality bonuses"}
+        ],
+        "weapon_rules": [
+          {"act_min": 1, "act_max": 10, "classes": ["Sceptres"], "mods_any": ["increased Spell Damage", "increased Fire Damage", "to Level of all Fire Spell Skill Gems", "Fire Damage to Spells"]}
+        ],
+        "keep_bases": [
+          {"act_min": 1, "act_max": 3, "names": ["Goat's Horn"], "verdict": "TAKE", "reason": "Preferred early caster sceptre base"},
+          {"act_min": 1, "act_max": 10, "classes": ["Shields"], "verdict": "CHECK", "reason": "Shield stage: compare life, resistances, links, and matching blue quality bonuses"}
+        ],
+        "item_mod_rules": [
+          {"act_min": 1, "act_max": 10, "classes": ["Rings", "Amulets"], "mods_any": ["Fire Damage to Spells", "increased Spell Damage"], "verdict": "TAKE", "reason": "Build-specific caster damage on jewellery"}
+        ],
+        "keep_uniques": {
+          "Ghostwrithe": "Listed campaign/map-transition body armour",
+          "Crown of the Inward Eye": "Listed early-map helmet",
+          "Karui Ward": "Useful listed leveling amulet",
+          "Valako's Sign": "Listed early ring for damage and sustain",
+          "Bated Breath": "Listed early energy-shield belt"
+        }
+      },
+      "milestones": [
+        {"act": 1, "level": 2, "text": "After Hillock: take Rolling Magma (or Holy Strike + Hallow). Use two caster weapons while damage matters more than Shield Charge."},
+        {"act": 1, "level": 4, "text": "After Hailrake: Rolling Magma–Elemental Proliferation; add Holy Flame Totem, Flame Wall, and Frostblink–Arcane Surge. Check Nessa for two Goat's Horns."},
+        {"act": 1, "level": 8, "text": "After Lower Prison/Dweller: add Combustion to Rolling Magma (or to Holy Flame Totem if your available links force the split). Socket colour never blocks a gem in 3.29."},
+        {"act": 1, "level": 10, "text": "After Brutus: take Shield Charge and buy Faster Attacks plus Momentum from Nessa. Use Shield Charge–Faster Attacks–Momentum when sockets allow; use one Goat's Horn plus a shield."},
+        {"act": 2, "level": 16, "text": "After Fidelitas: add Herald of Thunder. Herald of Ice and Arctic Armour are optional."},
+        {"act": 2, "level": 18, "text": "After Weaver: get Cruelty + Elemental Focus, Wave of Conviction, Desecrate, and Concentrated Effect. The source PoB chooses Alira."},
+        {"act": 3, "level": 24, "text": "After Tolman: take Flammability and buy Anger. In Solaris 2 unlock the fire craft and bench flat fire to spells on weapon/rings/amulet."},
+        {"act": 3, "level": 28, "text": "After Gravicius: replace Rolling Magma with Armageddon Brand–Elemental Proliferation–Combustion; add Cremation–Concentrated Effect–Cruelty/Elemental Focus plus Desecrate."},
+        {"act": 4, "level": 38, "text": "After Malachai: replace Elemental Proliferation with Ignite Proliferation; 4-link Brand with Combustion + Immolate. Stone Golem is optional."},
+        {"act": 5, "level": 41, "text": "Keep the level-38 Brand/Cremation setup. A level-24 flat-fire-to-spells craft is enough; prioritize life and capped elemental resistances."},
+        {"act": 6, "level": 45, "text": "After Lily: optional Haste for travel and Blood Rage. Faster Attacks was already available from Nessa after Brutus. Re-cap resistances after Kitava."},
+        {"act": 7, "level": 52, "text": "Optional weapon pass: upgrade the bench craft to tier 2 flat fire to spells. Keep Brand, Cremation, Desecrate, and movement links unchanged."},
+        {"act": 8, "level": 56, "text": "Coast on Armageddon Brand for clear and Cremation for bosses; keep Anger for damage or Haste for faster zones."},
+        {"act": 9, "level": 60, "text": "Keep gems levelled and finish life/resistance fixes. Do not start the Spark/Energy Blade respec during the campaign."},
+        {"act": 10, "level": 64, "text": "Finish with Brand/Cremation, re-cap for the second Kitava penalty, then move to the complete Early Maps tree + skill set together."}
+      ]
+    },
+    {
+      "id": "allflame-aurabot-ascendant",
+      "label": "3.29 aurabot — Ascendant",
+      "match": {
+        "class": "Scion",
+        "ascendancy": "Ascendant",
+        "skill_sets": ["Leveling 1-65 (ST-Static Strike)", "Aurabot Swap", "Early Maps"],
+        "tree_specs": ["Leveling 1 (ST-Lvl 1-13)", "Leveling 2 (Static Strike-Lvl 13-28)", "Leveling 3 (Static Strike-Lvl 28-65)"],
+        "gems": ["Spectral Throw", "Static Strike", "Flame Link"]
+      },
+      "sources": [
+        "https://pobb.in/sMefXcEkDcIW"
+      ],
+      "warnings": [
+        "The embedded prose says Poisonous Concoction at level 13, but the PoB contains no Poisonous Concoction setup; its skill set and two tree titles consistently specify Static Strike. This adapter follows Static Strike.",
+        "Save gold during the campaign: the author explicitly expects a gold respec into the pure aurabot after the campaign."
+      ],
+      "gem_checklist": [
+        {"act": 1, "level": 1, "action": "START", "when": "Twilight Strand", "items": ["Spectral Throw"]},
+        {"act": 1, "level": 4, "action": "TAKE + BUY", "when": "After Hailrake/Mud Flats", "items": ["Volley", "Chance to Bleed", "Frostblink", "Precision"], "instruction": "Take Volley, then Frostblink; buy Chance to Bleed and Precision."},
+        {"act": 1, "level": 10, "action": "BUY", "when": "After Brutus (Nessa)", "items": ["Faster Attacks"], "instruction": "Buy Faster Attacks from Nessa; all classes can purchase it after The Caged Brute in 3.29."},
+        {"act": 1, "level": 12, "action": "TAKE + BUY", "when": "Cavern of Wrath waypoint", "items": ["Static Strike", "Ruthless", "Added Fire Damage", "Leap Slam", "Momentum"], "instruction": "Take Static Strike from The Siren's Cadence; buy Ruthless, Added Fire, Leap Slam, and Momentum. Equip the Static Strike 3-link at level 13."},
+        {"act": 2, "level": 16, "action": "BUY", "when": "After Fidelitas", "items": ["Herald of Ash", "Purity of Elements"]},
+        {"act": 2, "level": 18, "action": "TAKE + BUY", "when": "After Weaver", "items": ["Melee Physical Damage", "Punishment"], "instruction": "Take Melee Physical Damage for the fourth Static Strike link; buy Punishment."},
+        {"act": 3, "level": 24, "action": "BUY", "when": "After Lost in Love", "items": ["Haste"]},
+        {"act": 6, "level": 45, "action": "BUY + OFFHAND LEVEL", "when": "Lily Roth", "items": ["Wrath", "Grace", "Flame Link", "Smite", "Stormblast Mine", "Minefield", "Vitality", "Clarity", "Arrogance"]},
+        {"act": 10, "level": 65, "action": "SWAP", "when": "After Kitava and gold respec", "items": ["Shield Charge", "Flame Link", "Smite", "Wrath", "Precision", "Grace", "Haste", "Stormblast Mine", "Vitality", "Clarity"]}
+      ],
+      "item_guide": {
+        "summary": "Level as a physical two-handed attacker, then collect the aura/support sockets without equipping them until the post-Kitava respec. In 3.29 any socket colour works; matching colours only add gem quality.",
+        "always_pick": [
+          "Act 1: any linked 3-socket item for Spectral Throw; Act 2 onward: any linked 4-socket item for Static Strike. The old 2G1R/1G3R patterns are now +quality targets, not equip requirements.",
+          "A faster or higher-physical-DPS two-handed sword/axe that clears the current act target.",
+          "Iron Rings in Act 1 and armour/evasion gear with life plus elemental resistance.",
+          "Gold and respec resources—do not burn the planned respec budget on gambling."
+        ],
+        "check": [
+          "Aura-swap pieces from Act 6 onward with enough links and good defences; matching colours are a quality bonus.",
+          "Brightbeak, Matua Tupuna, Sign of the Sin Eater, The Hand of Phrecia, Perquil's Toe, and Sin Trek.",
+          "Any correct weapon type near the DPS target; compare attack speed and actual feel as well as tooltip DPS."
+        ],
+        "skip": [
+          "Caster weapons, bows, and one-handed damage weapons during the Static Strike campaign phase.",
+          "Pure aura gear before the party carry can supply all damage.",
+          "Off-plan gems without quality; Lily can sell the complete swap package later."
+        ],
+        "socket_targets": [
+          {"act_min": 1, "act_max": 1, "links": 3, "colors": {"G": 2, "R": 1}, "reason": "Spectral Throw 3-link with all three matching-colour quality bonuses"},
+          {"act_min": 2, "act_max": 10, "links": 4, "colors": {"G": 1, "R": 3}, "reason": "Static Strike 4-link with all four matching-colour quality bonuses"}
+        ],
+        "weapon_rules": [
+          {"act_min": 1, "act_max": 10, "classes": ["Two Hand Axes", "Two Hand Swords"], "mods_any": ["increased Physical Damage", "Physical Damage", "increased Attack Speed"], "thresholds": [
+            {"act": 1, "metric": "physical", "min": 15},
+            {"act": 2, "metric": "physical", "min": 30},
+            {"act": 3, "metric": "physical", "min": 50},
+            {"act": 4, "metric": "physical", "min": 70},
+            {"act": 6, "metric": "physical", "min": 100},
+            {"act": 9, "metric": "physical", "min": 140}
+          ]}
+        ],
+        "keep_bases": [
+          {"act_min": 1, "act_max": 2, "names": ["Iron Ring"], "verdict": "TAKE", "reason": "Large early physical damage gain for Spectral Throw/Static Strike"}
+        ],
+        "keep_uniques": {
+          "Brightbeak": "Listed fast movement weapon for the aura transition",
+          "Matua Tupuna": "Listed first aurabot shield upgrade",
+          "Sign of the Sin Eater": "Listed early support weapon",
+          "The Hand of Phrecia": "Core early aura-effect gloves",
+          "Perquil's Toe": "Listed early party-damage amulet",
+          "Sin Trek": "Listed early energy-shield boots"
+        }
+      },
+      "milestones": [
+        {"act": 1, "level": 1, "text": "Start Spectral Throw–Volley–Chance to Bleed with a fast 2H sword/axe. Use iron rings, Frostblink, and low-level Precision."},
+        {"act": 1, "level": 13, "text": "At 13, follow the actual PoB skill/tree stages: swap to Static Strike. Refund the temporary physical nodes near Scion start when the level-13 tree says to."},
+        {"act": 2, "level": 16, "text": "Static Strike–Ruthless–Added Fire Damage–Melee Physical Damage; Leap Slam–Faster Attacks–Momentum. Add Herald of Ash and Purity of Elements as mana permits."},
+        {"act": 2, "level": 18, "text": "Add Punishment for bosses; keep Precision low enough that attacks remain comfortable. Do not spend the respec gold on gambling."},
+        {"act": 3, "level": 24, "text": "Add Haste when reservation permits. Upgrade the 2H physical weapon; the campaign setup is still Static Strike, not the final aura sockets."},
+        {"act": 3, "level": 28, "text": "Move to the PoB's Leveling 3 (Static Strike level 28–65) tree. From here the campaign links stay stable."},
+        {"act": 4, "level": 38, "text": "Keep the Static Strike 4-link, Leap Slam movement link, Punishment, Precision, Purity of Elements, Herald of Ash, and Haste."},
+        {"act": 5, "level": 41, "text": "Prioritize a current 2H weapon, life, and capped resistances. Stay on the leveling tree; aura reservation nodes alone will not carry solo damage."},
+        {"act": 6, "level": 45, "text": "Re-cap resistances after Kitava and buy any missing Aurabot Swap gems from Lily, but keep them in weapon swap to level rather than changing builds."},
+        {"act": 7, "level": 52, "text": "Continue Static Strike. Keep saving gold for the post-campaign respec and level Wrath, Grace, Haste, Flame Link, Smite, and Stormblast Mine offhand."},
+        {"act": 8, "level": 56, "text": "No campaign gem swap: upgrade weapon and defenses, maintain the level 28–65 tree, and let the carry handle pace-sensitive bosses."},
+        {"act": 9, "level": 60, "text": "Stage the Aurabot Swap sockets and gear now. Do not respec before the party can supply damage."},
+        {"act": 10, "level": 65, "text": "After Kitava, respec to the complete Aurabot Swap tree and sockets together: Flame Link, Smite, Wrath/Precision, Grace/Haste, Stormblast Mine, Vitality/Clarity, and Shield Charge."}
+      ]
+    },
+    {
+      "id": "allflame-banner-champion",
+      "label": "3.29 banner support — Champion",
+      "match": {
+        "class": "Duelist",
+        "ascendancy": "Champion",
+        "skill_sets": ["Early Game", "Midgame", "Endgame"],
+        "tree_specs": ["Early Game", "Midgame", "Endgame"],
+        "gems": ["Defiance Banner", "Autoexertion", "Rallying Cry", "Dread Banner"]
+      },
+      "sources": [
+        "https://poe.ninja/poe1/pob/92b13",
+        "https://mobalytics.gg/poe/builds/woolie-sunder-leveling"
+      ],
+      "warnings": [
+        "The source PoB is endgame-only: it has no campaign tree, campaign sockets, or leveling notes. The Sunder route below is a researched 3.29 bridge, not author-supplied.",
+        "The PoB's 'Early Game' tree already has 122 nodes, so it is not a level-68 swap tree. Keep enough damage to finish the campaign and perform the support respec only when the party can carry."
+      ],
+      "gem_checklist": [
+        {"act": 1, "level": 2, "action": "BUY", "when": "After Hillock (Nessa; not a Duelist quest choice)", "items": ["Ground Slam", "Ruthless"]},
+        {"act": 1, "level": 4, "action": "TAKE + BUY", "when": "After Hailrake/Mud Flats", "items": ["Chance to Bleed", "Frostblink", "Blood and Sand", "War Banner"], "instruction": "Take Chance to Bleed; buy level-1 Frostblink, Blood and Sand, and War Banner."},
+        {"act": 1, "level": 10, "action": "TAKE + BUY", "when": "After Brutus", "items": ["Leap Slam", "Faster Attacks", "Intimidating Cry", "Enduring Cry"], "instruction": "Take Leap Slam; buy Faster Attacks, Intimidating Cry, and Enduring Cry."},
+        {"act": 1, "level": 12, "action": "BUY + SWAP", "when": "Cavern of Wrath waypoint", "items": ["Sunder"]},
+        {"act": 2, "level": 16, "action": "TAKE + BUY", "when": "After Fidelitas/Weaver", "items": ["Herald of Ash", "Blood Rage", "Melee Physical Damage"], "instruction": "Take Herald of Ash after Fidelitas and Melee Physical Damage after Weaver; buy Blood Rage."},
+        {"act": 3, "level": 24, "action": "BUY", "when": "After Lost in Love", "items": ["Pride", "Vulnerability"]},
+        {"act": 4, "level": 38, "action": "TAKE", "when": "The Eternal Nightmare", "items": ["Fist of War"]},
+        {"act": 6, "level": 45, "action": "BUY + OFFHAND LEVEL", "when": "Lily Roth", "items": ["Defiance Banner", "Dread Banner", "Autoexertion", "Seismic Cry", "Ancestral Cry", "Rallying Cry", "General's Cry", "Purity of Elements", "Clarity"]},
+        {"act": 10, "level": 65, "action": "SWAP", "when": "After Kitava, only when Carry can clear", "items": ["Defiance Banner", "Dread Banner", "Autoexertion", "Intimidating Cry", "General's Cry", "Battlemage's Cry", "Seismic Cry", "Ancestral Cry", "Rallying Cry", "Enduring Cry"]}
+      ],
+      "item_guide": {
+        "summary": "Sunder lives or dies by physical DPS and a four-link; four red sockets add gem quality in 3.29 but any four-link is usable. Preserve support gear for the post-campaign transition.",
+        "always_pick": [
+          "Any linked 3-socket item in Act 1 or linked 4-socket item from Act 2 onward; matching red sockets are the premium +quality version.",
+          "Current two-handed axe bases and rare axes that meet the physical-DPS target.",
+          "Rustic Sashes in Acts 1–3 for the physical-weapon vendor recipe.",
+          "Armour/evasion pieces with life and enough elemental resistance to remain capped."
+        ],
+        "check": [
+          "Correct two-handed axe types near the target—attack speed can make a slightly lower tooltip weapon feel better.",
+          "Aurumvorax, Redblade Banner, Foulborn Uul-Netol's Kiss, Kaom's Sign, and Beacon of Madness for support progression.",
+          "Linked pieces for offhand support gems after Lily; blue/green matches add quality but are not required."
+        ],
+        "skip": [
+          "Caster weapons, bows, elemental-only weapons, and shields while still killing with Sunder.",
+          "The endgame banner/support sockets before Carry can replace all of your campaign damage.",
+          "Normal armour without a link improvement; never skip a better link solely because it lacks red sockets."
+        ],
+        "socket_targets": [
+          {"act_min": 1, "act_max": 1, "links": 3, "colors": {"R": 3}, "reason": "Ground Slam/Sunder 3-link with three matching red quality bonuses"},
+          {"act_min": 2, "act_max": 10, "links": 4, "colors": {"R": 4}, "reason": "Sunder 4-link with four matching red quality bonuses"}
+        ],
+        "weapon_rules": [
+          {"act_min": 1, "act_max": 10, "classes": ["Two Hand Axes"], "mods_any": ["increased Physical Damage", "Physical Damage", "increased Attack Speed"], "thresholds": [
+            {"act": 1, "metric": "physical", "min": 20},
+            {"act": 2, "metric": "physical", "min": 45},
+            {"act": 3, "metric": "physical", "min": 80},
+            {"act": 4, "metric": "physical", "min": 120},
+            {"act": 6, "metric": "physical", "min": 170},
+            {"act": 9, "metric": "physical", "min": 230}
+          ]}
+        ],
+        "keep_bases": [
+          {"act_min": 1, "act_max": 3, "names": ["Rustic Sash"], "verdict": "TAKE", "reason": "Use with a current 2H axe and whetstone for the physical weapon recipe"}
+        ],
+        "keep_uniques": {
+          "Aurumvorax": "Listed early support resistance weapon",
+          "Redblade Banner": "Listed support shield",
+          "Foulborn Uul-Netol's Kiss": "Listed support weapon",
+          "Kaom's Sign": "Listed early support ring",
+          "Beacon of Madness": "Listed support boots—keep for the planned setup"
+        }
+      },
+      "milestones": [
+        {"act": 1, "level": 2, "text": "After Hillock: Duelist cannot claim Ground Slam, so buy it from Nessa; replace the starter attack and use the best available 2H axe."},
+        {"act": 1, "level": 4, "text": "After Hailrake/Mud Flats: link Chance to Bleed and Ruthless as rewards/vendors allow; add level-1 Frostblink, Blood and Sand (Blood stance), and War Banner."},
+        {"act": 1, "level": 10, "text": "After Brutus: Leap Slam–Faster Attacks; add Intimidating Cry and Enduring Cry as sockets allow."},
+        {"act": 1, "level": 12, "text": "At Merveil's Cavern waypoint: replace Ground Slam with Sunder. End Act 1 on Sunder–Chance to Bleed–Ruthless."},
+        {"act": 2, "level": 16, "text": "Add Herald of Ash and Blood Rage if sustainable. Keep a mana flask and upgrade the 2H axe before adding luxury links."},
+        {"act": 2, "level": 18, "text": "Add Melee Physical Damage to Sunder when a 4-link appears; use Vulnerability/Intimidating Cry on bosses."},
+        {"act": 3, "level": 24, "text": "Use Pride only if mana remains comfortable; otherwise keep Herald of Ash. Weapon damage is the priority—essence/alch a current 2H axe."},
+        {"act": 3, "level": 28, "text": "Keep Sunder for both clear and bosses. Complete Normal Lab when comfortable, but do not attempt the final banner-support tree yet."},
+        {"act": 4, "level": 38, "text": "Use a 4-link such as Sunder–Melee Physical Damage–Ruthless–Fist of War. Keep Leap Slam/Frostblink and boss warcries."},
+        {"act": 5, "level": 41, "text": "Upgrade the 2H axe again and stack life/resistances. The endgame banner sockets provide no solo damage."},
+        {"act": 6, "level": 45, "text": "Re-cap resistances after Kitava. Buy and offhand-level the final support gems from Lily while continuing to kill with Sunder."},
+        {"act": 7, "level": 52, "text": "Complete Cruel Lab on the party's schedule. Stay Sunder until the carry can clear without your damage."},
+        {"act": 8, "level": 56, "text": "Maintain Sunder, current axe, movement, and warcries. Collect gold/regrets and the sockets needed for the support swap."},
+        {"act": 9, "level": 60, "text": "Prepare Defiance/Dread/War Banner, Autoexertion warcries, Purity of Elements, Clarity, and Enduring Cry in spare sockets."},
+        {"act": 10, "level": 65, "text": "Finish Kitava on Sunder. Afterward, respec with the party present; use the PoB's Early Game sockets first, but path toward its 122-node tree gradually."}
+      ]
+    },
+    {
+      "id": "allflame-drugger-pathfinder",
+      "label": "3.29 drugger support — Pathfinder",
+      "match": {
+        "class": "Ranger",
+        "ascendancy": "Pathfinder",
+        "skill_sets": ["Leveling", "Early Game/Swap", "Midgame"],
+        "tree_specs": ["Leveling (Lvl 1-32)", "Leveling (Lvl 33-46)", "Leveling (Lvl 46-67)"],
+        "gems": ["Galvanic Arrow", "Lightning Arrow", "Returning Projectiles", "Stormblast Mine"]
+      },
+      "sources": [
+        "https://pobb.in/7n_38SqAmipa",
+        "https://maxroll.gg/poe/build-guides/ranger-leveling-build-guide"
+      ],
+      "warnings": [
+        "The level ranges and gem links come directly from the PoB. Its written Notes only link Havoc616's Ranger guide, so vendor timing and campaign reminders are curated around those embedded stages.",
+        "Do not swap to the zero-damage support sockets until the party carry is ready."
+      ],
+      "gem_checklist": [
+        {"act": 1, "level": 1, "action": "START", "when": "Twilight Strand", "items": ["Galvanic Arrow"]},
+        {"act": 1, "level": 4, "action": "TAKE + BUY", "when": "After Hailrake/Mud Flats", "items": ["Mirage Archer", "Momentum", "Shrapnel Ballista", "Dash", "Sniper's Mark"], "instruction": "Take Mirage Archer; buy Momentum, Shrapnel Ballista, Dash, and Sniper's Mark."},
+        {"act": 1, "level": 8, "action": "BUY", "when": "After Brutus", "items": ["Arrow Nova", "Manaforged Arrows", "Blink Arrow", "Burning Arrow"]},
+        {"act": 1, "level": 12, "action": "TAKE + BUY + SWAP", "when": "Cavern of Wrath waypoint", "items": ["Lightning Arrow", "Multiple Projectiles", "Frenzy"], "instruction": "Take Lightning Arrow from The Siren's Cadence; buy Multiple Projectiles and Frenzy, then swap the main link."},
+        {"act": 2, "level": 16, "action": "BUY", "when": "After Fidelitas", "items": ["Herald of Ice"]},
+        {"act": 2, "level": 18, "action": "TAKE", "when": "After Weaver", "items": ["Trinity"], "instruction": "Take Trinity and level it; add it to Lightning Arrow at level 28 as specified by the PoB."},
+        {"act": 3, "level": 24, "action": "BUY", "when": "After Lost in Love", "items": ["Anger", "Haste"]},
+        {"act": 3, "level": 28, "action": "TAKE", "when": "After Gravicius", "items": ["Blast Rain"]},
+        {"act": 4, "level": 38, "action": "TAKE + BUY", "when": "After Malachai", "items": ["Returning Projectiles", "Tornado"], "instruction": "Take Returning Projectiles; buy Tornado."},
+        {"act": 6, "level": 46, "action": "BUY + OFFHAND LEVEL", "when": "Lily Roth", "items": ["Stormblast Mine", "Minefield", "High-Impact Mine", "Purity of Elements", "Vitality", "Enduring Cry", "Urgent Orders", "Intimidating Cry", "Battlemage's Cry", "Ancestral Cry"]},
+        {"act": 10, "level": 65, "action": "SWAP", "when": "After Kitava, only when Carry can clear", "items": ["Stormblast Mine", "Minefield", "High-Impact Mine", "Purity of Elements", "Vitality", "Enduring Cry", "Intimidating Cry", "Battlemage's Cry", "Ancestral Cry"]}
+      ],
+      "item_guide": {
+        "summary": "Lightning Arrow wants enough linked sockets and flat elemental bow damage; matching green sockets add quality in 3.29 but any link works. Collect warcry/support pieces separately for the post-campaign swap.",
+        "always_pick": [
+          "Any linked 3-socket item in Acts 1–2 and any linked 4-socket item from Act 3 onward; green sockets are the premium +quality version.",
+          "Bows that meet the elemental-DPS target or roll multiple useful flat elemental damage lines.",
+          "Quivers, rings, and amulets with flat elemental damage to attacks plus life/resistance.",
+          "Movement-speed boots and enough elemental resistance to remain capped."
+        ],
+        "check": [
+          "Any correct bow near the target—attack speed and multiple flat-element rolls matter more than physical DPS.",
+          "Redblade Banner, Al Dhih, Bloodgrip, Perquil's Toe, The Druggery, Coruscating Elixir, and The Sorrow of the Divine.",
+          "Linked pieces for the warcry and mine swap after Lily; red/blue matches add quality but are not required."
+        ],
+        "skip": [
+          "Melee and caster weapons, physical-only bows, and armour without useful links or defences.",
+          "Quivers/jewellery that have neither flat attack damage nor meaningful life/resistance.",
+          "The support swap before Carry can provide all clearing and boss damage."
+        ],
+        "socket_targets": [
+          {"act_min": 1, "act_max": 2, "links": 3, "colors": {"G": 3}, "reason": "Bow campaign 3-link with three matching green quality bonuses"},
+          {"act_min": 3, "act_max": 10, "links": 4, "colors": {"G": 4}, "reason": "Lightning Arrow 4-link with four matching green quality bonuses"}
+        ],
+        "weapon_rules": [
+          {"act_min": 1, "act_max": 10, "classes": ["Bows"], "mods_any": ["Fire Damage", "Cold Damage", "Lightning Damage", "increased Attack Speed", "increased Elemental Damage with Attack Skills"], "thresholds": [
+            {"act": 1, "metric": "elemental", "min": 15},
+            {"act": 2, "metric": "elemental", "min": 30},
+            {"act": 3, "metric": "elemental", "min": 60},
+            {"act": 4, "metric": "elemental", "min": 100},
+            {"act": 6, "metric": "elemental", "min": 160},
+            {"act": 9, "metric": "elemental", "min": 220}
+          ]}
+        ],
+        "keep_bases": [
+          {"act_min": 1, "act_max": 10, "classes": ["Quivers"], "verdict": "CHECK", "reason": "Compare flat elemental attack damage, life, and resistance"}
+        ],
+        "item_mod_rules": [
+          {"act_min": 1, "act_max": 10, "classes": ["Quivers", "Rings", "Amulets"], "mods_any": ["Adds", "increased Elemental Damage with Attack Skills"], "verdict": "TAKE", "reason": "Flat/elemental attack damage for Lightning Arrow"}
+        ],
+        "keep_uniques": {
+          "Redblade Banner": "Core listed support shield",
+          "Al Dhih": "Listed early support weapon",
+          "Bloodgrip": "Listed sustain amulet",
+          "Perquil's Toe": "Listed party-damage amulet",
+          "The Druggery": "Namesake core support belt",
+          "Coruscating Elixir": "Listed flask for the energy-shield transition",
+          "The Sorrow of the Divine": "Listed support flask"
+        }
+      },
+      "milestones": [
+        {"act": 1, "level": 2, "text": "Start Galvanic Arrow; add Mirage Archer and Momentum as rewards/vendors allow. Use the highest flat-elemental bow you find."},
+        {"act": 1, "level": 4, "text": "Add Shrapnel Ballista for bosses plus Dash/Blink Arrow movement. Keep Sniper's Mark for rares/bosses."},
+        {"act": 1, "level": 8, "text": "After Brutus: add Arrow Nova to Shrapnel Ballista when it becomes available; start the Manaforged gems if sockets allow."},
+        {"act": 1, "level": 12, "text": "Swap to Lightning Arrow–Multiple Projectiles–Mirage Archer. Add Manaforged Burning Arrow + Galvanic Arrow and Manaforged Frenzy as sockets allow."},
+        {"act": 2, "level": 16, "text": "Add Herald of Ice; keep Shrapnel Ballista for single target. Flat elemental damage on bow, quiver, and rings is the main upgrade."},
+        {"act": 2, "level": 18, "text": "Keep Lightning Arrow and both Manaforged triggers levelled; use Sniper's Mark on bosses and Frostblink/Blink Arrow to move."},
+        {"act": 3, "level": 24, "text": "Add Anger at level 24. If reservation makes attacks awkward, drop Herald of Ice before compromising attack uptime."},
+        {"act": 3, "level": 28, "text": "Add Trinity to Lightning Arrow. Replace the early Manaforged package with Blast Rain + Frenzy + Manaforged Arrows."},
+        {"act": 4, "level": 38, "text": "Final campaign link: Lightning Arrow–Mirage Archer–Trinity–Returning Projectiles. Add Tornado; use Haste for clear and Anger for bosses."},
+        {"act": 5, "level": 41, "text": "Stay on the level 33–46 tree and refresh the bow if damage falls off. Keep life and elemental resistances current."},
+        {"act": 6, "level": 46, "text": "Move to the level 46–67 tree and re-cap resistances after Kitava. Lily can supply any missing final support gems."},
+        {"act": 7, "level": 52, "text": "Keep the level-38 Lightning Arrow setup. Upgrade flat elemental bow/quiver/rings instead of changing skills."},
+        {"act": 8, "level": 56, "text": "Haste for zone travel, Anger for bosses; keep Tornado and Sniper's Mark available for single target."},
+        {"act": 9, "level": 60, "text": "Stage the Early Game/Swap gems and gear, but retain Lightning Arrow until the carry can replace your damage."},
+        {"act": 10, "level": 65, "text": "Finish Kitava on Lightning Arrow. Then swap tree + sockets together to Stormblast Mine, Purity of Elements/Vitality, and the warcry support package."}
+      ]
+    }
+  ]
+}

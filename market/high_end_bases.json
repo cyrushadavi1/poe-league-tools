@@ -1,0 +1,163 @@
+{
+  "source": "Official Path of Exile trade API stat catalog, checked 2026-07-23",
+  "templates": [
+    {
+      "id": "focused_amulet_i84",
+      "guide_id": "focused_plus4_amulet",
+      "label": "Focused Amulet ilvl84+",
+      "base_type": "Focused Amulet",
+      "ilvl_min": 84,
+      "stats": [],
+      "min_bankroll_div": 20,
+      "bankroll_fraction": 0.08,
+      "hard_cap_div": 12,
+      "review": "Confirm the base is uninfluenced and that the current +2 all-spell outcome value supports the base price."
+    },
+    {
+      "id": "helical_ring_i84",
+      "guide_id": "helical_attribute_ring",
+      "label": "Helical Ring ilvl84+",
+      "base_type": "Helical Ring",
+      "ilvl_min": 84,
+      "stats": [],
+      "min_bankroll_div": 15,
+      "bankroll_fraction": 0.06,
+      "hard_cap_div": 10,
+      "review": "Recheck which attribute and essence combination is selling before buying the base."
+    },
+    {
+      "id": "spine_bow_i86_fractured_plus2",
+      "guide_id": "plus2_arrow_spine_bow",
+      "label": "Spine Bow fractured +2 arrows",
+      "base_type": "Spine Bow",
+      "ilvl_min": 86,
+      "stats": [
+        {
+          "id": "fractured.stat_3885405204",
+          "value": {"min": 2}
+        }
+      ],
+      "min_bankroll_div": 40,
+      "bankroll_fraction": 0.15,
+      "hard_cap_div": 30,
+      "review": "Check quality and remaining affixes. Do not pay a premium for mods that make the planned continuation harder."
+    },
+    {
+      "id": "necrotic_i86_fractured_t1_suppress",
+      "guide_id": "t1_suppress_necrotic",
+      "label": "Necrotic Armour fractured 22 suppress",
+      "base_type": "Necrotic Armour",
+      "ilvl_min": 86,
+      "stats": [
+        {
+          "id": "fractured.stat_3680664274",
+          "value": {"min": 22}
+        }
+      ],
+      "min_bankroll_div": 25,
+      "bankroll_fraction": 0.1,
+      "hard_cap_div": 20,
+      "review": "Verify 22% suppression is the fractured modifier and inspect quality/base defences."
+    },
+    {
+      "id": "cluster_spell_12_fractured_35",
+      "guide_id": "fractured_35_large_cluster",
+      "label": "Spell cluster 12p fractured 35 effect",
+      "base_type": "Large Cluster Jewel",
+      "ilvl_min": 84,
+      "stats": [
+        {
+          "id": "enchant.stat_3086156145",
+          "value": {"min": 12, "max": 12}
+        },
+        {
+          "id": "enchant.stat_3948993189",
+          "value": {"option": 10}
+        },
+        {
+          "id": "fractured.stat_2618549697",
+          "value": {"min": 35}
+        }
+      ],
+      "min_bankroll_div": 30,
+      "bankroll_fraction": 0.12,
+      "hard_cap_div": 25,
+      "review": "Price fractured 35% alone, 35%+ES, and 35%+ES+Int outcomes separately."
+    },
+    {
+      "id": "cluster_minion_12_fractured_35",
+      "guide_id": "fractured_35_large_cluster",
+      "label": "Minion cluster 12p fractured 35 effect",
+      "base_type": "Large Cluster Jewel",
+      "ilvl_min": 84,
+      "stats": [
+        {
+          "id": "enchant.stat_3086156145",
+          "value": {"min": 12, "max": 12}
+        },
+        {
+          "id": "enchant.stat_3948993189",
+          "value": {"option": 17}
+        },
+        {
+          "id": "fractured.stat_2618549697",
+          "value": {"min": 35}
+        }
+      ],
+      "min_bankroll_div": 30,
+      "bankroll_fraction": 0.12,
+      "hard_cap_div": 25,
+      "review": "Confirm minion builds are paying for 3% attack/cast speed before finishing a batch."
+    },
+    {
+      "id": "cluster_bow_12_fractured_35",
+      "guide_id": "fractured_35_large_cluster",
+      "label": "Bow cluster 12p fractured 35 effect",
+      "base_type": "Large Cluster Jewel",
+      "ilvl_min": 84,
+      "stats": [
+        {
+          "id": "enchant.stat_3086156145",
+          "value": {"min": 12, "max": 12}
+        },
+        {
+          "id": "enchant.stat_3948993189",
+          "value": {"option": 4}
+        },
+        {
+          "id": "fractured.stat_2618549697",
+          "value": {"min": 35}
+        }
+      ],
+      "min_bankroll_div": 30,
+      "bankroll_fraction": 0.12,
+      "hard_cap_div": 25,
+      "review": "Check whether the current bow meta values 3% attack speed and which third stat defines the premium tier."
+    },
+    {
+      "id": "cluster_shield_12_fractured_35",
+      "guide_id": "fractured_35_large_cluster",
+      "label": "Shield cluster 12p fractured 35 effect",
+      "base_type": "Large Cluster Jewel",
+      "ilvl_min": 84,
+      "stats": [
+        {
+          "id": "enchant.stat_3086156145",
+          "value": {"min": 12, "max": 12}
+        },
+        {
+          "id": "enchant.stat_3948993189",
+          "value": {"option": 8}
+        },
+        {
+          "id": "fractured.stat_2618549697",
+          "value": {"min": 35}
+        }
+      ],
+      "min_bankroll_div": 30,
+      "bankroll_fraction": 0.12,
+      "hard_cap_div": 25,
+      "review": "Check 3% attack speed, Energy Shield, and Intelligence premiums before rerolling partial successes."
+    }
+  ]
+}

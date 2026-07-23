@@ -26,6 +26,7 @@ import sys
 
 from client_watcher import (ClientWatcher, last_area, last_known_level,
                             recent_zones)
+import narrator as narrator_mod
 from party_state import PartyState
 from route_engine import RouteEngine
 from run_tracker import RunTracker, xp_warning
@@ -129,7 +130,7 @@ def dispatch_events(events, engine, party, tracker=None):
     return ops
 
 
-def evaluate_clipboard_text(text, level, act, links_best=3):
+def evaluate_clipboard_text(text, level, act, links_best=3, build=None):
     """Clipboard text -> (verdict, item_name, reason), or None to ignore.
 
     Fast pure parse + rules only -- no LLM, no IO, safe on the Qt main
@@ -142,7 +143,7 @@ def evaluate_clipboard_text(text, level, act, links_best=3):
     if parsed is None:
         return None
     ctx = {"level": int(level), "act": int(act),
-           "links_best": int(links_best), "build": None}
+           "links_best": int(links_best), "build": build}
     verdict, reason = item_rules.evaluate(parsed, ctx)
     name = parsed.get("name") or parsed.get("base") or "item"
     return verdict, name, reason
@@ -286,9 +287,15 @@ def main():
                   "enable zone-layout images (optional)")
 
     bn = cfg.get("build_notes")
+    build_id = None
     if bn and os.path.exists(_resolve(bn)):
+        from build_notes import adapter_id, group_notes
         with open(_resolve(bn), encoding="utf-8") as f:
-            win.set_notes({int(x["act"]): x["text"] for x in json.load(f)})
+            raw_notes = json.load(f)
+        win.set_notes(group_notes(raw_notes))
+        build_id = adapter_id(raw_notes)
+        if build_id:
+            print(f"[items] build-specific pickup guide: {build_id}")
     elif bn:
         # Configured but missing must be loud: "my gem reminders never
         # showed up" is otherwise indistinguishable from working-as-set-up.
@@ -296,18 +303,83 @@ def main():
               "        gem reminders are OFF -- re-run setup_pc.bat or fix "
               "'build_notes' in overlay/config.json")
 
+    def change_build():
+        """Open the graphical PoB picker and apply it without a restart."""
+        nonlocal cfg, pc, party, build_id
+        try:
+            from tools import setup_gui, setup_profiles
+            preferred = cfg.get("party_bundle")
+            if preferred and not os.path.isabs(preferred):
+                preferred = os.path.join(
+                    os.path.dirname(os.path.abspath(args.config)), preferred)
+            bundle_path, bundle = setup_profiles.find_bundle(
+                os.path.dirname(HERE), preferred)
+            if not bundle:
+                win.flash("Build picker unavailable — run setup_pc.bat")
+                return
+            new_cfg = setup_gui.choose_and_save(
+                win, args.config, bundle_path, bundle,
+                include_client=False)
+            if not new_cfg:
+                return
+
+            new_bn = new_cfg.get("build_notes")
+            with open(_resolve(new_bn), encoding="utf-8") as f:
+                new_notes = json.load(f)
+            from build_notes import adapter_id, group_notes
+            win.set_notes(group_notes(new_notes))
+            build_id = adapter_id(new_notes)
+
+            old_level = party.my_level
+            pc = new_cfg.get("party") or {}
+            party = PartyState(me=pc.get("me", ""),
+                               members=pc.get("members", []),
+                               gap_warn=pc.get("gap_warn", 3))
+            party.my_level = old_level
+            cfg = new_cfg
+            win.set_party(party.status_line())
+            refresh()
+            selected = (new_cfg.get("selected_build") or {}).get(
+                "id", build_id or "build")
+            win.flash(f"✓ Build changed to {selected}")
+            print(f"[build] selected {selected}; pickup guide: {build_id}")
+        except Exception as exc:  # noqa: BLE001 -- setup must not kill overlay
+            print(f"[build] picker failed: {exc}")
+            win.flash("Build change failed — run choose_build.bat")
+
+    # -- spoken narration (reads the step aloud; see narrator.py) -----------
+    nar_cfg = cfg.get("narration") or {}
+    voice = None
+    if nar_cfg.get("enabled", False):
+        voice = narrator_mod.Narrator(rate=nar_cfg.get("rate", 0),
+                                      volume=nar_cfg.get("volume", 100))
+        app.aboutToQuit.connect(voice.shutdown)
+        _nhk = cfg.get("hotkeys", {})
+        print(f"[narration] ON -- {_nhk.get('narrate_repeat', 'F8')} repeats "
+              f"the step, {_nhk.get('narrate_toggle', 'F9')} mutes")
+
+    def narrate_step():
+        if voice is not None:
+            voice.say(narrator_mod.step_text(
+                engine.current(),
+                tips=nar_cfg.get("tips", True),
+                layout=nar_cfg.get("layout", True)))
+
     def refresh():
         win.show_step(engine.current(), engine.progress(), engine.peek())
 
     def on_next():
         engine.next()
         refresh()
+        narrate_step()
 
     def on_prev():
         engine.prev()
         refresh()
+        narrate_step()
 
     def tick():
+        step_before = engine.i
         for op in dispatch_events(watcher.poll(), engine, party, tracker):
             if op[0] == "refresh":
                 refresh()
@@ -315,10 +387,16 @@ def main():
                 win.set_level(op[1])
             elif op[0] == "flash":
                 win.flash(op[1])
+                if voice is not None:      # a death is worth hearing too
+                    voice.say(narrator_mod.clean(op[1]))
             elif op[0] == "party":
                 win.set_party(op[1])
             elif op[0] == "area" and panel is not None:
                 panel.set_area(op[1][0])
+        # Speak only on a real step advance (engine index moved) -- a
+        # level-up also emits ("refresh",) and must not re-read the card.
+        if engine.i != step_before:
+            narrate_step()
 
     timer = QTimer()
     timer.timeout.connect(tick)
@@ -373,7 +451,7 @@ def main():
                 res = evaluate_clipboard_text(
                     clip.text(), party.my_level,
                     (engine.current() or {}).get("act", 1),
-                    cfg.get("links_best", 3))
+                    cfg.get("links_best", 3), build=build_id)
                 if res:
                     win.show_item(*res)
             except Exception:  # noqa: BLE001 -- weird clipboards must not crash
@@ -386,9 +464,13 @@ def main():
         hk.get("prev", "F2"): on_prev,
         hk.get("next", "F3"): on_next,
         hk.get("toggle", "F4"): win.toggle_visible,
+        hk.get("choose_build", "F10"): change_build,
     }
     if panel is not None:
         bindings[hk.get("layouts", "F7")] = panel.toggle_visible
+    if voice is not None:
+        bindings[hk.get("narrate_repeat", "F8")] = narrate_step
+        bindings[hk.get("narrate_toggle", "F9")] = voice.toggle
 
     def clickthrough_all():
         # one hotkey flips the card AND the layouts panel: a half-solid
@@ -408,6 +490,7 @@ def main():
     hotkeys.install(app, win, bindings)
 
     refresh()
+    narrate_step()      # speaking the opening step confirms audio works
     win.set_party(party.status_line())
     if client_missing:
         # A double-click launch may never read the console; park the

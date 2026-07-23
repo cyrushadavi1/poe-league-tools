@@ -1,7 +1,7 @@
 {
   "members": [
-    {"player": "YourCharName",   "me": true, "pob": "PASTE_POB_CODE_OR_FILE_PATH"},
-    {"player": "Friend1CharName",            "pob": "PASTE_POB_CODE_OR_FILE_PATH"},
-    {"player": "Friend2CharName",            "pob": "PASTE_POB_CODE_OR_FILE_PATH"}
+    {"player": "YourCharName",   "me": true, "pob": "PASTE_POB_CODE_LINK_OR_FILE"},
+    {"player": "Friend1CharName",            "pob": "PASTE_POB_CODE_LINK_OR_FILE"},
+    {"player": "Friend2CharName",            "pob": "PASTE_POB_CODE_LINK_OR_FILE"}
   ]
 }

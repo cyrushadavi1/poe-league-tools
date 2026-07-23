@@ -308,3 +308,32 @@ DECISIONS.md convention). Newest at the bottom.
    re-verify poe.ninja endpoints and `tools/meta.py` protobuf schema, and
    rerun `tools/refresh_repoe.py` once the fork publishes 3.29 data (check
    the version line the tool prints).
+
+## 2026-07-21 spoken narration (overlay)
+
+- **Narration is TTS over existing Client.txt data — no screenshots.**
+  "Recognize the area and say what to do" needs nothing visual: the zone
+  line in Client.txt + the route step the engine is already on IS the
+  area recognition. `overlay/narrator.py` speaks the step (zone, do-list,
+  layout hint, tip) on every real step advance, on F2/F3, and at startup;
+  deaths are announced too. ToS posture unchanged (invariant 1).
+- **Voices: OS-built-in only** (invariant 2 — no new deps). Windows: one
+  persistent PowerShell child running System.Speech (per-utterance spawn
+  costs ~1 s; the child loops on stdin and echoes `##DONE##` after each
+  utterance). macOS dev: `say`. Elsewhere: silent no-op.
+- **Latest-wins, interrupting:** a daemon worker thread + single pending
+  slot; zoning again drops the stale step and kills the in-flight
+  utterance (the voice must never narrate a zone you already left).
+  Nothing blocks the poll path (invariant 5).
+- **Step-advance detection stays out of `dispatch_events`:** its op list
+  is a pinned contract (test_integration asserts exact ops); the tick
+  compares `engine.i` before/after instead — also naturally skips the
+  level-up `("refresh",)` which must not re-read the card.
+- Off by default (`narration.enabled` in overlay/config.json); F8 repeat,
+  F9 mute. Flip-on instructions for the beginner in START_HERE_EASY.md.
+- **Deferred: periodic-screenshot LLM coaching.** Rejected for now:
+  screen capture needs a non-stdlib dep (mss/Pillow), breaks the "reads
+  Client.txt only" one-liner we tell friends, costs real money on a
+  timer, and ~everything a screenshot shows (zone, level, deaths, gear
+  via Ctrl+C) is already available as text. If coaching is wanted, build
+  it as an on-demand hotkey using text state via `llm.client` first.

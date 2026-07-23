@@ -1,16 +1,23 @@
 #!/usr/bin/env python3
-"""Party build manager: turn 2-3 PoB codes into per-player leveling kits.
+"""Party build manager: turn 2-6 PoB codes into per-player leveling kits.
 
 Usage:
-  python party.py <party.json> [--out-dir builds]
+  python party.py --init [party.json]         # interactive setup (start here)
+  python party.py [party.json] [--out-dir builds]
 
-party.json -- paste each member's PoB code (or a path to a file holding
-one); mark your own character with "me": true:
+--init asks for each member's name and PoB -- paste a pobb.in /
+pastebin / poe.ninja / maxroll link or the raw code; each paste is
+downloaded and decoded on the spot so typos surface immediately -- then
+writes party.json and generates everything in one go.
+
+Hand-editing party.json still works ("pob" takes a code, a build link,
+or a path to a file holding either); mark your own character with
+"me": true:
 
   {
     "members": [
-      {"player": "CyrusChar", "pob": "<code or file>", "me": true},
-      {"player": "FriendChar", "pob": "<code or file>"}
+      {"player": "CyrusChar", "pob": "<code, link, or file>", "me": true},
+      {"player": "FriendChar", "pob": "<code, link, or file>"}
     ]
   }
 
@@ -31,8 +38,9 @@ import os
 import re
 
 import pob
+import sources
 
-MAX_PARTY = 3
+MAX_PARTY = 6
 OVERLAY_DIR = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "overlay")
 
@@ -55,12 +63,20 @@ def build_member(member, out_dir):
     with open(notes_path, "w", encoding="utf-8") as f:
         json.dump(notes, f, indent=2)
 
+    notes_by_act = {}
+    for note in notes:
+        level = f"@{note['level']} " if "level" in note else ""
+        notes_by_act.setdefault(note["act"], []).append(level + note["text"])
+
     return {
         "player": player,
+        "role": member.get("role") or "",
+        "pob": member.get("source") or member.get("pob") or "",
         "me": bool(member.get("me")),
         "class": info["class"],
         "ascendancy": info["ascendancy"],
-        "notes": {n["act"]: n["text"] for n in notes},
+        "notes": {act: "<br>".join(rows)
+                  for act, rows in notes_by_act.items()},
         "uniques": [it for it in pob.extract_items(root)
                     if (it.get("rarity") or "").upper() in ("UNIQUE", "RELIC")],
         "plan_path": plan_path,
@@ -118,6 +134,8 @@ def write_bundle(members, path, league="3.29"):
         "league": league,
         "members": [{
             "player": m["player"],
+            "role": m.get("role") or "",
+            "pob": m.get("pob") or "",
             "me": m["me"],
             "class": m["class"],
             "ascendancy": m["ascendancy"],
@@ -131,15 +149,86 @@ def write_bundle(members, path, league="3.29"):
     return bundle
 
 
+def wizard(path, ask=input, say=print, fetch=None):
+    """Interactive party.json builder: name + PoB link/code per member,
+    every paste resolved and decoded on the spot so a dead link or
+    mangled code is caught while the person who sent it is still on
+    Discord. Writes `path` and returns the manifest dict.
+
+    party.json stores the RESOLVED code (plus the original link as
+    "source" for provenance), so re-running generation later needs no
+    network and survives an expired paste.
+    """
+    if os.path.exists(path):
+        if ask(f"{path} exists — overwrite? [y/N] ").strip().lower() != "y":
+            raise SystemExit("keeping existing file; run without --init "
+                             "to generate from it")
+    say("Party setup — for each member paste a build link (pobb.in, "
+        "pastebin, poe.ninja, maxroll ...) or the PoB code itself.")
+    members = []
+    while True:
+        player = ask(f"\nPlayer {len(members) + 1} character name"
+                     f"{' (blank = done)' if members else ''}: ").strip()
+        if not player:
+            if members:
+                break
+            say("  need at least one member")
+            continue
+        while True:
+            pasted = ask(f"  {player}'s PoB link or code: ").strip()
+            if not pasted:
+                say("  nothing pasted — try again")
+                continue
+            if sources.is_url(pasted):
+                say("  fetching (can take ~30s if the paste site is "
+                    "having a moment) ...")
+            try:
+                code = sources.resolve(pasted, fetch=fetch)
+                info = pob.build_info(pob.decode(code))
+            except (sources.SourceError, *pob.DECODE_ERRORS) as e:
+                say(f"  !! {e}")
+                continue
+            break
+        asc = f" ({info['ascendancy']})" if info["ascendancy"] else ""
+        say(f"  ok: {info['class']}{asc}, level {info['level']}")
+        member = {"player": player, "pob": code}
+        if pasted != code:
+            member["source"] = pasted
+        members.append(member)
+
+    me = ask(f"\nWhich one is you? [{members[0]['player']}] ").strip().lower()
+    idx = next((i for i, m in enumerate(members)
+                if m["player"].lower() == me), 0)
+    members[idx]["me"] = True
+
+    manifest = {"members": members}
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
+        f.write("\n")
+    say(f"\nwrote {path}")
+    return manifest
+
+
 def main():
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("manifest", help="party.json (see module docstring)")
+    ap.add_argument("manifest", nargs="?", default="party.json",
+                    help="party.json (default: ./party.json)")
+    ap.add_argument("--init", action="store_true",
+                    help="build the manifest interactively, then generate")
     ap.add_argument("--out-dir", default="builds")
     a = ap.parse_args()
 
-    with open(a.manifest, encoding="utf-8") as f:
-        manifest = json.load(f)
+    if a.init:
+        manifest = wizard(a.manifest)
+    else:
+        try:
+            with open(a.manifest, encoding="utf-8") as f:
+                manifest = json.load(f)
+        except FileNotFoundError:
+            raise SystemExit(f"{a.manifest} not found — run "
+                             f"`python {ap.prog} --init` to create it "
+                             "interactively")
     members_cfg = manifest["members"]
     if not members_cfg:
         raise SystemExit("party.json has no members")
@@ -147,7 +236,15 @@ def main():
         print(f"!! {len(members_cfg)} members; tooling is tuned for 2-{MAX_PARTY}")
 
     os.makedirs(a.out_dir, exist_ok=True)
-    members = [build_member(m, a.out_dir) for m in members_cfg]
+    members = []
+    for m in members_cfg:
+        try:
+            members.append(build_member(m, a.out_dir))
+        except sources.SourceError as e:
+            raise SystemExit(f"{m.get('player', '?')}: {e}")
+        except pob.DECODE_ERRORS as e:
+            raise SystemExit(f"{m.get('player', '?')}: bad PoB code/link "
+                             f"({e}) — fix their entry in {a.manifest}")
 
     sum_path = os.path.join(a.out_dir, "party_summary.md")
     with open(sum_path, "w", encoding="utf-8") as f:

@@ -292,16 +292,22 @@ ET.SubElement(bad_build, "Build", {"level": "", "className": "Witch"})
 assert pob.build_info(bad_build)["level"] == 1
 assert pob.build_info(pob.decode(pob.encode(bad_build)))["level"] == 1
 
-# garbage input (e.g. a pobb.in URL) exits with a hint, not a traceback
+# garbage input exits with a hint, not a traceback; an unrecognized URL
+# exits naming the supported link sites (no network touched — recognized
+# hosts like pobb.in are fetched, which tests/test_pob_sources.py covers
+# with an injected fetch)
 _old_argv = sys.argv
-sys.argv = ["pob.py", "decode", "https://pobb.in/abc123XYZ"]
-try:
-    pob.main()
-    raise AssertionError("URL input must exit with a hint")
-except SystemExit as e:
-    assert "could not decode PoB code" in str(e) and "URL" in str(e)
-finally:
-    sys.argv = _old_argv
+for _argv, _want in [
+        (["pob.py", "decode", "not!a!code"], "could not decode PoB code"),
+        (["pob.py", "decode", "https://example.com/abc123XYZ"], "pobb.in")]:
+    sys.argv = _argv
+    try:
+        pob.main()
+        raise AssertionError("bad input must exit with a hint")
+    except SystemExit as e:
+        assert _want in str(e), f"{_argv[-1]}: hint missing from {e}"
+    finally:
+        sys.argv = _old_argv
 
 # ---------------------------------------------------------- party builds
 tmp = tempfile.mkdtemp(prefix="poe_party_test_")

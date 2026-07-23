@@ -51,7 +51,8 @@ DEFAULT_CONFIG = {
     "layouts": {"enabled": True, "auto_show": True, "dir": "assets/layouts"},
     "party": {"me": "", "members": [], "gap_warn": 3},
     "hotkeys": {"prev": "F2", "next": "F3", "toggle": "F4",
-                "clickthrough": "F6", "layouts": "F7"},
+                "clickthrough": "F6", "layouts": "F7",
+                "choose_build": "F10"},
 }
 
 

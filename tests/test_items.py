@@ -25,6 +25,8 @@ assert boots["name"] == "Gale Trail" and boots["base"] == "Velvet Slippers"
 assert boots["ilvl"] == 33 and boots["req_level"] == 22
 assert boots["quality"] == 12
 assert boots["sockets"] == 4 and boots["links"] == 3, "B-B-R G -> 4 sockets, 3 linked"
+assert boots["socket_colors"] == {"R": 1, "G": 1, "B": 2, "W": 0, "A": 0}
+assert boots["link_groups"] == ["BBR", "G"]
 assert boots["mods"] == [
     "+42 to maximum Life",
     "+35% to Fire Resistance",
@@ -43,6 +45,7 @@ assert wand["name"] == "Frosted Driftwood Wand of Shining"
 assert wand["base"] == wand["name"], "magic names aren't split into a base"
 assert wand["ilvl"] == 7 and wand["req_level"] == 5
 assert wand["sockets"] == 2 and wand["links"] == 2
+assert wand["weapon_dps"]["physical"] == 9.8
 assert wand["mods"] == ["11% increased Spell Damage",       # (implicit) stripped
                         "Adds 1 to 3 Cold Damage",
                         "5% increased Light Radius"]
@@ -56,6 +59,7 @@ assert chest["name"] == "Superior Shabby Jerkin"
 assert chest["base"] == "Shabby Jerkin", "'Superior ' prefix stripped from base"
 assert chest["quality"] == 8
 assert chest["sockets"] == 4 and chest["links"] == 4
+assert chest["link_groups"] == ["GGGB"]
 assert chest["mods"] == [] and chest["props"]["life"] == 0
 
 # ---------------------------------------------------------- parser: unique
@@ -190,12 +194,16 @@ CTX = {"level": 20, "act": 3, "links_best": 3, "build": None}
 
 
 def synth(item_class="Rings", rarity="Rare", life=0, ms=0, res=None,
-          links=0, sockets=0):
+          links=0, sockets=0, name="T", mods=None, groups=None, pdps=0,
+          edps=0):
     r = {"fire": 0, "cold": 0, "lightning": 0, "chaos": 0}
     r.update(res or {})
-    return {"item_class": item_class, "rarity": rarity, "name": "T",
+    return {"item_class": item_class, "rarity": rarity, "name": name,
             "base": "T", "ilvl": 30, "sockets": sockets, "links": links,
-            "mods": [], "props": {"life": life, "movespeed": ms, "res": r}}
+            "mods": mods or [], "link_groups": groups or [],
+            "weapon_dps": {"physical": pdps, "elemental": edps,
+                           "total": pdps + edps},
+            "props": {"life": life, "movespeed": ms, "res": r}}
 
 
 # every verdict is one of the enum values with a non-empty reason
@@ -291,6 +299,55 @@ assert evaluate(gem, CTX)[0] == CHECK
 assert evaluate(wand, {**CTX, "act": 2})[0] == CHECK
 assert evaluate(wand, {**CTX, "act": 6})[0] == SKIP
 assert evaluate(amu, CTX)[0] == TAKE
+
+# ---------------------------------------- matched-build pickup profiles
+profiles = item_rules.load_build_profiles()
+assert set(profiles) == {
+    "allflame-carry-inquisitor", "allflame-aurabot-ascendant",
+    "allflame-banner-champion", "allflame-drugger-pathfinder",
+}
+
+carry_ctx = {**CTX, "build": "allflame-carry-inquisitor"}
+banner_ctx = {**CTX, "act": 3, "links_best": 4,
+              "build": "allflame-banner-champion"}
+drugger_ctx = {**CTX, "act": 3, "links_best": 4,
+               "build": "allflame-drugger-pathfinder"}
+
+assert evaluate(synth(rarity="Gem", name="Armageddon Brand"),
+                carry_ctx)[0] == TAKE
+assert evaluate(synth(rarity="Gem", name="Frostbolt"),
+                carry_ctx)[0] == SKIP
+assert evaluate(synth(rarity="Normal", item_class="Body Armours",
+                      links=4, groups=["RRRR"]), banner_ctx)[0] == TAKE
+v, reason = evaluate(synth(rarity="Normal", item_class="Body Armours",
+                           links=5, groups=["GGGGG"]), banner_ctx)
+assert v == TAKE and "every gem fits every socket colour" in reason
+assert evaluate(synth(rarity="Normal", item_class="Body Armours",
+                      links=4, groups=["RRRR"]), drugger_ctx)[0] == SKIP, \
+    "off-colour tie is usable but not a pickup upgrade"
+assert evaluate(synth(rarity="Normal", item_class="Body Armours",
+                      links=4, groups=["RRRR"]),
+                {**drugger_ctx, "links_best": 3})[0] == TAKE, \
+    "off-colour link upgrades remain fully usable in 3.29"
+assert evaluate(synth(rarity="Normal", item_class="Body Armours",
+                      links=4, groups=["WWWW"]), banner_ctx)[0] == SKIP, \
+    "white sockets work but do not earn the matching-colour quality bonus"
+assert evaluate(synth(item_class="Bows", edps=200), banner_ctx)[0] == SKIP
+assert evaluate(synth(item_class="Two Hand Axes", pdps=90),
+                banner_ctx)[0] == TAKE
+assert evaluate(synth(item_class="Two Hand Axes", pdps=40),
+                banner_ctx)[0] == SKIP
+assert evaluate(synth(item_class="Bows", edps=70),
+                drugger_ctx)[0] == TAKE
+assert evaluate(synth(item_class="Quivers",
+                      mods=["Adds 3 to 40 Lightning Damage to Attacks"]),
+                drugger_ctx)[0] == TAKE
+assert evaluate(synth(rarity="Gem", name="Returning Projectiles Support"),
+                drugger_ctx)[0] == TAKE, "' Support' suffix is normalized"
+assert evaluate(synth(rarity="Normal", item_class="Sceptres",
+                      name="Goat's Horn"), carry_ctx)[0] == TAKE
+assert evaluate(synth(rarity="Unique", name="Ghostwrithe"),
+                carry_ctx)[0] == TAKE
 
 print("ALL TESTS PASSED")
 print(f"  parsed {len(os.listdir(FIX))} fixtures; "

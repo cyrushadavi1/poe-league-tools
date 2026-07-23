@@ -1,0 +1,261 @@
+{
+  "source": "League Start Wealth Plan: A Guide for Profit Crafting & Investing (3.29 Update), cross-checked against the official 3.29 patch notes and the July 23 strategy/corruption video review",
+  "guardrails": [
+    "Crafting is passive income, not a replacement for atlas progression or playing the game.",
+    "Verify the live input cost, realistic sale price, and sale depth before committing currency.",
+    "Keep a liquid reserve; never lock the entire bankroll into crafts or appreciating assets.",
+    "Set the acceptable outcome and stop-loss before the first craft or flip.",
+    "Prefer several sellable good items over one perfect item during the first week.",
+    "Every listing, whisper, purchase, sale, vendor trade, and craft is performed manually.",
+    "Plan the atlas strategy and build together: clear speed, damage projection, boss damage, recovery, and movement speed determine which market inputs you can produce efficiently."
+  ],
+  "stages": [
+    {
+      "id": "launch",
+      "from_day": 0,
+      "to_day": 2,
+      "goal": "Rush atlas completion while building a broad inventory of affordable life, resistance, movement-speed, and build-enabling items."
+    },
+    {
+      "id": "transition",
+      "from_day": 3,
+      "to_day": 7,
+      "goal": "Rotate out of generic rares and into meta-targeted crafts, cluster jewels, and repeatable low-capital arbitrage."
+    },
+    {
+      "id": "scaling",
+      "from_day": 8,
+      "to_day": 14,
+      "goal": "Scale proven crafts, bulk flips, and appreciating positions without sacrificing liquidity."
+    },
+    {
+      "id": "mature",
+      "from_day": 15,
+      "to_day": 9999,
+      "goal": "Concentrate only in proven high-margin crafts, scarce assets, and bulk markets with demonstrated sale depth."
+    }
+  ],
+  "strategies": [
+    {
+      "id": "walmart_rares",
+      "name": "Identify and list useful rare drops",
+      "category": "craft_inventory",
+      "windows": ["launch"],
+      "min_capital_c": 0,
+      "risk": "low",
+      "effort": "medium",
+      "priority": 1,
+      "action": "Identify and price life, resistance, attribute, movement-speed, and open-affix rares instead of vendoring everything.",
+      "verify": "Compare against realistic similar listings and price to sell, not against a single optimistic listing.",
+      "stop_loss": "Vendor or reprice stale generic rares as the market moves past them."
+    },
+    {
+      "id": "rog_inventory",
+      "name": "Build early inventory with Rog",
+      "category": "craft_inventory",
+      "windows": ["launch", "transition"],
+      "min_capital_c": 0,
+      "risk": "low",
+      "effort": "medium",
+      "priority": 1,
+      "action": "Use Rog to produce many decent armour pieces and life/resistance jewellery; accept good outcomes rather than chasing perfection.",
+      "verify": "Prioritize weak or high-demand slots and confirm the resulting item has a realistic buyer.",
+      "stop_loss": "Stop upgrading once the item is broadly sellable; do not turn a good item into a lottery ticket."
+    },
+    {
+      "id": "basic_essence_gear",
+      "name": "Essence life/resistance gear",
+      "category": "craft_inventory",
+      "windows": ["launch", "transition"],
+      "min_capital_c": 20,
+      "risk": "low",
+      "effort": "medium",
+      "priority": 2,
+      "action": "Use screaming or better essences on appropriate bases to make boots, armour, belts, and jewellery with life plus resistances.",
+      "verify": "Check base level, open affixes, essence price, and the current price of a merely good result.",
+      "stop_loss": "Aim for a sellable combination, then list it; do not spend premium essences forcing perfect suffixes."
+    },
+    {
+      "id": "cluster_jewels",
+      "name": "Meta cluster-jewel inventory",
+      "category": "targeted_craft",
+      "windows": ["launch", "transition", "scaling"],
+      "min_capital_c": 50,
+      "risk": "medium",
+      "effort": "medium",
+      "priority": 2,
+      "action": "Craft cluster bases required by rising ladder builds, selling acceptable two- and three-notable outcomes instead of one exact jewel only.",
+      "verify": "Confirm the base type, item level, passive count, desired notables, input cost, and recent sale depth.",
+      "stop_loss": "Pivot or sell partial successes when the meta or fossil/Harvest cost changes."
+    },
+    {
+      "id": "gem_leveling",
+      "name": "Level high-demand gems in weapon swap",
+      "category": "craft_inventory",
+      "windows": ["launch", "transition", "scaling", "mature"],
+      "min_capital_c": 30,
+      "risk": "low",
+      "effort": "low",
+      "priority": 3,
+      "action": "Fill spare weapon-swap sockets with currently valuable gems, then sell leveled gems or manually corrupt selected ones.",
+      "verify": "Use current gem prices and avoid gems whose quality cost erases the margin.",
+      "stop_loss": "Rotate gems when their leveled premium falls below the opportunity cost of the sockets."
+    },
+    {
+      "id": "vendor_recipe_arbitrage",
+      "name": "Vendor-recipe arbitrage",
+      "category": "arbitrage",
+      "windows": ["launch", "transition", "scaling", "mature"],
+      "min_capital_c": 75,
+      "risk": "low",
+      "effort": "medium",
+      "priority": 2,
+      "action": "Compare component costs with outputs such as The Taming, Kingmaker, The Anima Stone, Combat Focus jewels, or Lost Unity before assembling manually.",
+      "verify": "Require a margin after all components, travel time, slow buys, and realistic output sale price.",
+      "stop_loss": "Do not buy components until the entire recipe is profitable and the output has sale depth."
+    },
+    {
+      "id": "scarab_vendor",
+      "name": "Cheap-scarab three-to-one vendoring",
+      "category": "arbitrage",
+      "windows": ["transition", "scaling", "mature"],
+      "min_capital_c": 100,
+      "risk": "medium",
+      "effort": "high",
+      "priority": 4,
+      "action": "Slow-buy very cheap scarabs and manually vendor three of a kind for a randomized scarab when the pool has enough valuable outcomes.",
+      "verify": "Estimate expected value from the current scarab pool and haircut heavily for variance and acquisition time.",
+      "stop_loss": "Use a fixed batch budget; stop when the realized return or acquisition rate misses the target."
+    },
+    {
+      "id": "harvest_reroll_arbitrage",
+      "name": "Harvest commodity rerolls",
+      "category": "arbitrage",
+      "windows": ["transition", "scaling", "mature"],
+      "min_capital_c": 150,
+      "risk": "medium",
+      "effort": "medium",
+      "priority": 3,
+      "action": "Reroll catalysts, essences, fossils, or delirium orbs only when the live ratio between cheap inputs, lifeforce, and valuable outputs is favorable.",
+      "verify": "Double-check third-party calculators against live prices and include lifeforce plus failed-output liquidation.",
+      "stop_loss": "Set a batch size and stop when the observed output mix falls below the required margin."
+    },
+    {
+      "id": "tattoo_runegraft_vendor",
+      "name": "Tattoo or runegraft vendoring",
+      "category": "arbitrage",
+      "windows": ["transition", "scaling", "mature"],
+      "min_capital_c": 150,
+      "risk": "medium",
+      "effort": "high",
+      "priority": 5,
+      "action": "Slow-buy low-cost tattoos of the same tribe or cheap runegrafts and manually vendor three-to-one when valuable outcomes support the expected value.",
+      "verify": "Tribe matters for tattoos; calculate the current output pool and discount for slow acquisition.",
+      "stop_loss": "Cap each batch and liquidate remaining inputs if pool values decline."
+    },
+    {
+      "id": "six_linking",
+      "name": "Six-link popular unique chests",
+      "category": "targeted_craft",
+      "windows": ["transition", "scaling", "mature"],
+      "min_capital_c": 250,
+      "risk": "high",
+      "effort": "medium",
+      "priority": 4,
+      "action": "Link popular unique body armours with deterministic options when available or tainted fusings when the expected margin supports the variance.",
+      "verify": "Check the unlinked input, six-linked output, linking-material cost, corrupt state, socket colours, and sale depth.",
+      "stop_loss": "Hold enough reserve to survive bad RNG; never fund a variance craft with the whole bankroll."
+    },
+    {
+      "id": "meta_targeted_crafts",
+      "name": "Craft for current ladder builds",
+      "category": "targeted_craft",
+      "windows": ["transition", "scaling", "mature"],
+      "min_capital_c": 300,
+      "risk": "medium",
+      "effort": "medium",
+      "priority": 1,
+      "action": "Use current ladder data to identify repeated rare slots, bases, fractures, and cluster setups, then craft several versions for those builds.",
+      "verify": "Confirm adoption is rising, the slot is not dominated by a unique, and comparable items actually sell.",
+      "stop_loss": "Rotate inventory when build share or completed-item prices fall; do not keep crafting yesterday's meta."
+    },
+    {
+      "id": "incursion_corruption_supply",
+      "name": "Generate or trade double-corruption temples",
+      "category": "craft_inventory",
+      "windows": ["launch", "transition", "scaling"],
+      "min_capital_c": 50,
+      "risk": "medium",
+      "effort": "medium",
+      "priority": 2,
+      "action": "Generate Locus of Corruption temples with Alva and sell the temple or reserve a small, separately costed share for proven corruption targets. The 3.29 corruption pool is much stronger while non-unique Synthesised bases were removed.",
+      "verify": "Compare the live temple price, maps per temple, Incursion Scarab of Timelines price, and the expected value of consuming the chamber before deciding to sell or use it.",
+      "stop_loss": "Default to selling the temple until a specific corruption target has enough outcome value and sale depth to beat the guaranteed temple sale."
+    },
+    {
+      "id": "329_corruption_batches",
+      "name": "3.29 premium corruption batches",
+      "category": "targeted_craft",
+      "windows": ["transition", "scaling", "mature"],
+      "min_capital_c": 600,
+      "risk": "high",
+      "effort": "medium",
+      "priority": 2,
+      "action": "Run small manual batches of liquid rings, amulets, boots, shields, or caster weapons whose 3.29 corruption pool has several premium outcomes: maximum charges, aura reservation/effect, action speed, maximum resistances, gem levels, cast speed, or explode.",
+      "verify": "Price the uncorrupted input, ordinary corrupted brick, each relevant implicit, double-corruption access, and real sale depth. Treat Grey Spire and Stasis Prison implicit-magnitude projects as separate extreme-risk markets.",
+      "stop_loss": "Prove the market with a small fixed batch. Stop if brick liquidation or observed hit value misses the predeclared expected value; never keep corrupting to recover prior losses."
+    },
+    {
+      "id": "medium_bulk_flips",
+      "name": "Medium-value bulk flipping",
+      "category": "flipping",
+      "windows": ["transition", "scaling", "mature"],
+      "min_capital_c": 500,
+      "risk": "medium",
+      "effort": "medium",
+      "priority": 3,
+      "action": "Accumulate limited-supply crafting materials such as premium chisels, conflict currency, or other frequently bulk-bought inputs and sell at a bulk premium.",
+      "verify": "Require stable demand, adequate daily volume, and a spread that survives repricing and time-to-fill.",
+      "stop_loss": "Do not corner thin markets; exit if the restock rate or demand invalidates the spread."
+    },
+    {
+      "id": "appreciating_assets",
+      "name": "Staged appreciating-asset positions",
+      "category": "investment",
+      "windows": ["launch", "transition", "scaling"],
+      "min_capital_c": 500,
+      "risk": "medium",
+      "effort": "low",
+      "priority": 4,
+      "action": "Build partial positions in scarce, broadly demanded assets ahead of common day-3, day-7, and week-2 demand waves.",
+      "verify": "Demand must be broad, supply constrained, and the thesis tied to current mechanics or builds rather than price momentum alone.",
+      "stop_loss": "Scale in rather than buying at once; keep liquid currency and define both a review date and invalidation condition."
+    },
+    {
+      "id": "influence_reroll",
+      "name": "Influence-base reroll arbitrage",
+      "category": "targeted_craft",
+      "windows": ["scaling", "mature"],
+      "min_capital_c": 600,
+      "risk": "high",
+      "effort": "medium",
+      "priority": 5,
+      "action": "Create or buy influenced high-demand bases and Harvest-reroll influence toward the currently valuable influence.",
+      "verify": "Check base value by influence, influence-currency cost, Harvest cost, and the chance of being left with a slow-selling base.",
+      "stop_loss": "Only reroll batches whose worst acceptable influence can be liquidated without threatening the reserve."
+    },
+    {
+      "id": "high_end_flips",
+      "name": "High-end currency and scarce-asset flipping",
+      "category": "flipping",
+      "windows": ["scaling", "mature"],
+      "min_capital_c": 3000,
+      "risk": "high",
+      "effort": "low",
+      "priority": 6,
+      "action": "Trade locks, mirror shards, mists, or similarly scarce assets only after the bankroll can absorb long holds and wide price moves.",
+      "verify": "Use multiple real listings, recent trade direction, and realistic sale time; reject obvious price-fixing bands.",
+      "stop_loss": "Size every position so a balance change or liquidity freeze cannot strand the operating bankroll."
+    }
+  ]
+}

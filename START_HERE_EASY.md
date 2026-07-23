@@ -13,12 +13,11 @@ game writes — same as every popular leveling tracker), and it
 
 **Step 1.** Open this folder and double-click **`setup_pc.bat`**.
 
-- A black window opens and asks a couple of questions.
-- For each question, the answer it suggests is fine — just press
-  **Enter**.
-- When it shows a list of characters, type the number next to
-  **your** name and press **Enter**.
-- When the window says it's done, close it.
+- A setup window opens with a **Build / PoB** dropdown.
+- Pick **Carry**, **Aurabot**, **Banner**, or **Drugger**.
+- Type your exact Path of Exile character name.
+- The Client.txt box is usually filled automatically. Click
+  **Use this build**, then close the black window when setup finishes.
 
 **Step 2.** Start Path of Exile and change one setting:
 
@@ -54,11 +53,36 @@ Four things worth knowing:
   bring it back.
 - **Wondering if an item is good?** Point your mouse at the item in
   game and press **Ctrl+C**. The card tells you TAKE or SKIP.
+- **Picked the wrong build?** Press **F10**, choose the correct PoB,
+  and click **Use this build**. You can also double-click
+  `choose_build.bat` when the overlay is closed.
 
 A second panel with little maps may pop up when you enter a new
 area. Click the picture that looks like your minimap, then follow
 the green line to the exit. If you don't like the panel, press
 **F7** and it goes away.
+
+## Rather have it TALK to you?
+
+The helper can also **read each step out loud** when you enter a new
+area, so you never have to look away from the fight to read the card.
+
+To turn it on: open the **`overlay`** folder, right-click
+**`config.json`** → **Open with** → **Notepad**. Find the part that
+says:
+
+```
+"narration": {
+    "enabled": false,
+```
+
+Change `false` to `true`, save, and restart the overlay (Step 3).
+That's it — it uses the voice built into Windows, nothing to install.
+
+While playing: **F8** makes it repeat the current step (missed what
+it said? press F8). **F9** turns the voice off and on. If it talks
+too fast or too slow, change `"rate": 0` in the same spot (try `-2`
+for slower, `2` for faster).
 
 ## Want to actually understand the game?
 
