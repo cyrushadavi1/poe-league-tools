@@ -141,7 +141,8 @@ def choose_and_save(parent, config_path, bundle_path, bundle,
     outer.addLayout(form)
 
     note = QLabel(
-        "You can change this later by running <b>choose_build.bat</b>. "
+        "You can change this later by pressing <b>F10</b> in the overlay "
+        "or by running <b>choose_build.bat</b> in the portable version. "
         "The PoB itself is already prepared; nothing is imported into "
         "Path of Building on this PC.")
     note.setWordWrap(True)

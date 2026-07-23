@@ -49,9 +49,14 @@ DEFAULT_CONFIG = {
     "item_eval": True,
     "links_best": 3,
     "layouts": {"enabled": True, "auto_show": True, "dir": "assets/layouts"},
+    "narration": {
+        "enabled": False, "rate": 0, "volume": 100,
+        "tips": True, "layout": True,
+    },
     "party": {"me": "", "members": [], "gap_warn": 3},
     "hotkeys": {"prev": "F2", "next": "F3", "toggle": "F4",
                 "clickthrough": "F6", "layouts": "F7",
+                "narrate_repeat": "F8", "narrate_toggle": "F9",
                 "choose_build": "F10"},
 }
 

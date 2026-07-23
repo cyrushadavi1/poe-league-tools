@@ -9,15 +9,17 @@ It is **allowed by the game rules** (it only reads a text file the
 game writes — same as every popular leveling tracker), and it
 **cannot get you banned**. Nothing to worry about.
 
-## Set it up (2 double-clicks, about 5 minutes)
+## Set it up (about 2 minutes)
 
-**Step 1.** Open this folder and double-click **`setup_pc.bat`**.
+**Step 1.** Double-click **`PoE-League-Tools-Setup.exe`**, then follow
+the normal Windows install screens. When it finishes, leave
+**Launch PoE League Tools** checked.
 
 - A setup window opens with a **Build / PoB** dropdown.
 - Pick **Carry**, **Aurabot**, **Banner**, or **Drugger**.
 - Type your exact Path of Exile character name.
 - The Client.txt box is usually filled automatically. Click
-  **Use this build**, then close the black window when setup finishes.
+  **Use this build**. The helper card opens immediately.
 
 **Step 2.** Start Path of Exile and change one setting:
 
@@ -26,13 +28,14 @@ game writes — same as every popular leveling tracker), and it
 - (This is the only game setting you need to touch. Without it the
   helper card is invisible.)
 
-**Step 3.** Back in this folder, open the **`overlay`** folder and
-double-click **`run_overlay.bat`**.
+**Step 3.** Start **PoE League Tools** from the Windows Start menu.
+A small card appears on your screen. Drag it anywhere you like.
 
-- A small card appears on your screen. That's it — you're done.
-- Drag it with your mouse to any spot you like.
+Next time you play, only do **Step 3**.
 
-Next time you play, you only ever do **Step 3**.
+If you received the older portable ZIP instead of the installer, use its
+`setup_pc.bat` and `overlay\run_overlay.bat` files; everything inside the
+overlay works the same way.
 
 ## How to use it while playing
 
@@ -54,8 +57,7 @@ Four things worth knowing:
 - **Wondering if an item is good?** Point your mouse at the item in
   game and press **Ctrl+C**. The card tells you TAKE or SKIP.
 - **Picked the wrong build?** Press **F10**, choose the correct PoB,
-  and click **Use this build**. You can also double-click
-  `choose_build.bat` when the overlay is closed.
+  and click **Use this build**.
 
 A second panel with little maps may pop up when you enter a new
 area. Click the picture that looks like your minimap, then follow
@@ -67,8 +69,8 @@ the green line to the exit. If you don't like the panel, press
 The helper can also **read each step out loud** when you enter a new
 area, so you never have to look away from the fight to read the card.
 
-To turn it on: open the **`overlay`** folder, right-click
-**`config.json`** → **Open with** → **Notepad**. Find the part that
+To turn it on, open
+`%LOCALAPPDATA%\PoE League Tools\config.json` in Notepad. Find the part that
 says:
 
 ```
@@ -94,11 +96,10 @@ it makes everything make sense.
 
 ## If something doesn't work
 
-1. Double-click **`doctor.bat`** in this folder.
-2. Take a screenshot of what it says (press
-   **Windows key + Shift + S**, drag over the window).
-3. Send the screenshot to the group chat. Someone will tell you
-   exactly what to click.
+1. Close the app and run `PoE-League-Tools-Setup.exe` again.
+2. If the steps do not update, open **PoE League Tools - Setup or Change
+   Character** from the Start menu and choose Client.txt again.
+3. If it still fails, send
+   `%LOCALAPPDATA%\PoE League Tools\logs\last-crash.log` to the group chat.
 
-You cannot break anything by re-running `setup_pc.bat` or
-`doctor.bat` — they are always safe to double-click again.
+Reinstalling does not erase your build choice, settings, or run history.

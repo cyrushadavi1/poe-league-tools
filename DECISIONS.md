@@ -3,6 +3,21 @@
 Running record of decisions made while building the toolkit (per the plan's
 DECISIONS.md convention). Newest at the bottom.
 
+## 2026-07-23 Windows installer
+
+- **Ship an installer EXE, not a PyInstaller one-file application.**
+  PyInstaller builds a one-folder GUI app; Inno Setup compresses that folder
+  into the single file friends download. Runtime data remains inspectable
+  and stable instead of being unpacked into a temporary directory.
+- **Per-user, non-admin install.** Program files go under
+  `%LOCALAPPDATA%\Programs\PoE League Tools`; writable config, UI state,
+  runs, and crash logs go under `%LOCALAPPDATA%\PoE League Tools`.
+  Upgrades and uninstalls do not erase player data.
+- **Build on Windows.** The GitHub Actions release job prepares the four
+  reviewed PoBs and layout pack, runs all tests, freezes the GUI, executes a
+  packaged-asset self-test, and builds `PoE-League-Tools-Setup.exe`.
+  The portable embedded-Python ZIP remains supported as a fallback.
+
 ## Pre-made / confirmed during the 2026-07-07 build
 
 - **Dependencies:** Python stdlib only, plus PyQt6 (overlay UI) and the
@@ -138,10 +153,10 @@ DECISIONS.md convention). Newest at the bottom.
   embeddable* CPython + the PyQt6 win_amd64 wheels unzipped straight
   into its site-packages (wheels are install-by-extract; PyQt6 has no
   post-install steps). Friends need no Python, no admin, no internet.
-  Chosen over PyInstaller/Nuitka because those cannot cross-build and
-  this project's build machine is a Mac; the embeddable approach is
-  pure downloads + file assembly, so the Mac builds it (network at
-  build time only, cached under `dist/cache/`).
+  Kept as the Mac-buildable portable fallback because PyInstaller/Nuitka
+  cannot cross-build; the embeddable approach is pure downloads + file
+  assembly, so the Mac builds it (network at build time only, cached under
+  `dist/cache/`). The primary installer is now built by Windows CI.
   - The `._pth` file takes FULL control of the embedded interpreter's
     `sys.path` (no script-dir insertion), so it lists every package dir
     the repo imports by-same-directory: `..`, `..\overlay`,

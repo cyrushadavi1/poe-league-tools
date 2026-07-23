@@ -8,8 +8,8 @@ official *Windows embeddable* CPython (~11 MB) with the PyQt6 Windows
 wheels pre-extracted into its site-packages. A friend unzips, runs
 setup_pc.bat, and the .bat files prefer the bundled interpreter -- no
 Python install, no admin rights, no PATH edits, no pip, no internet
-after the unzip. (PyInstaller-style single .exe was rejected: it cannot
-cross-build, and this project's build machine is a Mac -- DECISIONS.md.)
+after the unzip. This remains the Mac-buildable fallback; the friendlier
+installer is built separately on Windows by the GitHub Actions workflow.
 
 Network is used at BUILD time only (python.org + PyPI), cached under
 dist/cache/ so rebuilds are offline. Wheels are fetched with

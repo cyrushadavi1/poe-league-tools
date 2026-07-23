@@ -41,8 +41,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MAX_CLIP_CHARS = 8192
 
 
-def _resolve(path):
-    return path if os.path.isabs(path) else os.path.join(HERE, path)
+def _resolve(path, base=HERE):
+    return path if os.path.isabs(path) else os.path.join(base, path)
 
 
 def _find_client(cli_arg, cfg):
@@ -182,14 +182,21 @@ def save_run(tracker):
 
 # ----------------------------------------------------------------------- app
 
-def main():
+def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default=os.path.join(HERE, "config.json"))
+    ap.add_argument("--state", default=os.path.join(HERE, "ui_state.json"),
+                    help="writable UI-state path (installed app uses "
+                         "LOCALAPPDATA)")
     ap.add_argument("--client",
                     help="override the Client.txt path (e.g. a simulator "
                          "file when developing without the game)")
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
     cfg = _load_config(args.config)
+    config_dir = os.path.dirname(os.path.abspath(args.config))
+
+    def resolve(path):
+        return _resolve(path, config_dir)
 
     # Qt only from here on -- importing this module never pulls it in.
     from PyQt6.QtCore import QTimer
@@ -210,7 +217,7 @@ def main():
               "   (No game on this machine? See tools/simulate_client.py)")
         client = client or os.path.join(HERE, "Client.txt")  # watcher no-ops
 
-    engine = RouteEngine(_resolve(cfg.get("routes_dir", "../routes")),
+    engine = RouteEngine(resolve(cfg.get("routes_dir", "../routes")),
                          lookahead=cfg.get("lookahead", 4))
     watcher = ClientWatcher(client)
 
@@ -223,7 +230,7 @@ def main():
     if cfg.get("timer", True):
         try:
             tracker = RunTracker(
-                runs_dir=_resolve(cfg.get("runs_dir", "../runs")))
+                runs_dir=resolve(cfg.get("runs_dir", "../runs")))
             tracker.start(character=pc.get("me", "") or "unknown",
                           cls="", league=cfg.get("league", "3.29"))
         except Exception as e:  # noqa: BLE001 -- timer is optional
@@ -259,9 +266,9 @@ def main():
                   f"{cur.get('act')}: {cur.get('zone')}  (F2/F3 to adjust;"
                   " resume_route:false in config to disable)")
 
-    app = QApplication(sys.argv)
+    app = QApplication.instance() or QApplication(sys.argv)
     from ui_state import UiState, valid_pos
-    state = UiState(os.path.join(HERE, "ui_state.json"))
+    state = UiState(args.state)
     win = OverlayWindow(cfg, state)
     win.set_level(party.my_level)
 
@@ -270,7 +277,7 @@ def main():
     lay_cfg = cfg.get("layouts") or {}
     if lay_cfg.get("enabled", True):
         from layout_index import LayoutIndex
-        lay_dir = _resolve(lay_cfg.get("dir", "assets/layouts"))
+        lay_dir = resolve(lay_cfg.get("dir", "assets/layouts"))
         idx = LayoutIndex(lay_dir)
         if idx.count:
             from layout_panel import LayoutPanel
@@ -288,9 +295,9 @@ def main():
 
     bn = cfg.get("build_notes")
     build_id = None
-    if bn and os.path.exists(_resolve(bn)):
+    if bn and os.path.exists(resolve(bn)):
         from build_notes import adapter_id, group_notes
-        with open(_resolve(bn), encoding="utf-8") as f:
+        with open(resolve(bn), encoding="utf-8") as f:
             raw_notes = json.load(f)
         win.set_notes(group_notes(raw_notes))
         build_id = adapter_id(raw_notes)
@@ -299,7 +306,7 @@ def main():
     elif bn:
         # Configured but missing must be loud: "my gem reminders never
         # showed up" is otherwise indistinguishable from working-as-set-up.
-        print(f"[notes] build_notes not found: {_resolve(bn)}\n"
+        print(f"[notes] build_notes not found: {resolve(bn)}\n"
               "        gem reminders are OFF -- re-run setup_pc.bat or fix "
               "'build_notes' in overlay/config.json")
 
@@ -324,7 +331,7 @@ def main():
                 return
 
             new_bn = new_cfg.get("build_notes")
-            with open(_resolve(new_bn), encoding="utf-8") as f:
+            with open(resolve(new_bn), encoding="utf-8") as f:
                 new_notes = json.load(f)
             from build_notes import adapter_id, group_notes
             win.set_notes(group_notes(new_notes))

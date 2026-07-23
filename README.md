@@ -43,11 +43,24 @@ line.
 
 ## Party setup (start here)
 
-The four reviewed 3.29 PoBs are already prepared. On each PC, double-click
-`setup_pc.bat`; a graphical dropdown lets that player choose **Carry,
-Aurabot, Banner, or Drugger**, enter their real in-game character name,
-and save. No CLI or JSON editing is required. Press **F10** while the
-overlay is open—or double-click `choose_build.bat`—to change the selection.
+The easiest install is the Windows release:
+
+1. Download and run **`PoE-League-Tools-Setup.exe`**.
+2. Launch **PoE League Tools** from the Start menu.
+3. Pick **Carry, Aurabot, Banner, or Drugger**, enter the exact in-game
+   character name, and click **Use this build**.
+
+The installer is per-user: no Python, terminal, archive extraction, admin
+rights, or JSON editing. It immediately starts the overlay after first-run
+setup. Settings and run history live in
+`%LOCALAPPDATA%\PoE League Tools`, so reinstalling or upgrading keeps them.
+Press **F10** in the overlay to change the selected PoB. The Start-menu
+shortcut **PoE League Tools - Setup or Change Character** reopens the full
+character and Client.txt setup.
+
+The portable ZIP remains available as a fallback. In that version,
+double-click `setup_pc.bat`, then `overlay\run_overlay.bat`;
+`choose_build.bat` changes the build while the overlay is closed.
 
 To replace or add PoBs later, `python buildgen/party.py --init` remains the
 authoring workflow: paste a pobb.in / pastebin / poe.ninja / maxroll link,
@@ -64,19 +77,26 @@ then it writes `party.json` and generates per-player
    endgame-only PoB falls back to the generic per-class plan in
    `data/leveling_defaults.json` — labelled as generic in plan.md and by the
    doctor.
-3. `python tools/make_portable.py` → `dist/poe-league-tools-pc.zip`
+3. Run the **Build Windows installer** GitHub Actions workflow to produce
+   `PoE-League-Tools-Setup.exe`. A `v*` tag also attaches the installer to
+   that GitHub Release. On a Windows development machine, the equivalent
+   local command is:
+
+   ```powershell
+   pip install -r requirements.txt -r requirements-build.txt
+   powershell -ExecutionPolicy Bypass -File packaging\build_windows.ps1 `
+     -Version 3.29.0
+   ```
+
+4. `python tools/make_portable.py` → `dist/poe-league-tools-pc.zip`
    (~92 MB): the whole toolkit **with a private Windows Python and PyQt6
    inside** — friends install nothing. Built from the Mac; needs network
    the first time (python.org + PyPI, cached in `dist/cache/`).
-4. Ship that zip plus `FRIENDS.md` as the cover note
+5. Ship the installer. `FRIENDS.md` is the short hand-out;
    (`START_HERE_EASY.md` is the zero-assumed-knowledge setup version,
    and `BEGINNER_LEVELING.md` the from-zero leveling companion, for
-   the least experienced player). On each PC,
-   `setup_pc.bat` finds Client.txt, asks "who are you?" and writes that
-   machine's `overlay/config.json` — nobody installs or edits anything.
-   (Skipped step 3? The zip-the-folder flow still works — `builds/` is
-   gitignored so zip beats clone — friends then need Python 3.10+ and
-   `setup_pc.bat` pip-installs the rest.)
+   the least experienced player). Keep the portable ZIP for anyone who
+   prefers a folder with no installed application.
 
 Solo works too: `python buildgen/pob.py plan <code-or-link>`, empty
 party config.
@@ -97,7 +117,12 @@ The Caged Brute.
 
 ## Overlay quickstart (gaming PC)
 
-Windows, Python 3.10+, game in **Windowed Fullscreen**, English client.
+Windows, game in **Windowed Fullscreen**, English client.
+
+**Installed release:** open **PoE League Tools** from the Start menu.
+First launch performs setup; later launches go straight to the overlay.
+
+**Portable/source version:**
 
 ```
 setup_pc.bat                 (once — first-run wizard; installs deps only
@@ -177,8 +202,13 @@ summon it with F7 only.
 ## Updating
 
 Your personal settings never get clobbered by an update: they live in
-`overlay/config.json` and `overlay/ui_state.json`, which are
-machine-written and untracked — pulling new code can't touch them.
+Installed-app settings live in `%LOCALAPPDATA%\PoE League Tools`.
+Portable/source settings remain in `overlay/config.json` and
+`overlay/ui_state.json`. Both arrangements keep machine-written state
+outside updates.
+
+**If you installed the app:** run the newer installer. It upgrades the
+application in place and leaves settings and run history untouched.
 
 **If you cloned with git** (needs [git](https://git-scm.com) installed):
 
@@ -300,6 +330,13 @@ Deploy to the PC: copy the folder — `builds/` included — and run
 `setup_pc.bat`; the wizard (`tools/join_party.py`) and the doctor
 (`tools/preflight.py`) both run fine on macOS for testing.
 
+Windows release builds are intentionally performed on Windows because
+PyInstaller does not cross-build. Use the **Build Windows installer**
+workflow, or `packaging\build_windows.ps1` on a Windows machine. The
+workflow runs the tests, generates the reviewed build bundle, downloads
+the layout pack, freezes the app, runs its packaged self-test, and wraps
+it in an Inno Setup installer.
+
 ## Route data
 
 `routes/act1.json` … `act10.json` — full guided density (every quest, skill
@@ -325,6 +362,8 @@ leveling guide (differences are usually deliberate skips).
 - [x] Meta ranker, tradeq, LLM route verifier, Client.txt simulator
 - [x] Friend onboarding: party bundle → `setup_pc.bat` wizard →
       `doctor.bat` health check (FRIENDS.md is the hand-out)
+- [x] Per-user Windows installer: Start-menu app, first-run PoB picker,
+      writable `%LOCALAPPDATA%` state, upgrades and uninstaller
 - [x] Zone-layout panel (Exile-UI image pack, F7) · resizable/compact
       overlay · routes cross-checked against community data
 - [ ] **Before Jul 20:** Mirage rehearsal — 24 h daemon run, tune the

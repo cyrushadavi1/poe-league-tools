@@ -1,0 +1,2 @@
+# Windows release tooling. Runtime users do not install these.
+PyInstaller==6.21.0
