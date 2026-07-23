@@ -170,7 +170,12 @@ def write_bundle(bundle: dict, out_dir: str) -> list[str]:
             f.write("\n## Arm the searches\n\n```text\n")
             f.write("python tools/snipe.py \\\n")
             for i, path in enumerate(paths):
-                rel = os.path.relpath(path, _ROOT)
+                try:
+                    rel = os.path.relpath(path, _ROOT)
+                except ValueError:
+                    # Windows cannot form a relative path across drives
+                    # (for example checkout on D:, temp output on C:).
+                    rel = os.path.abspath(path)
                 suffix = " \\" if i < len(paths) - 1 else ""
                 f.write(f"  --query {rel}{suffix}\n")
             f.write("```\n\nSet `POESESSID` first; every purchase and "

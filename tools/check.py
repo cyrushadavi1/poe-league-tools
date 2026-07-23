@@ -51,6 +51,10 @@ def _as_str(x) -> str:
 def run_suite(path: str) -> tuple[bool, float, str]:
     """Run one suite; return (passed, seconds, captured output)."""
     t0 = time.monotonic()
+    env = os.environ.copy()
+    # Captured Windows stdout otherwise inherits a legacy code page such as
+    # cp1252 and crashes tests that legitimately print overlay glyphs.
+    env.setdefault("PYTHONIOENCODING", "utf-8")
     try:
         proc = subprocess.run(
             [sys.executable, path],
@@ -58,6 +62,7 @@ def run_suite(path: str) -> tuple[bool, float, str]:
             capture_output=True,
             text=True,
             timeout=SUITE_TIMEOUT_S,
+            env=env,
         )
         out = (proc.stdout or "") + (proc.stderr or "")
         passed = proc.returncode == 0

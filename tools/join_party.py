@@ -100,6 +100,16 @@ def load_bundle(path):
     return None
 
 
+def _relative_or_absolute(target, start):
+    """Portable relative path, or absolute when Windows drives differ."""
+    try:
+        value = os.path.relpath(os.path.abspath(target),
+                                os.path.abspath(start))
+    except ValueError:
+        value = os.path.abspath(target)
+    return value.replace(os.sep, "/")
+
+
 def step_client(cfg, client_arg, yes, ask, say):
     """Resolve Client.txt; returns the path to persist ('' = leave be)."""
     say("")
@@ -208,7 +218,7 @@ def step_who(bundle, who, others_arg, cfg, yes, ask, say):
 def wizard(config_path, bundle_path, client_arg=None, who=None, others=None,
            yes=False, ask=_ask_default, say=print, run_checks=True):
     say("== poe-league-tools first-run setup ==")
-    rel = os.path.relpath(config_path, os.getcwd())
+    rel = _relative_or_absolute(config_path, os.getcwd())
     shown = config_path if rel.startswith("..") else rel
     say(f"This writes {shown} for THIS machine. Safe to re-run any time.")
 
@@ -236,9 +246,8 @@ def wizard(config_path, bundle_path, client_arg=None, who=None, others=None,
         notes_abs = os.path.join(os.path.dirname(os.path.abspath(
             bundle_path)), notes_name)
         if os.path.exists(notes_abs):
-            rel = os.path.relpath(notes_abs, os.path.dirname(
-                os.path.abspath(config_path)))
-            cfg["build_notes"] = rel.replace(os.sep, "/")
+            cfg["build_notes"] = _relative_or_absolute(
+                notes_abs, os.path.dirname(os.path.abspath(config_path)))
             say(f"   gem reminders: {cfg['build_notes']}")
         else:
             say(f"   note: {notes_name} missing next to the bundle -- gem "

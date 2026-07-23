@@ -14,7 +14,8 @@ import sys
 import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path[:0] = [os.path.join(ROOT, "overlay"), os.path.join(ROOT, "market")]
+sys.path[:0] = [ROOT, os.path.join(ROOT, "overlay"),
+                os.path.join(ROOT, "market")]
 
 import main                                     # noqa: E402  (overlay/main.py)
 import item_rules                               # noqa: E402
@@ -23,6 +24,7 @@ from party_state import PartyState              # noqa: E402
 from route_engine import RouteEngine            # noqa: E402
 from run_tracker import RunTracker, load_run    # noqa: E402
 from scanner import pair_rows_from_currency, scan  # noqa: E402
+from tools import join_party                       # noqa: E402
 
 # ------------------------------------------------ import safety: no Qt pulled
 assert not any(m == "PyQt6" or m.startswith("PyQt6.") for m in sys.modules), \
@@ -34,10 +36,10 @@ for name in ("dispatch_events", "evaluate_clipboard_text", "tracker_status",
     assert callable(getattr(main, name)), f"main.{name} missing"
 assert main.MAX_CLIP_CHARS == 8192
 
-# ------------------------------------------------ shipped config defaults
-with open(os.path.join(ROOT, "overlay", "config.json"),
-          encoding="utf-8") as f:
-    cfg = json.load(f)
+# ------------------------------------------ canonical first-run config defaults
+# overlay/config.json is intentionally per-machine and gitignored; the
+# installer and portable wizard both start from this canonical dictionary.
+cfg = json.loads(json.dumps(join_party.DEFAULT_CONFIG))
 for key in ("client_txt", "poll_ms", "routes_dir", "party", "hotkeys"):
     assert key in cfg, f"existing config key {key} must survive"
 assert cfg["timer"] is True

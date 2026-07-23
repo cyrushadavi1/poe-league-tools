@@ -96,9 +96,13 @@ def selected_member_index(cfg: dict, bundle: dict, bundle_path: str,
 
 
 def _portable_ref(target: str, config_path: str) -> str:
-    rel = os.path.relpath(os.path.abspath(target),
-                          os.path.dirname(os.path.abspath(config_path)))
-    return rel.replace(os.sep, "/")
+    target = os.path.abspath(target)
+    try:
+        value = os.path.relpath(
+            target, os.path.dirname(os.path.abspath(config_path)))
+    except ValueError:
+        value = target
+    return value.replace(os.sep, "/")
 
 
 def apply_profile(cfg: dict, config_path: str, bundle_path: str,
