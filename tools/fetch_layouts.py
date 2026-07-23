@@ -126,9 +126,12 @@ def fetch(dest, say=print):
     data = _get(TARBALL_URL, say)
     say(f"   {len(data) / 1e6:.1f} MB downloaded, extracting ...")
 
-    staging = tempfile.mkdtemp(prefix=".layouts-", dir=os.path.dirname(dest)
-                               if os.path.isdir(os.path.dirname(dest))
-                               else None)
+    # Stage beside the final directory. GitHub's Windows runner keeps its
+    # temp dir on C: and the checkout on D:, where os.replace cannot move a
+    # directory across volumes.
+    parent = os.path.dirname(dest)
+    os.makedirs(parent, exist_ok=True)
+    staging = tempfile.mkdtemp(prefix=".layouts-", dir=parent)
     count = 0
     try:
         with tarfile.open(fileobj=io.BytesIO(data), mode="r:gz") as tar:
@@ -165,8 +168,12 @@ def fetch(dest, say=print):
         shutil.rmtree(staging, ignore_errors=True)
         raise
 
+    try:
+        shown = os.path.relpath(dest, os.getcwd())
+    except ValueError:
+        shown = dest
     say(f"installed {count} layout images (pack v{local_version(dest)}) "
-        f"-> {os.path.relpath(dest, os.getcwd())}")
+        f"-> {shown}")
     say("the overlay picks them up on next launch")
     return 0
 
