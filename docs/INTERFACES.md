@@ -51,6 +51,7 @@ this file wins; propose changes here rather than silently diverging.
 | craft | `craft/*.py`, `tools/refresh_repoe.py`, `tools/craft_check.py`, `data/repoe_craft.json`, `data/craft_recipes.json`, `tests/fixtures_craft/`, `tests/test_craft.py` |
 | layouts | `overlay/layout_index.py`, `overlay/layout_panel.py`, `overlay/ui_state.py`, `tools/fetch_layouts.py`, `tools/crosscheck_routes.py`, `data/exileui/`, `tests/test_layouts.py` |
 | integration (later) | `overlay/main.py`, `overlay/overlay_window.py`, `overlay/config.json`, `README.md`, `tools/check.py`, `requirements.txt`, `setup_pc.bat` |
+| overlay-appearance | `overlay/theme.py`, `overlay/settings_dialog.py`, `tests/test_theme.py` |
 
 Do not create or edit files outside your row. `data/` files not listed are
 free for their owner. Directories are created implicitly by writing files.
