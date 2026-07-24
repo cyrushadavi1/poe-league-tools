@@ -296,10 +296,11 @@ def main(argv=None):
     bn = cfg.get("build_notes")
     build_id = None
     if bn and os.path.exists(resolve(bn)):
-        from build_notes import adapter_id, group_notes
+        from build_notes import adapter_id, group_notes, group_passives
         with open(resolve(bn), encoding="utf-8") as f:
             raw_notes = json.load(f)
         win.set_notes(group_notes(raw_notes))
+        win.set_passives(group_passives(raw_notes))
         build_id = adapter_id(raw_notes)
         if build_id:
             print(f"[items] build-specific pickup guide: {build_id}")
@@ -333,8 +334,9 @@ def main(argv=None):
             new_bn = new_cfg.get("build_notes")
             with open(resolve(new_bn), encoding="utf-8") as f:
                 new_notes = json.load(f)
-            from build_notes import adapter_id, group_notes
+            from build_notes import adapter_id, group_notes, group_passives
             win.set_notes(group_notes(new_notes))
+            win.set_passives(group_passives(new_notes))
             build_id = adapter_id(new_notes)
 
             old_level = party.my_level

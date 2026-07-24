@@ -16,8 +16,9 @@ Components:
    through a full 10-act route (187 steps) by watching `Client.txt`. Shows a
    party status row, per-act split timer vs. your PB, XP-penalty warnings,
    and instant TAKE/SKIP/CHECK verdicts on any item you Ctrl+C in game.
-2. **Build tools** (`buildgen/`) — PoB codes → leveling sheets, overlay gem
-   notes, and a party summary (gem links per act + uniques wishlist).
+2. **Build tools** (`buildgen/`) — PoB codes → leveling sheets with an exact
+   passive allocation for each level, overlay gem/passive notes, and a party
+   summary (gem links per act + uniques wishlist).
 3. **Advisor** (`advisor/`) — LLM pipeline for the 3.29 patch notes:
    `summarize.py` (notes → structured deltas) → `advise.py` (build
    recommendations) → `exposure.py` (per-build nerf report).
@@ -68,6 +69,12 @@ then it writes `party.json` and generates per-player
    `<name>_plan.md` + `<name>_notes.json`, `party_summary.md` with
    everyone's gem links per act and a uniques wishlist, and
    `party_bundle.json` — the manifest each PC sets itself up from.
+   Each plan reconstructs a connected, deterministic passive click order
+   between the PoB author's cumulative tree snapshots. The overlay shows the
+   exact passive name at each level, quest-point allocations, Lab choices,
+   and authored-tree respec transitions. Because PoB does not store click
+   order inside a snapshot, generated plans label this order as derived and
+   retain the node ID and PoB tree link for auditing.
    PoBs with act-tagged or level-staged skill sets get build-specific gem
    notes. Known guide PoBs can also match reviewed campaign adapters in
    `data/pob_leveling_adapters.json`; those reminders advance at character

@@ -32,6 +32,7 @@ import zlib
 import xml.etree.ElementTree as ET
 
 import adapters
+import passive_tree
 import sources
 
 GENERIC_PLANS = os.path.join(
@@ -95,7 +96,21 @@ def tree_specs(root):
         return out
     for spec in tree.findall("Spec"):
         nodes = [n for n in (spec.get("nodes") or "").split(",") if n]
-        out.append({"title": spec.get("title") or "Default", "nodes": nodes})
+        mastery_effects = {
+            node_id: effect_id
+            for node_id, effect_id in re.findall(
+                r"\{\s*(\d+)\s*,\s*(\d+)\s*\}",
+                spec.get("masteryEffects") or "",
+            )
+        }
+        url = spec.findtext("URL") or ""
+        out.append({
+            "title": spec.get("title") or "Default",
+            "nodes": nodes,
+            "tree_version": spec.get("treeVersion") or "",
+            "mastery_effects": mastery_effects,
+            "url": url.strip(),
+        })
     return out
 
 
@@ -386,6 +401,48 @@ def make_plan(root):
             lines += [f"- **Act {n['act']}**: {n['text']}" for n in notes]
             lines.append("")
 
+    passive_rows, passive_warnings = passive_tree.build_plan(info, specs)
+    if passive_rows:
+        lines += [
+            "## Level-by-level passive allocation",
+            "",
+            "*PoB stores cumulative tree snapshots, not the author's click "
+            "order. The sequence below is a deterministic connected route "
+            "between those authored checkpoints. Node IDs and checkpoint "
+            "links are included so every derived click can be audited.*",
+            "",
+        ]
+        for warning in passive_warnings:
+            lines.append(f"- **Caution:** {warning}")
+        if passive_warnings:
+            lines.append("")
+        lines += [
+            "| Level | Point | Allocate | Author checkpoint |",
+            "|---:|---|---|---|",
+        ]
+        for row in passive_rows:
+            level = row.get("level", "")
+            kind = row.get("kind")
+            stage = row.get("stage") or ""
+            url = row.get("tree_url") or ""
+            checkpoint = (
+                f"[{_table_text(stage)}]({url})" if stage and url
+                else _table_text(stage)
+            )
+            if kind == "passive-respec":
+                allocate = _table_text(row.get("text", ""))
+                lines.append(
+                    f"| {level} | Respec | {allocate} | {checkpoint} |")
+                continue
+            node_id = row.get("node_id")
+            allocate = _table_text(row.get("text", ""))
+            if node_id:
+                allocate += f" (`{node_id}`)"
+            lines.append(
+                f"| {level} | {_table_text(passive_tree.passive_label(row).split(':', 1)[0])} "
+                f"| {allocate} | {checkpoint} |")
+        lines.append("")
+
     lines += ["## Passive tree checkpoints", ""]
     prev = set()
     for sp in specs:
@@ -411,7 +468,7 @@ def make_plan(root):
                      "the exact pathing)")
         prev = cur
     lines.append("")
-    return "\n".join(lines), notes
+    return "\n".join(lines), notes + passive_rows
 
 
 def cmd_decode(root):

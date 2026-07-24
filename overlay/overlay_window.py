@@ -9,7 +9,7 @@ import html
 from PyQt6.QtCore import Qt, QTimer
 from PyQt6.QtWidgets import QFrame, QLabel, QVBoxLayout, QWidget
 
-from build_notes import select_note
+from build_notes import select_note, select_passives
 from ui_state import clamp_scale
 
 KIND_COLORS = {"kill": "#e46a6a", "town": "#6ab0e4",
@@ -26,6 +26,7 @@ class OverlayWindow(QWidget):
         self._dragged = False
         self.level = 1
         self.notes = {}                      # act -> str or milestone rows
+        self.passives = []                   # level-aware allocation rows
         self._party_text = ""
         self._flashing = False
         self._meta_bits = []                 # current step's meta lines
@@ -121,6 +122,9 @@ class OverlayWindow(QWidget):
         note = select_note(self.notes.get(act), self.level)
         if note:
             bits.append(f"⚙ {note}")
+        passive = select_passives(self.passives, self.level)
+        if passive:
+            bits.append(f"◇ {html.escape(passive)}")
         self._meta_bits = bits
         self._render_meta()
         self.nxt.setText(f"next: {peek['zone']}" if peek else "— end of route —")
@@ -130,6 +134,9 @@ class OverlayWindow(QWidget):
 
     def set_notes(self, notes):
         self.notes = notes
+
+    def set_passives(self, passives):
+        self.passives = passives
 
     # -- run tracker status (timer splits + XP warning) ----------------------
     def set_status(self, text):
