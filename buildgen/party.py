@@ -22,7 +22,7 @@ or a path to a file holding either); mark your own character with
   }
 
 Outputs, per player: <player>_plan.md (printable leveling sheet) and
-<player>_notes.json (overlay gem reminders -- each person points
+<player>_notes.json (overlay gem/passive reminders -- each person points
 `build_notes` in their own overlay config at their file). Plus one
 party_summary.md: who plays what and everyone's gem links side by side
 per act, for coordinating vendor/quest gem pickups. And one
@@ -65,6 +65,8 @@ def build_member(member, out_dir):
 
     notes_by_act = {}
     for note in notes:
+        if "act" not in note:
+            continue
         level = f"@{note['level']} " if "level" in note else ""
         notes_by_act.setdefault(note["act"], []).append(level + note["text"])
 

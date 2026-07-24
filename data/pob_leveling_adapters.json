@@ -206,9 +206,10 @@
         "The PoB's 'Early Game' tree already has 122 nodes, so it is not a level-68 swap tree. Keep enough damage to finish the campaign and perform the support respec only when the party can carry."
       ],
       "gem_checklist": [
-        {"act": 1, "level": 2, "action": "BUY", "when": "After Hillock (Nessa; not a Duelist quest choice)", "items": ["Ground Slam", "Ruthless"]},
-        {"act": 1, "level": 4, "action": "TAKE + BUY", "when": "After Hailrake/Mud Flats", "items": ["Chance to Bleed", "Frostblink", "Blood and Sand", "War Banner"], "instruction": "Take Chance to Bleed; buy level-1 Frostblink, Blood and Sand, and War Banner."},
-        {"act": 1, "level": 10, "action": "TAKE + BUY", "when": "After Brutus", "items": ["Leap Slam", "Faster Attacks", "Intimidating Cry", "Enduring Cry"], "instruction": "Take Leap Slam; buy Faster Attacks, Intimidating Cry, and Enduring Cry."},
+        {"act": 1, "level": 2, "action": "TAKE", "when": "After Hillock", "items": ["Splitting Steel"], "instruction": "Take Splitting Steel as the Duelist quest reward. Do not depend on the Marauder-only Ground Slam reward."},
+        {"act": 1, "level": 4, "action": "TAKE", "when": "After Hailrake (Mercy Mission)", "items": ["Ruthless"], "instruction": "Take Ruthless and link it to Splitting Steel."},
+        {"act": 1, "level": 4, "action": "TAKE + BUY", "when": "After Mud Flats (Breaking Some Eggs)", "items": ["Blood and Sand", "Frostblink"], "instruction": "Take Blood and Sand; buy level-1 Frostblink from Nessa."},
+        {"act": 1, "level": 10, "action": "TAKE + BUY", "when": "After Brutus", "items": ["Leap Slam", "Faster Attacks", "Maim", "Intimidating Cry", "Enduring Cry", "War Banner"], "instruction": "Take Leap Slam; buy Faster Attacks, Maim, Intimidating Cry, Enduring Cry, and War Banner from Nessa."},
         {"act": 1, "level": 12, "action": "BUY + SWAP", "when": "Cavern of Wrath waypoint", "items": ["Sunder"]},
         {"act": 2, "level": 16, "action": "TAKE + BUY", "when": "After Fidelitas/Weaver", "items": ["Herald of Ash", "Blood Rage", "Melee Physical Damage"], "instruction": "Take Herald of Ash after Fidelitas and Melee Physical Damage after Weaver; buy Blood Rage."},
         {"act": 3, "level": 24, "action": "BUY", "when": "After Lost in Love", "items": ["Pride", "Vulnerability"]},
@@ -235,7 +236,7 @@
           "Normal armour without a link improvement; never skip a better link solely because it lacks red sockets."
         ],
         "socket_targets": [
-          {"act_min": 1, "act_max": 1, "links": 3, "colors": {"R": 3}, "reason": "Ground Slam/Sunder 3-link with three matching red quality bonuses"},
+          {"act_min": 1, "act_max": 1, "links": 3, "colors": {"R": 3}, "reason": "Splitting Steel/Sunder 3-link with three matching red quality bonuses"},
           {"act_min": 2, "act_max": 10, "links": 4, "colors": {"R": 4}, "reason": "Sunder 4-link with four matching red quality bonuses"}
         ],
         "weapon_rules": [
@@ -260,10 +261,10 @@
         }
       },
       "milestones": [
-        {"act": 1, "level": 2, "text": "After Hillock: Duelist cannot claim Ground Slam, so buy it from Nessa; replace the starter attack and use the best available 2H axe."},
-        {"act": 1, "level": 4, "text": "After Hailrake/Mud Flats: link Chance to Bleed and Ruthless as rewards/vendors allow; add level-1 Frostblink, Blood and Sand (Blood stance), and War Banner."},
-        {"act": 1, "level": 10, "text": "After Brutus: Leap Slam–Faster Attacks; add Intimidating Cry and Enduring Cry as sockets allow."},
-        {"act": 1, "level": 12, "text": "At Merveil's Cavern waypoint: replace Ground Slam with Sunder. End Act 1 on Sunder–Chance to Bleed–Ruthless."},
+        {"act": 1, "level": 2, "text": "After Hillock: take the Duelist's free Splitting Steel reward and use the best available 2H axe or sword. Ground Slam is not required."},
+        {"act": 1, "level": 4, "text": "After Hailrake take Ruthless; after Mud Flats take Blood and Sand and buy level-1 Frostblink. Use Splitting Steel–Ruthless in Blood stance."},
+        {"act": 1, "level": 10, "text": "After Brutus take Leap Slam; buy Faster Attacks, Maim, Intimidating Cry, Enduring Cry, and War Banner from Nessa."},
+        {"act": 1, "level": 12, "text": "After reaching the Cavern of Wrath, return to Nessa and buy Sunder. End Act 1 on Sunder–Ruthless–Maim."},
         {"act": 2, "level": 16, "text": "Add Herald of Ash and Blood Rage if sustainable. Keep a mana flask and upgrade the 2H axe before adding luxury links."},
         {"act": 2, "level": 18, "text": "Add Melee Physical Damage to Sunder when a 4-link appears; use Vulnerability/Intimidating Cry on bosses."},
         {"act": 3, "level": 24, "text": "Use Pride only if mana remains comfortable; otherwise keep Herald of Ash. Weapon damage is the priority—essence/alch a current 2H axe."},

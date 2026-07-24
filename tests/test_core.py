@@ -233,8 +233,9 @@ md, notes = pob.make_plan(r2)
 assert "Rolling Magma" in md and "+60 vs previous" in md
 leveling_text = ("Rolling Magma – Arcane Surge Support – "
                  "Added Lightning Damage Support")
-assert notes == [{"act": 1, "text": leveling_text},
-                 {"act": 2, "text": leveling_text}], \
+campaign_notes = [row for row in notes if "act" in row]
+assert campaign_notes == [{"act": 1, "text": leveling_text},
+                          {"act": 2, "text": leveling_text}], \
     "'Act 1-2' skill set emits a note for EVERY act in the span"
 
 
@@ -260,7 +261,7 @@ assert all(n.get("source") == "generic" for n in notes_g), \
 assert "Generic Witch leveling gems" in md_g and "class defaults" in md_g
 assert "Rolling Magma" in notes_g[0]["text"]
 
-assert all("source" not in n for n in notes), \
+assert all("source" not in n for n in notes if "act" in n), \
     "act-tagged PoBs must never get generic notes mixed in"
 
 md_u, notes_u = pob.make_plan(bare_pob("NotAClass"))

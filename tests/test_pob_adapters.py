@@ -8,7 +8,8 @@ sys.path[:0] = [os.path.join(ROOT, "buildgen"),
                 os.path.join(ROOT, "overlay")]
 
 import adapters  # noqa: E402
-from build_notes import adapter_id, group_notes, select_note  # noqa: E402
+from build_notes import (adapter_id, group_notes, group_passives,  # noqa: E402
+                         select_note, select_passives)
 import pob  # noqa: E402
 
 
@@ -39,15 +40,24 @@ def fixture_for(adapter):
 
 catalog = adapters.load_catalog()
 assert len(catalog) == 4
+banner_adapter = next(
+    adapter for adapter in catalog
+    if adapter["id"] == "allflame-banner-champion")
+banner_steps = banner_adapter["gem_checklist"]
+assert banner_steps[0]["items"] == ["Splitting Steel"]
+assert all("Ground Slam" not in row["items"] for row in banner_steps)
+assert banner_steps[1]["items"] == ["Ruthless"]
+assert banner_steps[1]["when"].endswith("(Mercy Mission)")
 for expected in catalog:
     root = fixture_for(expected)
     got = adapters.match_adapter(
         root, pob.build_info(root), pob.tree_specs(root), pob.skill_sets(root))
     assert got and got["id"] == expected["id"]
     md, notes = pob.make_plan(root)
-    assert notes and all(n["source"] == f"adapter:{expected['id']}"
-                         for n in notes)
-    assert {n["act"] for n in notes} == set(range(1, 11))
+    campaign = [n for n in notes if "act" in n]
+    assert campaign and all(n["source"] == f"adapter:{expected['id']}"
+                            for n in campaign)
+    assert {n["act"] for n in campaign} == set(range(1, 11))
     assert "Build-specific campaign milestones" in md
     assert "Exact gem acquisition checklist" in md
     assert "Item pickup guide" in md
@@ -101,6 +111,32 @@ assert select_note(grouped[1], 4) == "first links"
 assert select_note(grouped[1], 99) == "three-link"
 assert select_note(grouped[2], 20) == "always"
 assert adapter_id(rows) is None
+
+# A real connected Templar tree fragment produces auditable, per-level rows.
+passive_root = ET.Element("PathOfBuilding")
+ET.SubElement(passive_root, "Build", {
+    "className": "Templar", "ascendClassName": "", "level": "3"})
+tree = ET.SubElement(passive_root, "Tree")
+spec = ET.SubElement(tree, "Spec", {
+    "title": "Leveling 1-3",
+    "treeVersion": "3_28",
+    "nodes": "61525,63965,14151",
+    "masteryEffects": "{63268,6216}",
+})
+ET.SubElement(spec, "URL").text = "https://pobb.in/test/tree"
+parsed_spec = pob.tree_specs(passive_root)[0]
+assert parsed_spec["mastery_effects"] == {"63268": "6216"}
+assert parsed_spec["url"] == "https://pobb.in/test/tree"
+passive_md, passive_notes = pob.make_plan(passive_root)
+passives = group_passives(passive_notes)
+assert [(row["level"], row["text"]) for row in passives] == [
+    (2, "Damage and Mana"),
+    (3, "Intelligence"),
+]
+assert "Level-by-level passive allocation" in passive_md
+assert "`14151`" in passive_md
+assert select_passives(passives, 2).startswith("Level: Damage and Mana")
+assert select_passives(passives, 1).startswith("Next @2:")
 
 print("ALL TESTS PASSED")
 print("  four structural adapters matched with full Act 1-10 coverage")

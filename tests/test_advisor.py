@@ -113,8 +113,9 @@ md, notes = pob.make_plan(r2)
 assert "Rolling Magma" in md and "+60 vs previous" in md
 _lvl_text = ("Rolling Magma – Arcane Surge Support – "
              "Added Lightning Damage Support")
-assert notes == [{"act": 1, "text": _lvl_text},
-                 {"act": 2, "text": _lvl_text}], \
+campaign_notes = [row for row in notes if "act" in row]
+assert campaign_notes == [{"act": 1, "text": _lvl_text},
+                          {"act": 2, "text": _lvl_text}], \
     "'Act 1-2' title covers both acts"
 assert pob.extract_items(r2)[0] == {"name": "Tabula Rasa",
                                     "base": "Simple Robe",
